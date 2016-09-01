@@ -18,6 +18,10 @@ import javax.swing.JMenuItem;
 
 public class winHeritage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelPrincipal;
 
