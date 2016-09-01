@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class winHeritage extends JFrame {
 
@@ -86,9 +87,9 @@ public class winHeritage extends JFrame {
 		imgPagePrincipale.setAlignmentX(Component.CENTER_ALIGNMENT);
 		imgPagePrincipale.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 75, 15);
-		panelPrincipal.add(menuBar);
+		JMenuItem mntmFichierMenuItem = new JMenuItem("Fichier");
+		mntmFichierMenuItem.setBounds(0, 0, 80, 15);
+		panelPrincipal.add(mntmFichierMenuItem);
 		
 		
 	}
