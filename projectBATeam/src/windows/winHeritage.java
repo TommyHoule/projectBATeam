@@ -1,30 +1,21 @@
 package windows;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 public class winHeritage extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JPanel panelPrincipal;
-
+	private final JButton btnAjouter = new JButton("Ajouter");
 
 	/**
 	 * Launch the application.
@@ -50,51 +41,58 @@ public class winHeritage extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		panelPrincipal = new JPanel();
-		panelPrincipal.setBackground(Color.LIGHT_GRAY);
-		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(panelPrincipal);
-		panelPrincipal.setLayout(null);
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
+		lblNewLabel.setBounds(6, 25, 100, 41);
+		contentPane.add(lblNewLabel);
 		
-		JButton btnNextButton = new JButton(">");
-		btnNextButton.addActionListener(new ActionListener() {
+		JButton btnSuivant = new JButton(">");
+		btnSuivant.setBounds(61, 216, 25, 22);
+		contentPane.add(btnSuivant);
+		
+		JButton btnDernier = new JButton(">>");
+		btnDernier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNextButton.setBounds(341, 28, 25, 22);
-		panelPrincipal.add(btnNextButton);
+		btnDernier.setBounds(87, 216, 25, 22);
+		contentPane.add(btnDernier);
 		
-		JButton btnLastButton = new JButton(">>");
-		btnLastButton.setBounds(371, 28, 25, 22);
-		panelPrincipal.add(btnLastButton);
+		JButton btnPrecedent = new JButton("<");
+		btnPrecedent.setBounds(33, 216, 25, 22);
+		contentPane.add(btnPrecedent);
 		
-		JButton btnPreviousButton = new JButton("<");
-		btnPreviousButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnPreviousButton.setBounds(304, 28, 25, 22);
-		panelPrincipal.add(btnPreviousButton);
+		JButton btnPremier = new JButton("<<");
+		btnPremier.setBounds(6, 216, 25, 22);
+		contentPane.add(btnPremier);
+		btnAjouter.setBounds(0, 78, 117, 29);
+		contentPane.add(btnAjouter);
 		
-		JButton btnFirstButton = new JButton("<<");
-		btnFirstButton.setBounds(273, 28, 25, 22);
-		panelPrincipal.add(btnFirstButton);
+		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.setBounds(0, 104, 117, 29);
+		contentPane.add(btnSupprimer);
 		
-		JLabel imgPagePrincipale = new JLabel("");
-		imgPagePrincipale.setBounds(10, 28, 100, 41);
-		panelPrincipal.add(imgPagePrincipale);
-		imgPagePrincipale.setRequestFocusEnabled(false);
-		imgPagePrincipale.setVerifyInputWhenFocusTarget(false);
-		imgPagePrincipale.setAlignmentX(Component.CENTER_ALIGNMENT);
-		imgPagePrincipale.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
+		JButton btnConsulter = new JButton("Consulter");
+		btnConsulter.setBounds(0, 132, 117, 29);
+		contentPane.add(btnConsulter);
 		
-		JMenuItem mntmFichierMenuItem = new JMenuItem("Fichier");
-		mntmFichierMenuItem.setBounds(0, 0, 80, 15);
-		panelPrincipal.add(mntmFichierMenuItem);
+		JButton btnModifier = new JButton("Modifier");
+		btnModifier.setBounds(0, 160, 117, 29);
+		contentPane.add(btnModifier);
 		
+		JButton btnQuitter = new JButton("Quitter");
+		btnQuitter.setBounds(0, 185, 117, 29);
+		contentPane.add(btnQuitter);
 		
+		JButton btnEnregistrer = new JButton("Enregistrer");
+		btnEnregistrer.setBounds(6, 243, 117, 15);
+		contentPane.add(btnEnregistrer);
+		
+		JButton btnAnnuler = new JButton("Annuler");
+		btnAnnuler.setBounds(6, 260, 117, 15);
+		contentPane.add(btnAnnuler);
 	}
 }
