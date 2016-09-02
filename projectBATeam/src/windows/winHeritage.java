@@ -26,6 +26,8 @@ public class winHeritage extends JFrame {
 	protected JMenu mnRapports;
 	protected JMenu mnQuitter;
 	protected JMenuItem mnitemListeDesBons;
+	
+	
 
 	
 	protected JPanel contentPane;
@@ -71,10 +73,10 @@ public class winHeritage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
-		lblNewLabel.setBounds(6, 6, 100, 41);
-		contentPane.add(lblNewLabel);
+		JLabel lblLogo = new JLabel("Logo");
+		lblLogo.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
+		lblLogo.setBounds(6, 6, 100, 41);
+		contentPane.add(lblLogo);
 		
 		btnSuivant = new JButton(">");
 		btnSuivant.setBounds(61, 200, 25, 22);
