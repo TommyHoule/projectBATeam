@@ -160,10 +160,12 @@ public class winChambre extends winHeritage {
  
 		
 		tblCodCom = new JTable(donnees, entetes);
+		tblCodCom.setEnabled(false);
 		tblCodCom.setCellSelectionEnabled(true);
 		tblCodCom.setColumnSelectionAllowed(true);
 		tblCodCom.setFillsViewportHeight(true);
 		panel_1.add(new JScrollPane(tblCodCom), BorderLayout.CENTER);
+		
 
 	}
 }
