@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class winHeritage extends JFrame {
+public abstract class winHeritage extends JFrame {
 
 	protected JMenuBar menuBar;
 	protected JMenu mnEntretien;
@@ -53,8 +53,9 @@ public class winHeritage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					winHeritage frame = new winHeritage();
-					frame.setVisible(true);
+					//c'est une classe abstraite, on ne peux pas l'instancier
+					//winHeritage frame = new winHeritage();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -67,7 +68,7 @@ public class winHeritage extends JFrame {
 	 */
 	public winHeritage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1150, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,47 +80,47 @@ public class winHeritage extends JFrame {
 		contentPane.add(lblLogo);
 		
 		btnSuivant = new JButton(">");
-		btnSuivant.setBounds(61, 200, 25, 22);
+		btnSuivant.setBounds(242, 16, 30, 22);
 		contentPane.add(btnSuivant);
 		
 		btnDernier = new JButton(">>");
-		btnDernier.setBounds(87, 200, 25, 22);
+		btnDernier.setBounds(284, 16, 30, 22);
 		contentPane.add(btnDernier);
 		
 		btnPrecedent = new JButton("<");
-		btnPrecedent.setBounds(33, 200, 25, 22);
+		btnPrecedent.setBounds(200, 16, 30, 22);
 		contentPane.add(btnPrecedent);
 		
 	    btnPremier = new JButton("<<");
-		btnPremier.setBounds(6, 200, 25, 22);
+		btnPremier.setBounds(158, 16, 30, 22);
 		contentPane.add(btnPremier);
 		
 		btnAjouter = new JButton("Ajouter");
-		btnAjouter.setBounds(0, 50, 117, 29);
+		btnAjouter.setBounds(6, 102, 150, 50);
 		contentPane.add(btnAjouter);
 		
 		btnSupprimer = new JButton("Supprimer");
-		btnSupprimer.setBounds(0, 80, 117, 29);
+		btnSupprimer.setBounds(6, 191, 150, 50);
 		contentPane.add(btnSupprimer);
 		
 		btnConsulter = new JButton("Consulter");
-		btnConsulter.setBounds(0, 110, 117, 29);
+		btnConsulter.setBounds(6, 368, 150, 50);
 		contentPane.add(btnConsulter);
 		
 		btnModifier = new JButton("Modifier");
-		btnModifier.setBounds(0, 140, 117, 29);
+		btnModifier.setBounds(6, 282, 150, 50);
 		contentPane.add(btnModifier);
 		
 		btnQuitter = new JButton("Quitter");
-		btnQuitter.setBounds(0, 170, 117, 29);
+		btnQuitter.setBounds(6, 450, 150, 50);
 		contentPane.add(btnQuitter);
 		
 		btnEnregistrer = new JButton("Enregistrer");
-		btnEnregistrer.setBounds(6, 225, 117, 15);
+		btnEnregistrer.setBounds(6, 577, 150, 30);
 		contentPane.add(btnEnregistrer);
 		
 		btnAnnuler = new JButton("Annuler");
-		btnAnnuler.setBounds(6, 242, 117, 15);
+		btnAnnuler.setBounds(6, 620, 150, 30);
 		contentPane.add(btnAnnuler);
 		
 		menuBar = new JMenuBar();
