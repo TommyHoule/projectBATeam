@@ -28,7 +28,7 @@ public abstract class winHeritage extends JFrame {
 	
 
 	
-	protected JPanel contentPane;
+	protected JPanel panelHeritage;
 	protected JButton btnAnnuler;
 	protected JButton btnSuivant;
 	protected JButton btnDernier;
@@ -67,59 +67,59 @@ public abstract class winHeritage extends JFrame {
 	public winHeritage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1150, 700);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		panelHeritage = new JPanel();
+		panelHeritage.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panelHeritage);
+		panelHeritage.setLayout(null);
 		
 		JLabel lblLogo = new JLabel("Logo");
 		lblLogo.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
 		lblLogo.setBounds(6, 6, 100, 41);
-		contentPane.add(lblLogo);
+		panelHeritage.add(lblLogo);
 		
 		btnSuivant = new JButton(">");
 		btnSuivant.setBounds(242, 16, 30, 22);
-		contentPane.add(btnSuivant);
+		panelHeritage.add(btnSuivant);
 		
 		btnDernier = new JButton(">>");
 		btnDernier.setBounds(284, 16, 30, 22);
-		contentPane.add(btnDernier);
+		panelHeritage.add(btnDernier);
 		
 		btnPrecedent = new JButton("<");
 		btnPrecedent.setBounds(200, 16, 30, 22);
-		contentPane.add(btnPrecedent);
+		panelHeritage.add(btnPrecedent);
 		
 	    btnPremier = new JButton("<<");
 		btnPremier.setBounds(158, 16, 30, 22);
-		contentPane.add(btnPremier);
+		panelHeritage.add(btnPremier);
 		
 		btnAjouter = new JButton("Ajouter");
 		btnAjouter.setBounds(6, 102, 150, 50);
-		contentPane.add(btnAjouter);
+		panelHeritage.add(btnAjouter);
 		
 		btnSupprimer = new JButton("Supprimer");
 		btnSupprimer.setBounds(6, 191, 150, 50);
-		contentPane.add(btnSupprimer);
+		panelHeritage.add(btnSupprimer);
 		
 		btnConsulter = new JButton("Consulter");
 		btnConsulter.setBounds(6, 368, 150, 50);
-		contentPane.add(btnConsulter);
+		panelHeritage.add(btnConsulter);
 		
 		btnModifier = new JButton("Modifier");
 		btnModifier.setBounds(6, 282, 150, 50);
-		contentPane.add(btnModifier);
+		panelHeritage.add(btnModifier);
 		
 		btnQuitter = new JButton("Quitter");
 		btnQuitter.setBounds(6, 450, 150, 50);
-		contentPane.add(btnQuitter);
+		panelHeritage.add(btnQuitter);
 		
 		btnEnregistrer = new JButton("Enregistrer");
 		btnEnregistrer.setBounds(6, 577, 150, 30);
-		contentPane.add(btnEnregistrer);
+		panelHeritage.add(btnEnregistrer);
 		
 		btnAnnuler = new JButton("Annuler");
 		btnAnnuler.setBounds(6, 620, 150, 30);
-		contentPane.add(btnAnnuler);
+		panelHeritage.add(btnAnnuler);
 		
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
