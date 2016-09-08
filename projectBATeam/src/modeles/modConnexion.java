@@ -6,15 +6,15 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-public final class ModConnexion {
+public final class modConnexion {
 	
 	//Propriétés
-	private static volatile ModConnexion instance = null;
+	private static volatile modConnexion instance = null;
 	
 	private  Connection laConnectionStatique;
 	
 	//Constructeur vide
-	private ModConnexion()
+	private modConnexion()
 	{
 		super();
 	};
@@ -67,15 +67,15 @@ public final class ModConnexion {
 	};
 	
 	//Méthode qui renvoie une instance de la classe
-	public final static  ModConnexion getInstance(){
-		  if(ModConnexion.instance == null){
-			synchronized (ModConnexion.class){  
-		  	    ModConnexion.instance = new ModConnexion();
+	public final static  modConnexion getInstance(){
+		  if(modConnexion.instance == null){
+			synchronized (modConnexion.class){  
+		  	    modConnexion.instance = new modConnexion();
 			}
 		 //   System.out.println("INSTANCIATION DE LA CONNEXION SQL ! ");
 		  }
 		  
-		  return ModConnexion.instance  ;
+		  return modConnexion.instance  ;
 		}
 	
 	//GETTERS et SETTERS des propriétés

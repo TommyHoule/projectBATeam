@@ -16,14 +16,14 @@ import javax.swing.JTextPane;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 
-import controleurs.CtrlConnexion;
-import elementsGraphiques.BtnOption;
-import elementsGraphiques.Police;
+import controleurs.ctrlConnexion;
+import elementsGraphiques.Images.btnOption;
+import elementsGraphiques.Images.police;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class WinCnx extends JDialog {
+public class winConnexion extends JDialog {
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class WinCnx extends JDialog {
 	private JPanel pnPrinc;
 	protected JTextField txtUser;
 	protected JPasswordField txtMdp;
-	private WinCnx instance;
+	private winConnexion instance;
 
 	/**
 	 * Launch the application.
@@ -42,7 +42,7 @@ public class WinCnx extends JDialog {
 			public void run() {
 				
 				try {
-					WinCnx tmp = new WinCnx(); 
+					winConnexion tmp = new winConnexion(); 
 					 tmp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class WinCnx extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public WinCnx() {
+	public winConnexion() {
 		instance=this;
 		setTitle("AUTHENTIFICATION");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -68,7 +68,7 @@ public class WinCnx extends JDialog {
 		
 	
 		//Titre avec la police standardisée
-		jTxtPnTitre.setFont(Police.stdPolice);
+		jTxtPnTitre.setFont(police.stdPolice);
 		jTxtPnTitre.setBackground(Color.LIGHT_GRAY);
 		jTxtPnTitre.setText("\t\tBienvenue dans le Système CLÉ.\n\tVeuillez entrer vos informations de connexion.");
 		jTxtPnTitre.setAlignmentY(CENTER_ALIGNMENT);
@@ -79,12 +79,12 @@ public class WinCnx extends JDialog {
 				
 		//btnOption est une classe personnalisée du projet dant
 		//le packagae elementsGraphiques
-		BtnOption btnAnnuler= new BtnOption("Annuler");
+		btnOption btnAnnuler= new btnOption("Annuler");
 		btnAnnuler.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			WinCnx.this.setVisible(false);
+			winConnexion.this.setVisible(false);
 				
 				
 			}
@@ -92,7 +92,7 @@ public class WinCnx extends JDialog {
 		btnAnnuler.setLocation(42, 231);
 		pnPrinc.add(btnAnnuler);
 		
-		BtnOption btnConnect =new BtnOption("Connexion");
+		btnOption btnConnect =new btnOption("Connexion");
 		btnConnect.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -100,7 +100,7 @@ public class WinCnx extends JDialog {
 			
 				char[] pass = txtMdp.getPassword();
 				String passString = new String(pass);
-				CtrlConnexion.connexion(instance,txtUser.getText() ,passString);
+				ctrlConnexion.connexion(instance,txtUser.getText() ,passString);
 				}
 			});
 		btnConnect.setLocation(302, 231);
@@ -116,12 +116,12 @@ public class WinCnx extends JDialog {
 		JLabel lblUser = new JLabel();
 		lblUser.setBounds(60, 34, 16, 16);
 		jPnCnx.add(lblUser);
-		lblUser.setIcon(new ImageIcon(WinCnx.class.getResource("/elementsGraphiques/Images/connection/utilisateur.png")));
+		//lblUser.setIcon(new ImageIcon(winConnexion.class.getResource("/elementsGraphiques/Images/connection/utilisateur.png")));
 		
 		JLabel lblMdP = new JLabel();
 		lblMdP.setBounds(60, 75, 16, 16);
 		jPnCnx.add(lblMdP);
-		lblMdP.setIcon(new ImageIcon(WinCnx.class.getResource("/elementsGraphiques/Images/connection/key.png")));
+		//lblMdP.setIcon(new ImageIcon(winConnexion.class.getResource("/elementsGraphiques/Images/connection/key.png")));
 		
 		txtUser = new JTextField();
 		txtUser.setBounds(88, 22, 223, 28);
