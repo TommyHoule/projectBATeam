@@ -12,20 +12,18 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public abstract class winHeritage extends JFrame {
 
 	protected JMenuBar menuBar;
 	protected JMenu mnEntretien;
-	protected JMenuItem mnitemAjouter;
-	protected JMenuItem mnitemModifier;
-	protected JMenuItem mnitemDtruire ;
+	protected JMenuItem mnItemAjouter;
+	protected JMenuItem mnItemModifier;
+	protected JMenuItem mnItemDtruire ;
 	protected JMenu mnListes;
 	protected JMenu mnRapports;
 	protected JMenu mnQuitter;
-	protected JMenuItem mnitemListeDesBons;
+	protected JMenuItem mnItemListeDesBons;
 	
 	
 
@@ -129,20 +127,20 @@ public abstract class winHeritage extends JFrame {
 		mnEntretien = new JMenu("Entretien");
 		menuBar.add(mnEntretien);
 		
-		mnitemAjouter = new JMenuItem("Ajouter");
-		mnEntretien.add(mnitemAjouter);
+		mnItemAjouter = new JMenuItem("Ajouter");
+		mnEntretien.add(mnItemAjouter);
 		
-		mnitemModifier = new JMenuItem("Modifier");
-		mnEntretien.add(mnitemModifier);
+		mnItemModifier = new JMenuItem("Modifier");
+		mnEntretien.add(mnItemModifier);
 		
-		mnitemDtruire = new JMenuItem("Détruire");
-		mnEntretien.add(mnitemDtruire);
+		mnItemDtruire = new JMenuItem("Détruire");
+		mnEntretien.add(mnItemDtruire);
 		
 		mnListes = new JMenu("Listes");
 		menuBar.add(mnListes);
 		
-		mnitemListeDesBons = new JMenuItem("Liste des bons d'achats pour un intervalle de date");
-		mnListes.add(mnitemListeDesBons);
+		mnItemListeDesBons = new JMenuItem("Liste des bons d'achats pour un intervalle de date");
+		mnListes.add(mnItemListeDesBons);
 		
 		mnRapports = new JMenu("Rapports");
 		menuBar.add(mnRapports);
