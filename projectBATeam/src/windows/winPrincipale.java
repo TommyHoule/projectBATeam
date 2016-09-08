@@ -29,7 +29,7 @@ public class winPrincipale extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,7 +40,7 @@ public class winPrincipale extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -113,7 +113,7 @@ public class winPrincipale extends JFrame {
 		btnLesDeparts.setBounds(620, 174, 200, 100);
 		panelPrincipale.add(btnLesDeparts);
 		
-		JButton btnQuittee = new JButton("Quittee");
+		JButton btnQuittee = new JButton("Quitter");
 		btnQuittee.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

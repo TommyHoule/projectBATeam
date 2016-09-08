@@ -8,14 +8,30 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import controleurs.ctrlChambre;
+import controleurs.ctrlPrincipale;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class winChambre extends winHeritage {
 
 	private JPanel contentPane;
+	private JPanel panelChambre;
+	private JLabel lblNoChambre;
+	private JLabel lblEtage;
+	private JLabel lblCodeType;
+	private JLabel lblCodelocalisation;
+	private JLabel lblEtat;
+	private JLabel lblPrix;
+	private JLabel lblDescriptionCodeType;
+	private JLabel lblDescriptionCodeLocalisation;
 	private JTextField txtNoChambre;
 	private JTextField txtEtage;
 	private JTextField txtEtat;
@@ -25,7 +41,11 @@ public class winChambre extends winHeritage {
 	private JTextField txtDescriptionCodeType;
 	private JTextField txtDescriptionCodeLocalisation;
 	private JTextField txtMemo;
-	private JTable tblCodCom;
+	
+	private ctrlChambre leControllerChambre ;
+	private winChambre instance;
+	public JTable tProduit;
+
 
 	/**
 	 * Launch the application.
@@ -47,22 +67,26 @@ public class winChambre extends winHeritage {
 	 * Create the frame.
 	 */
 	public winChambre() {
+		super();
+		instance = this;
+
 		
-		JPanel panelChambre = new JPanel();
+		
+		panelChambre = new JPanel();
 		panelChambre.setBackground(SystemColor.windowBorder);
 		panelChambre.setBounds(204, 108, 890, 205);
 		getContentPane().add(panelChambre);
 		panelChambre.setLayout(null);
 		
-		JLabel lblNoChambre = new JLabel("No. Chambre :");
+		lblNoChambre = new JLabel("No. Chambre :");
 		lblNoChambre.setBounds(6, 6, 92, 16);
 		panelChambre.add(lblNoChambre);
 		
-		JLabel lblEtage = new JLabel("Etage :");
+		lblEtage = new JLabel("Etage :");
 		lblEtage.setBounds(6, 48, 82, 16);
 		panelChambre.add(lblEtage);
 		
-		JLabel lblEtat = new JLabel("Etat :");
+		lblEtat = new JLabel("Etat :");
 		lblEtat.setBounds(6, 103, 82, 16);
 		panelChambre.add(lblEtat);
 		
@@ -84,15 +108,15 @@ public class winChambre extends winHeritage {
 		txtEtat.setBounds(100, 98, 130, 26);
 		panelChambre.add(txtEtat);
 		
-		JLabel lblCodeType = new JLabel("Code_Type :");
+	    lblCodeType = new JLabel("Code_Type :");
 		lblCodeType.setBounds(255, 6, 130, 16);
 		panelChambre.add(lblCodeType);
 		
-		JLabel lblCodelocalisation = new JLabel("Code_Localisation :");
+		lblCodelocalisation = new JLabel("Code_Localisation :");
 		lblCodelocalisation.setBounds(255, 48, 130, 16);
 		panelChambre.add(lblCodelocalisation);
 		
-		JLabel lblPrix = new JLabel("Prix :");
+		lblPrix = new JLabel("Prix :");
 		lblPrix.setBounds(255, 103, 130, 16);
 		panelChambre.add(lblPrix);
 		
@@ -114,11 +138,11 @@ public class winChambre extends winHeritage {
 		txtPrix.setBounds(389, 98, 130, 26);
 		panelChambre.add(txtPrix);
 		
-		JLabel lblDescriptionCodeType = new JLabel("Description :");
+		lblDescriptionCodeType = new JLabel("Description :");
 		lblDescriptionCodeType.setBounds(556, 6, 130, 16);
 		panelChambre.add(lblDescriptionCodeType);
 		
-		JLabel lblDescriptionCodeLocalisation = new JLabel("Description :");
+		lblDescriptionCodeLocalisation = new JLabel("Description :");
 		lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
 		panelChambre.add(lblDescriptionCodeLocalisation);
 		
@@ -141,31 +165,104 @@ public class winChambre extends winHeritage {
 		panelChambre.add(txtMemo);
 		txtMemo.setColumns(10);
 		
-		JPanel panelDescription = new JPanel();
-		panelDescription.setBackground(SystemColor.windowBorder);
-		panelDescription.setBounds(204, 369, 890, 205);
-		getContentPane().add(panelDescription);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(204, 370, 890, 205);
+		getContentPane().add(scrollPane);
+
+//---------------ACTION DES BOUTON DE LA FRAME----------------------------
+		btnAnnuler.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(10);
+			}
+		});
+		btnEnregistrer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(9);
+			}
+		});
+		btnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(11);
+			}
+		});
+		btnModifier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(8);
+			}
+		});
+		btnConsulter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(7);
+			}
+		});
+		btnSupprimer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(6);
+			}
+		});
+		btnAjouter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(5);
+			}
+		});
+		btnPremier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(4);
+			}
+		});
+		btnPrecedent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(3);
+			}
+		});
+		btnDernier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(2);
+			}
+		});
+		btnSuivant.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(1);
+			}
+		});
+		mnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.ActionBtn(11);
+			}
+		});
 		
-		Object[][] donnees = {
-                {"AS", "Standards, rien de spécial"},
-                {"BA", "Avec balcon"},
-                {"BT", "Avec bain tourbillon"},
-                {"CC", "Chambre communicante"},
-                {"IN", "Internet"},
-                {"MB", "Mini bar"},
-                {"HP", "Handicape"},
-        };
- 
-        String[] entetes = {"CODCOM", "Description"};
- 
+//---------------ACTION DU MENU DE LA FRAME----------------------------
 		
-		tblCodCom = new JTable(donnees, entetes);
-		tblCodCom.setEnabled(false);
-		tblCodCom.setCellSelectionEnabled(true);
-		tblCodCom.setColumnSelectionAllowed(true);
-		tblCodCom.setFillsViewportHeight(true);
-		panelDescription.add(new JScrollPane(tblCodCom), BorderLayout.CENTER);
-		
+		mnRapports.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnListes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnEntretien.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
 
 	}
 }
