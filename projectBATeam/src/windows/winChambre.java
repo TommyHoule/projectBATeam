@@ -72,6 +72,93 @@ public class winChambre extends winHeritage {
 
 		
 		
+
+//---------------ACTION DES BOUTON DE LA FRAME----------------------------
+		btnAnnuler.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnEnregistrer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				winPrincipale fenPrincipale = new winPrincipale();
+	     		fenPrincipale.setVisible(true);
+				winChambre.this.dispose();			
+			}
+		});
+		btnModifier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnConsulter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnSupprimer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		btnAjouter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		
+		
+//---------------ACTION DU MENU DE LA FRAME----------------------------
+
+		mnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				winPrincipale fenPrincipale = new winPrincipale();
+	     		fenPrincipale.setVisible(true);
+				winChambre.this.dispose();			
+				}
+		});		
+		mnRapports.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnListes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnEntretien.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		ModeConsultation();
+
+	}
+
+	private void ModeConsultation() {
+		
+		leControllerChambre = new ctrlChambre(instance);
+		
+	   //Composants graphiques des chambres	    
 		panelChambre = new JPanel();
 		panelChambre.setBackground(SystemColor.windowBorder);
 		panelChambre.setBounds(204, 108, 890, 205);
@@ -165,104 +252,38 @@ public class winChambre extends winHeritage {
 		panelChambre.add(txtMemo);
 		txtMemo.setColumns(10);
 		
+		
+		//composante graphique de Ayant
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(204, 370, 890, 205);
 		getContentPane().add(scrollPane);
-
-//---------------ACTION DES BOUTON DE LA FRAME----------------------------
-		btnAnnuler.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(10);
-			}
-		});
-		btnEnregistrer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(9);
-			}
-		});
-		btnQuitter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(11);
-			}
-		});
-		btnModifier.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(8);
-			}
-		});
-		btnConsulter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(7);
-			}
-		});
-		btnSupprimer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(6);
-			}
-		});
-		btnAjouter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(5);
-			}
-		});
+		
+		//Gestion de la souris sur le menu et la navigation
+		
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(4);
+				leControllerChambre.Premier(instance);
 			}
 		});
 		btnPrecedent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(3);
+				leControllerChambre.BonPrecedent(instance);
 			}
 		});
 		btnDernier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(2);
+				leControllerChambre.Dernier(instance);
 			}
 		});
 		btnSuivant.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(1);
+				leControllerChambre.BonSuivant(instance);
 			}
 		});
-		mnQuitter.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.ActionBtn(11);
-			}
-		});
-		
-//---------------ACTION DU MENU DE LA FRAME----------------------------
-		
-		mnRapports.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		mnListes.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-		mnEntretien.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
-			}
-		});
-
 	}
+
 }
