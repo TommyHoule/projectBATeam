@@ -13,20 +13,21 @@ public class modAyant extends AbstractTableModel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String codTypCha;
-	private String descType;
+	private String codCom;
+	private String descCom;
+	private int noCham;
 
 
 	private int courant = 0;
 
 	private ArrayList<modAyant> lesTypes = new ArrayList<modAyant>();
-	public final  String[] lesTitres = {"codTypCha", "descType"};
+	public final  String[] lesTitres = {"codCom", "descCom"};
 	
 	/*
 	 * Constructeur 1
 	 */
 	public modAyant(int noCham) {
-		
+		super();
 		lireEnreg(noCham);
 		
 		
@@ -35,9 +36,9 @@ public class modAyant extends AbstractTableModel{
 	 * Constructeur 2 - sert surtout pour peupler la liste des bons pour la consultation
 	 */
 	
-	public modAyant(String codTypCha,String descType) {
-		this.codTypCha = codTypCha;
-		this.descType = descType;
+	public modAyant(String codCom,String descCom) {
+		this.codCom = codCom;
+		this.descCom = descCom;
 
 		
 	}
@@ -69,11 +70,11 @@ public class modAyant extends AbstractTableModel{
 
 		modAyant uneChambre = (modAyant)lesTypes.get(rowIndex);
 
-		if(columnIndex == 0) return uneChambre.codTypCha;
-		if(columnIndex == 1) return uneChambre.descType;
+		if(columnIndex == 0) return uneChambre.codCom;
+		if(columnIndex == 1) return uneChambre.descCom;
 
 
-		else return uneChambre.codTypCha;
+		else return uneChambre.codCom;
 	}
 	public ArrayList<modAyant> getLesEnreg() {
 		return lesTypes;
@@ -84,15 +85,17 @@ public class modAyant extends AbstractTableModel{
 	/*
 	 * Lecture et rÈcupÈration des enregistrements de la BD
 	 */
-	public void lireEnreg(int noCham) {
+	public void lireEnreg(int noCham2) {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.Commodite.CODCOM, EQU03PRG01.Commodite.DescCo FROM EQU03PRG01.Commodite,EQU03PRG01.Chambre,EQU03PRG01.Ayant WHERE EQU03PRG01.Chambre.NoCham = EQU03PRG01.Ayant.NoCham AND EQU03PRG01.Ayant.CODCOM = EQU03PRG01.Commodite.CODCOM");
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.AYANT.NOCHAM,EQU03PRG01.AYANT.CODCOM, EQU03PRG01.COMMODITE.DESCCOM FROM EQU03PRG01.COMMODITE,EQU03PRG01.CHAMBRE,EQU03PRG01.AYANT WHERE EQU03PRG01.AYANT.NOCHAM = "+noCham2+" AND EQU03PRG01.AYANT.CODCOM = EQU03PRG01.COMMODITE.CODCOM");
+			
 			ResultSet rs = state.executeQuery();
 			while (rs.next()) {
-					String codTypCha = rs.getString("CODTYPCHA");
-					String descType = rs.getString("DESCTYPE");
-
-				lesTypes.add(new modAyant(codTypCha,descType)); 
+					int noCham = rs.getInt("NOCHAM");
+					String codCom = rs.getString("CODCOM");
+					String descCom = rs.getString("DESCCOM");
+					this.noCham = noCham;
+				lesTypes.add(new modAyant(codCom,descCom)); 
 				this.setCourant(noCham);
 			} 		
 		} catch (SQLException e) {

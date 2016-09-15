@@ -43,34 +43,35 @@ public class ctrlChambre {
 		winChambre.setjScrollPane(new JTable(modeleAyant)); 
 	    
 		//Affichage des totaux
+		/*
 		winChambre.getTxtSousTotBon().setText((modeleAyant.ConvertirEnChaine(modeleAyant.getSousTotalBon()) + " $"));
 		winChambre.getTxtTPS().setText(modeleAyant.ConvertirEnChaine(modeleAyant.getTPS()) + " $");
 		winChambre.getTxtTVQ().setText(modeleAyant.ConvertirEnChaine(modeleAyant.getTVQ()) + " $");
 		winChambre.getTxtTotal().setText(modeleAyant.ConvertirEnChaine(modeleAyant.getTotalBon()) + " $");
-		
+		*/
 	}
 	
 	public void Premier(winChambre instance) {
-		/* position = 0;
-	     AffecteValeurs(instance,position);	*/	
+		 position = 0;
+	     AffecteValeurs(instance,position);		
 	}
 	public void BonPrecedent(winChambre instance) {
-		/*if (position> 0)
+		if (position> 0)
 			position--;
 		else position= 0;
 		modeleChambre.setCourant((int)modeleChambre.getValueAt(position, 0));
-		AffecteValeurs(instance,position);	*/	
+		AffecteValeurs(instance,position);	
 	}
 	public void Dernier(winChambre instance) {
-		/*position = modeleChambre.getLesEnreg().size()-1;
-	     AffecteValeurs(instance,position);*/		
+		position = modeleChambre.getLesEnreg().size()-1;
+	     AffecteValeurs(instance,position);		
 	}
 	public void BonSuivant(winChambre instance) {
-		/*if (position< modeleChambre.getLesEnreg().size())
+		if (position< modeleChambre.getLesEnreg().size())
 			 position++;
-		else position = 0;
+		else position = modeleChambre.getLesEnreg().size()-1;
 		modeleChambre.setCourant((int)modeleChambre.getValueAt(position, 0));
-		AffecteValeurs(instance,position);*/		
+		AffecteValeurs(instance,position);		
 	}
 	/*public void ListeBons (winChambre winChambre)
 	{   WinListBons pkListBon = new WinListBons();

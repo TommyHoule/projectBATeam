@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,6 +23,10 @@ import java.awt.event.MouseEvent;
 
 public class winChambre extends winHeritage {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelChambre;
 	private JLabel lblNoChambre;
@@ -45,6 +50,7 @@ public class winChambre extends winHeritage {
 	private ctrlChambre leControllerChambre ;
 	private winChambre instance;
 	public JTable tableAyant;
+	private static JScrollPane scrollPane;
 
 
 	/**
@@ -208,9 +214,7 @@ public class winChambre extends winHeritage {
 		panelChambre.add(getTxtDescLoc());
 	
 		//composante graphique de Ayant
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(204, 370, 890, 205);
-		getContentPane().add(scrollPane);
+		getContentPane().add(getScrollPane());
 		
 		JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
 		lblInfoChambre.setBounds(204, 74, 196, 16);
@@ -244,6 +248,34 @@ public class winChambre extends winHeritage {
 		});
 	}
 
+/*	private Component getScrollPane() {
+		// TODO Auto-generated method stub
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(204, 370, 890, 205);
+		return scrollPane;
+	}
+	*/
+	public JTable gettProduit()
+	{	
+		return tableAyant;
+	}
+
+	
+	private JScrollPane getScrollPane() {
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(204, 370, 890, 205);
+		return scrollPane;		
+	}
+	
+	public static void setjScrollPane(JTable UneTable)
+	{
+		if (scrollPane == null) 
+		   {
+			scrollPane = new JScrollPane(UneTable);
+			scrollPane.setBounds(20, 7,515, 175);
+		   }
+		scrollPane.setViewportView(UneTable);
+	}
 	public JTextField getTxtNoChambre() {
 		// TODO Auto-generated method stub
 		if(txtNoChambre == null)
