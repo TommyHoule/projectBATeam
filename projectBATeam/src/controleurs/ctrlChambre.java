@@ -21,22 +21,24 @@ public class ctrlChambre {
 		AffecteValeurs(winChambre,position);
 
 	}
-	private void AffecteValeurs(winChambre winChambre, int ligne) {
-		/*	
+	private void AffecteValeurs(winChambre WinChambre, int ligne) {
+			
 		modeleChambre.setCourant((int) modeleChambre.getValueAt(ligne,0));
 	    //Affichage des informations de la chambre
 		
-		winChambre.getTxtNoBon().setText(modeleChambre.getValueAt(ligne, 0).toString()); 
-		winChambre.getTxtDatBon().setText(modeleChambre.getValueAt(ligne, 1).toString());   
-		winChambre.getTxtDatReq().setText(modeleChambre.getValueAt(ligne, 2).toString());
-		winChambre.getTxtDesBon().setText(modeleChambre.getValueAt(ligne, 3).toString());
-		winChambre.getTxtNoAch().setText(modeleChambre.getValueAt(ligne, 4).toString());
-		winChambre.getTxtNomAch().setText(modeleChambre.getValueAt(ligne, 5).toString());
-		winChambre.getTxtDepAch().setText(modeleChambre.getValueAt(ligne, 6).toString());
-		winChambre.getTxtPostAch().setText(modeleChambre.getValueAt(ligne, 7).toString());
+		WinChambre.getTxtNoChambre().setText(modeleChambre.getValueAt(ligne, 0).toString()); 
+		WinChambre.getTxtEtage().setText(modeleChambre.getValueAt(ligne, 1).toString());   
+		WinChambre.getTxtPrix().setText(modeleChambre.getValueAt(ligne, 2).toString());
+		WinChambre.getTxtEtat().setText(modeleChambre.getValueAt(ligne, 3).toString());
+		WinChambre.getTxtMemo().setText(modeleChambre.getValueAt(ligne, 4).toString());
+		WinChambre.getTxtCodTypeCha().setText(modeleChambre.getValueAt(ligne, 5).toString());
+		WinChambre.getTxtDescType().setText(modeleChambre.getValueAt(ligne, 6).toString());
+		WinChambre.getTxtCodLoc().setText(modeleChambre.getValueAt(ligne, 7).toString());
+		WinChambre.getTxtDescLoc().setText(modeleChambre.getValueAt(ligne, 8).toString());
+
 		
 		//Affichage des produits du bon
-		modeleAyant = new modAyant((int)modeleChambre.getCourant());
+		/*modeleAyant = new modAyant((int)modeleChambre.getCourant());
 		winChambre.setjScrollPane(new JTable(modeleAyant)); 
 	    
 		//Affichage des totaux

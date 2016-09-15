@@ -21,13 +21,15 @@ public class modChambre extends AbstractTableModel{
 	private int prix;
 	private int etat;
 	private String codTypCha;
+	private String descType;
 	private String codLoc;
+	private String descLoc;
 	private String memo;
 
 	private int courant = 0;
 
 	private ArrayList<modChambre> lesChambre = new ArrayList<modChambre>();
-	public final  String[] lesTitres = {"No Cham", "Etage","Prix","Etat","CodTypCha","CodLoc","Memo"};
+	public final  String[] lesTitres = {"noCham", "etage","prix","etat","memo","codTypCha","descType","codLoc","descLoc"};
 	
 	/*
 	 * Constructeur 1
@@ -42,29 +44,31 @@ public class modChambre extends AbstractTableModel{
 	 * Constructeur 2 - sert surtout pour peupler la liste des bons pour la consultation
 	 */
 	
-	public modChambre(int vnumBon, Date vdatBon,Date vdatReq,String vdesBon, String vnumAch,String vnomAch, String vdeptAch, String vposteAch) {
-		this.setNumBon(vnumBon);
-		this.setDatBon(vdatBon);
-		this.setDatReq(vdatReq);
-		this.setDesBon(vdesBon);
-		this.setNumAch(vnumAch);
-		this.setNomAch(vnomAch);
-		this.setDeptAch(vdeptAch);
-		this.setPostAch(vposteAch);
+	public modChambre(int noCham,int etage,int prix,int etat,String memo,String codTypCha,String descType,String codLoc,String descLoc) {
+		this.noCham = noCham;
+		this.etage = etage;
+		this.prix = prix;
+		this.etat = etat;
+		this.memo = memo;
+		this.codTypCha = codTypCha;
+		this.descType = descType;
+		this.codLoc = codLoc;
+		this.descLoc = descLoc;
+
 		
 	}
 	
 	/*
 	 * Constructeur 3 - sert pour la sauvegarde du bon
 	 */
-	public modChambre(Date vdatBon,Date vdatReq,String vdesBon, String vnumAch,Double vtotBon) {
+	/*public modChambre(Date vdatBon,Date vdatReq,String vdesBon, String vnumAch,Double vtotBon) {
 		this.setDatBon(vdatBon);
 		this.setDatReq(vdatReq);
 		this.setDesBon(vdesBon);
 		this.setNumAch(vnumAch);
 		this.setTotBon(vtotBon);
 		
-	}
+	}*/
 	
 
 	
@@ -86,61 +90,22 @@ public class modChambre extends AbstractTableModel{
 		return lesTitres[columnIndex];
 	}
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		modChambre unBon = (modChambre)lesChambre.get(rowIndex);
-		if(columnIndex == 0) return unBon.getNumBon();
-		if(columnIndex == 1) return unBon.getDatBon();
-		if(columnIndex == 2) return unBon.getDatReq();
-		if(columnIndex == 3) return unBon.getDesBon();
-		if(columnIndex == 4) return unBon.getNumAch();
-		if(columnIndex == 5) return unBon.getNomAch();
-		if(columnIndex == 6) return unBon.getDeptAch();
-		else return unBon.getPostAch();
+		modChambre uneChambre = (modChambre)lesChambre.get(rowIndex);
+		if(columnIndex == 0) return uneChambre.noCham;
+		if(columnIndex == 1) return uneChambre.etage;
+		if(columnIndex == 2) return uneChambre.prix;
+		if(columnIndex == 3) return uneChambre.etat;
+		if(columnIndex == 4) return uneChambre.memo;
+		if(columnIndex == 5) return uneChambre.codTypCha;
+		if(columnIndex == 6) return uneChambre.descType;
+		if(columnIndex == 7) return uneChambre.codLoc;
+		if(columnIndex == 8) return uneChambre.descLoc;
+
+		else return uneChambre.noCham;
 	}
 
 	public ArrayList<modChambre> getLesEnreg() {
 		return lesChambre;
-	}
-	
-	
-	//Accesseurs
-	public Date getDatReq() {
-		return datReq;
-	}
-
-	public void setDatReq(Date datReq) {
-		this.datReq = datReq;
-	}
-
-	public int getNumBon() {
-		return numBon;
-	}
-
-	public void setNumBon(int numBon) {
-		this.numBon = numBon;
-	}
-
-	public Date getDatBon() {
-		return datBon;
-	}
-
-	public void setDatBon(Date datBon) {
-		this.datBon = datBon;
-	}
-
-	public String getDesBon() {
-		return desBon;
-	}
-
-	public void setDesBon(String desBon) {
-		this.desBon = desBon;
-	}
-
-	public String getNumAch() {
-		return numAch;
-	}
-
-	public void setNumAch(String numAch) {
-		this.numAch = numAch;
 	}
 
 	public ArrayList<modChambre> getlesBons() {
@@ -152,47 +117,39 @@ public class modChambre extends AbstractTableModel{
 	 */
 	public void lireEnreg() {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT Chambre.NoCham," +
-					"Chambre.Etage,Chambre.Prix, " +
-					"Chambre.Etat,Chambre.Memo,TypeCham.CodTypCha, TypeCham.DescType, Localisation.CodLoc, Localisation.DescLoc " +
-					"FROM   chambre,typecham,Localisation  " +
-					"WHERE  Chambre.CodTypCha = TypeCham.CodTypCha"+
-					"AND    Chambre.CodLoc = Localisation.CodLoc" +
-					"order by  Chambre.nocham");
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.Chambre.NoCham," +
+					"EQU03PRG01.CHAMBRE.ETAGE,EQU03PRG01.CHAMBRE.PRIX, " +
+					"EQU03PRG01.Chambre.Etat,EQU03PRG01.Chambre.Memo,EQU03PRG01.TypeCham.CodTypCha,"+
+					"EQU03PRG01.TypeCham.DescType, EQU03PRG01.Localisation.CodLoc, EQU03PRG01.Localisation.DescLoc " +
+					"FROM   EQU03PRG01.CHAMBRE,EQU03PRG01.TYPECHAM,EQU03PRG01.LOCALISATION  " +
+					"WHERE  EQU03PRG01.Chambre.CodTypCha = EQU03PRG01.TypeCham.CodTypCha"+
+					"AND    EQU03PRG01.Chambre.CodLoc = EQU03PRG01.Localisation.CodLoc" +
+					"order by  EQU03PRG01.Chambre.nocham");
 			ResultSet rs = state.executeQuery();
 			
 			while (rs.next()) {
 				
-				/*
-				 *  noCham = rs.getInt("num_Bon");
-					etage = rs.getInt("num_Bon");
-					prix  = rs.getInt("num_Bon");
-					etat  = rs.getInt("num_Bon");
-					codTypCha = rs.getString("des_bon");
-					codLoc = rs.getString("des_bon");
-					memo = rs.getString("des_bon"); 
-				 */
-				noCham= rs.getInt("num_Bon");
-				Date dat_Bon = rs.getDate("dat_Bon");
-				Date dat_Req = rs.getDate("dat_Req");
-				String des_bon = rs.getString("des_bon");
-				String num_ach = rs.getString("num_ach");
-				String nom_ach = rs.getString("nom_ach");
-				String dept_ach = rs.getString("Dept_ach");
-				String poste_ach = rs.getString("Poste_ach");
 				
-				lesChambre.add(new modChambre(num_Bon, dat_Bon,dat_Req,des_bon,num_ach,nom_ach,dept_ach,poste_ach)); 
-				this.setCourant(num_Bon);
+				    noCham = rs.getInt("EQU03PRG01.Chambre.NoCham");
+					etage = rs.getInt("EQU03PRG01.Chambre.Etage");
+					prix  = rs.getInt("EQU03PRG01.Chambre.Prix");
+					etat  = rs.getInt("EQU03PRG01.Chambre.Etat");
+					memo = rs.getString("EQU03PRG01.Chambre.Memo"); 
+					codTypCha = rs.getString("EQU03PRG01.TypeCham.CodTypCha");
+					descType = rs.getString("EQU03PRG01.TypeCham.DescType");
+					codLoc = rs.getString("EQU03PRG01.Localisation.CodLoc");
+					descLoc = rs.getString("EQU03PRG01.Localisation.DescLoc");
+					
+				lesChambre.add(new modChambre(noCham,etage,prix,etat,memo,codTypCha,descType,codLoc,descLoc)); 
+				this.setCourant(noCham);
 			} 
 			
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Probleme rencontré dans BonAchat.java",
+			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modChambre.java",
 					"ALERTE", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	
-	
+/*		
 	public String getNomAch() {
 		return nomAch;
 	}
@@ -217,7 +174,7 @@ public class modChambre extends AbstractTableModel{
 	public void setTotBon(Double totBon) {
 		this.totBon = totBon;
 	}
-
+*/
 	public int getCourant() {
 		return courant;
 	}
