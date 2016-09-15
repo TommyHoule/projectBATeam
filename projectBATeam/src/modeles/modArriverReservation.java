@@ -8,7 +8,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 
-public final class modArriverReservation {
+public final class modArriverReservation{
 	private int noReservation;
 	private Date dateReserver;
 	private Date dateDebut;
