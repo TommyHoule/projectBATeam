@@ -8,7 +8,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 
-public final class ModArriver{
+public final class modArriver{
 
 	private int clientNoArriver;
 	private String nomArriver;
@@ -20,9 +20,9 @@ public final class ModArriver{
 	
 	private int current = 0;
 	
-	private ArrayList<ModArriver> lesArrivees = new ArrayList<ModArriver>();
+	private ArrayList<modArriver> lesArrivees = new ArrayList<modArriver>();
 	
-	public ModArriver() {
+	public modArriver() {
 		lireEnreg();
 	}
 	
@@ -31,7 +31,7 @@ public final class ModArriver{
 	}
 	
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		ModArriver arriver = (ModArriver)lesArrivees.get(rowIndex);
+		modArriver arriver = (modArriver)lesArrivees.get(rowIndex);
 		if(columnIndex == 0) return arriver.clientNoArriver;
 		if(columnIndex == 1) return arriver.nomArriver;
 		if(columnIndex == 2) return arriver.adresseArriver;

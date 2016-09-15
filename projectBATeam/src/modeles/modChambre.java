@@ -91,15 +91,15 @@ public class modChambre extends AbstractTableModel{
 	}
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		modChambre uneChambre = (modChambre)lesChambre.get(rowIndex);
-		if(columnIndex == 1) return uneChambre.noCham;
-		if(columnIndex == 2) return uneChambre.etage;
-		if(columnIndex == 3) return uneChambre.prix;
-		if(columnIndex == 4) return uneChambre.etat;
-		if(columnIndex == 5) return uneChambre.memo;
-		if(columnIndex == 6) return uneChambre.codTypCha;
-		if(columnIndex == 7) return uneChambre.descType;
-		if(columnIndex == 8) return uneChambre.codLoc;
-		if(columnIndex == 9) return uneChambre.descLoc;
+		if(columnIndex == 0) return uneChambre.noCham;
+		if(columnIndex == 1) return uneChambre.etage;
+		if(columnIndex == 2) return uneChambre.prix;
+		if(columnIndex == 3) return uneChambre.etat;
+		if(columnIndex == 4) return uneChambre.memo;
+		if(columnIndex == 5) return uneChambre.codTypCha;
+		if(columnIndex == 6) return uneChambre.descType;
+		if(columnIndex == 7) return uneChambre.codLoc;
+		if(columnIndex == 8) return uneChambre.descLoc;
 
 		else return uneChambre.noCham;
 	}

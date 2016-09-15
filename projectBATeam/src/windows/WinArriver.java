@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.SystemColor;
 
-public class WinArriver extends WinHeritage {
+public class winArriver extends winHeritage {
 
 	private JPanel contentPane;
 	private JTextField textFieldClientNo;
@@ -43,7 +43,7 @@ public class WinArriver extends WinHeritage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WinHeritage frame = new WinArriver();
+					winHeritage frame = new winArriver();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class WinArriver extends WinHeritage {
 	/**
 	 * Create the frame.
 	 */
-	public WinArriver() {
+	public winArriver() {
 		
 		JPanel panelClient = new JPanel();
 		panelClient.setBackground(SystemColor.windowBorder);

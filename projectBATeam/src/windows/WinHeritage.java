@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public abstract class WinHeritage extends JFrame {
+public abstract class winHeritage extends JFrame {
 
 	protected JMenuBar menuBar;
 	protected JMenu mnEntretien;
@@ -64,7 +64,7 @@ public abstract class WinHeritage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WinHeritage() {
+	public winHeritage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1150, 700);
 		panelHeritage = new JPanel();
@@ -73,7 +73,7 @@ public abstract class WinHeritage extends JFrame {
 		panelHeritage.setLayout(null);
 		
 		JLabel lblLogo = new JLabel("Logo");
-		lblLogo.setIcon(new ImageIcon(WinHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
+		lblLogo.setIcon(new ImageIcon(winHeritage.class.getResource("/elementsGraphiques/Images/BATeam.jpg")));
 		lblLogo.setBounds(6, 6, 100, 41);
 		panelHeritage.add(lblLogo);
 		

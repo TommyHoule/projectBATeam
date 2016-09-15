@@ -8,6 +8,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 
-public final class ModDe {
+public final class modDe {
 
 }

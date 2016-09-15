@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 import modeles.modAyant;
 import modeles.modChambre;
-import windows.winArriver;
 import windows.winChambre;
 import windows.winPrincipale;
 

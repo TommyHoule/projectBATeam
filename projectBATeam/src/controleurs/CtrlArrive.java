@@ -1,19 +1,19 @@
 package controleurs;
 
 import javax.swing.JTable;
-import windows.WinArriver;
-import modeles.ModArriver;
-import modeles.ModDe;
-import modeles.ModArriverReservation;
+import windows.winArriver;
+import modeles.modArriver;
+import modeles.modDe;
+import modeles.modArriverReservation;
 
-public class CtrlArrive {
+public class ctrlArrive {
 	private int position = 0;
 	
-	public CtrlArrive(WinArriver winArriver){
+	public ctrlArrive(winArriver winArriver){
 		AffecteValeurs(winArriver, position);
 	}
 	
-	public void AffecteValeurs(WinArriver winArriver, int ligne){
+	public void AffecteValeurs(winArriver winArriver, int ligne){
 		/*SectionArriver*/
 		winArriver.getTxtClientNo().setText(null);
 		winArriver.getTxtClientNom().setText(null);
