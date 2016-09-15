@@ -21,7 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class winReservation extends winHeritage {
-
+//------test
 	private JPanel contentPane;
 	private JPanel panelReservationDeGauche;
 	private JLabel lblNoClient;
