@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumnModel;
 
-public final class modArriver{
+public class modArriver extends AbstractTableModel{
 
+	private static final long serialVersionUID = 1L;
+	
 	private int clientNoArriver;
 	private String nomArriver;
 	private String adresseArriver;
@@ -21,13 +24,42 @@ public final class modArriver{
 	private int current = 0;
 	
 	private ArrayList<modArriver> lesArrivees = new ArrayList<modArriver>();
+	public final  String[] lesTitres = {" "};
 	
-	public modArriver() {
+	public modArriver(){
 		lireEnreg();
 	}
 	
+	public modArriver(int clientNoArriver, String nomArriver, String adresseArriver, String telephoneArriver, String faxArriver, int noChamArriver, int noReserArriver){
+		this.clientNoArriver = clientNoArriver;
+		this.nomArriver = nomArriver;
+		this.adresseArriver = adresseArriver;
+		this.telephoneArriver = telephoneArriver;
+		this.faxArriver = faxArriver;
+		this.noChamArriver = noChamArriver;
+		this.noReserArriver = noReserArriver;
+	}
+	
 	public void lireEnreg() {
-		
+		try {    
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("Select IdReser, IdCli, Nom, NoCham, Telephone, Fax, Adresse from viewArriver"); //requete
+			ResultSet rs = state.executeQuery();
+			
+			while (rs.next()) {
+				
+				lesArrivees.add(new modArriver(rs.getInt("IdCli"), 
+											   rs.getString("Nom"), 
+											   rs.getString("Adresse"), 
+											   rs.getString("Telephone"), 
+											   rs.getString("Fax"), 
+											   rs.getInt("NoCham"), 
+											   rs.getInt("IdReser")) ); 
+			} 
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Probleme rencontré dans Arriver.java",
+					"ALERTE", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -42,6 +74,15 @@ public final class modArriver{
 		else return null;
 	}
 	
+	@Override
+	public int getRowCount() {
+		return lesArrivees.size();
+	}
+
 	
+	@Override
+	public int getColumnCount() {	
+		return lesTitres.length;
+		}
 
 }
