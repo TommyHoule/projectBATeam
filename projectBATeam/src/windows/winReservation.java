@@ -21,7 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class winReservation extends winHeritage {
-//------test
+//------test2
 	private JPanel contentPane;
 	private JPanel panelReservationDeGauche;
 	private JLabel lblNoClient;
@@ -301,6 +301,14 @@ public class winReservation extends winHeritage {
 		txtDateFin.setBounds(225, 165, 130, 26);
 		panelReservationDeDroite.add(txtDateFin);
 		
+		JLabel lblInformationSurLe = new JLabel("Information sur le client qui réserve");
+		lblInformationSurLe.setBounds(182, 80, 290, 16);
+		getContentPane().add(lblInformationSurLe);
+		
+		JLabel lblInformationSurLa = new JLabel("Information sur la réservation");
+		lblInformationSurLa.setBounds(685, 80, 290, 16);
+		getContentPane().add(lblInformationSurLa);
+		
 		//Gestion de la souris sur le menu et la navigation
 		
 		btnPremier.addMouseListener(new MouseAdapter() {
@@ -328,5 +336,4 @@ public class winReservation extends winHeritage {
 			}
 		});
 	}
-
 }
