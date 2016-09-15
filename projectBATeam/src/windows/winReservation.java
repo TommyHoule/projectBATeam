@@ -52,6 +52,8 @@ public class winReservation extends winHeritage {
 	private JTextField txtDateReser;
 	private JTextField txtDateDebut;
 	private JTextField txtDateFin;
+	private JLabel lblInformationSurLe;
+	private JLabel lblInformationSurLa;
 
 
 	/**
@@ -300,6 +302,14 @@ public class winReservation extends winHeritage {
 		txtDateFin.setColumns(10);
 		txtDateFin.setBounds(225, 165, 130, 26);
 		panelReservationDeDroite.add(txtDateFin);
+		
+		lblInformationSurLe = new JLabel("Information sur le client qui réserve");
+		lblInformationSurLe.setBounds(182, 80, 240, 16);
+		getContentPane().add(lblInformationSurLe);
+		
+		lblInformationSurLa = new JLabel("Information sur la réservation");
+		lblInformationSurLa.setBounds(685, 80, 240, 16);
+		getContentPane().add(lblInformationSurLa);
 		
 		//Gestion de la souris sur le menu et la navigation
 		
