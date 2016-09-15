@@ -18,7 +18,7 @@ public class modChambre extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 	private int noCham;
 	private int etage;
-	private int prix;
+	private float prix;
 	private int etat;
 	private String codTypCha;
 	private String descType;
@@ -44,7 +44,7 @@ public class modChambre extends AbstractTableModel{
 	 * Constructeur 2 - sert surtout pour peupler la liste des bons pour la consultation
 	 */
 	
-	public modChambre(int noCham,int etage,int prix,int etat,String memo,String codTypCha,String descType,String codLoc,String descLoc) {
+	public modChambre(int noCham,int etage,float prix,int etat,String memo,String codTypCha,String descType,String codLoc,String descLoc) {
 		this.noCham = noCham;
 		this.etage = etage;
 		this.prix = prix;
@@ -69,27 +69,20 @@ public class modChambre extends AbstractTableModel{
 		this.setTotBon(vtotBon);
 		
 	}*/
-	
-
-	
 	@Override
 	public int getRowCount() {
 		return lesChambre.size();
 	}
-
-	
 	@Override
 	public int getColumnCount() {	
 		return lesTitres.length;
 		}
-	
-
-
 	public String getColumnName(int columnIndex)
 	{
 		return lesTitres[columnIndex];
 	}
 	public Object getValueAt(int rowIndex, int columnIndex) {
+
 		modChambre uneChambre = (modChambre)lesChambre.get(rowIndex);
 		if(columnIndex == 0) return uneChambre.noCham;
 		if(columnIndex == 1) return uneChambre.etage;
@@ -103,86 +96,43 @@ public class modChambre extends AbstractTableModel{
 
 		else return uneChambre.noCham;
 	}
-
 	public ArrayList<modChambre> getLesEnreg() {
 		return lesChambre;
 	}
-
 	public ArrayList<modChambre> getlesBons() {
 		return lesChambre;
-	}
-	
+	}	
 	/*
 	 * Lecture et rÈcupÈration des enregistrements de la BD
 	 */
 	public void lireEnreg() {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.Chambre.NoCham," +
-					"EQU03PRG01.CHAMBRE.ETAGE,EQU03PRG01.CHAMBRE.PRIX, " +
-					"EQU03PRG01.Chambre.Etat,EQU03PRG01.Chambre.Memo,EQU03PRG01.TypeCham.CodTypCha,"+
-					"EQU03PRG01.TypeCham.DescType, EQU03PRG01.Localisation.CodLoc, EQU03PRG01.Localisation.DescLoc " +
-					"FROM   EQU03PRG01.CHAMBRE,EQU03PRG01.TYPECHAM,EQU03PRG01.LOCALISATION  " +
-					"WHERE  EQU03PRG01.Chambre.CodTypCha = EQU03PRG01.TypeCham.CodTypCha"+
-					"AND    EQU03PRG01.Chambre.CodLoc = EQU03PRG01.Localisation.CodLoc" +
-					"order by  EQU03PRG01.Chambre.nocham");
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.CHAMBRE.NOCHAM,EQU03PRG01.CHAMBRE.ETAGE,EQU03PRG01.CHAMBRE.PRIX,EQU03PRG01.CHAMBRE.ETAT,EQU03PRG01.CHAMBRE.MEMO,EQU03PRG01.TYPECHAM.CODTYPCHA,EQU03PRG01.TYPECHAM.DESCTYPE,EQU03PRG01.LOCALISATION.CODLOC,EQU03PRG01.LOCALISATION.DESCLOC FROM EQU03PRG01.CHAMBRE,EQU03PRG01.TYPECHAM,EQU03PRG01.LOCALISATION WHERE EQU03PRG01.CHAMBRE.CODTYPCHA = EQU03PRG01.TYPECHAM.CODTYPCHA AND EQU03PRG01.CHAMBRE.CODLOC = EQU03PRG01.LOCALISATION.CODLOC order by EQU03PRG01.CHAMBRE.NOCHAM");
 			ResultSet rs = state.executeQuery();
-			
 			while (rs.next()) {
-				
-				
-				    noCham = rs.getInt("EQU03PRG01.Chambre.NoCham");
-					etage = rs.getInt("EQU03PRG01.Chambre.Etage");
-					prix  = rs.getInt("EQU03PRG01.Chambre.Prix");
-					etat  = rs.getInt("EQU03PRG01.Chambre.Etat");
-					memo = rs.getString("EQU03PRG01.Chambre.Memo"); 
-					codTypCha = rs.getString("EQU03PRG01.TypeCham.CodTypCha");
-					descType = rs.getString("EQU03PRG01.TypeCham.DescType");
-					codLoc = rs.getString("EQU03PRG01.Localisation.CodLoc");
-					descLoc = rs.getString("EQU03PRG01.Localisation.DescLoc");
+				    int noCham = rs.getInt("NOCHAM");
+					int etage = rs.getInt("ETAGE");
+					float prix  = rs.getFloat("PRIX");
+					int etat  = rs.getInt("ETAT");
+					String memo = rs.getString("MEMO"); 
+					String codTypCha = rs.getString("CODTYPCHA");
+					String descType = rs.getString("DESCTYPE");
+					String codLoc = rs.getString("CODLOC");
+					String descLoc = rs.getString("DESCLOC");
 					
 				lesChambre.add(new modChambre(noCham,etage,prix,etat,memo,codTypCha,descType,codLoc,descLoc)); 
 				this.setCourant(noCham);
-			} 
-			
+			} 		
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modChambre.java",
+			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modChambre.java lors de listing",
 					"ALERTE", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-/*		
-	public String getNomAch() {
-		return nomAch;
-	}
-	public void setNomAch(String nomAch) {
-		this.nomAch = nomAch;
-	}
-	public String getDeptAch() {
-		return deptAch;
-	}
-	public void setDeptAch(String deptAch) {
-		this.deptAch = deptAch;
-	}
-	public String getPostAch() {
-		return postAch;
-	}
-	public void setPostAch(String postAch) {
-		this.postAch = postAch;
-	}
-	public Double getTotBon() {
-		return totBon;
-	}
-	public void setTotBon(Double totBon) {
-		this.totBon = totBon;
-	}
-*/
-	public int getCourant() {
+ public int getCourant() {
 		return courant;
 	}
 
 	public void setCourant(int courant) {
 		this.courant = courant;
 	}
-
-
-
 }

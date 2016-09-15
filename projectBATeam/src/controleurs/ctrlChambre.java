@@ -1,6 +1,7 @@
 package controleurs;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 import modeles.modAyant;
 import modeles.modChambre;
@@ -13,17 +14,18 @@ public class ctrlChambre {
 	public modChambre modeleChambre = null;
 	private int position = 0;
 	public modAyant modeleAyant = null;
-	public ctrlChambre(winChambre winChambre) {
+	public ctrlChambre(winChambre WinChambre) {
 		
 		modeleChambre = new modChambre();	
 		
-		AffecteValeurs(winChambre,position);
+		AffecteValeurs(WinChambre,position);
 
 	}
 	private void AffecteValeurs(winChambre WinChambre, int ligne) {
 			
 		modeleChambre.setCourant((int) modeleChambre.getValueAt(ligne,0));
 	    //Affichage des informations de la chambre
+		
 		
 		WinChambre.getTxtNoChambre().setText(modeleChambre.getValueAt(ligne, 0).toString()); 
 		WinChambre.getTxtEtage().setText(modeleChambre.getValueAt(ligne, 1).toString());   
@@ -37,7 +39,7 @@ public class ctrlChambre {
 
 		
 		//Affichage des produits du bon
-		/*modeleAyant = new modAyant((int)modeleChambre.getCourant());
+		modeleAyant = new modAyant((int)modeleChambre.getCourant());
 		winChambre.setjScrollPane(new JTable(modeleAyant)); 
 	    
 		//Affichage des totaux
@@ -45,7 +47,7 @@ public class ctrlChambre {
 		winChambre.getTxtTPS().setText(modeleAyant.ConvertirEnChaine(modeleAyant.getTPS()) + " $");
 		winChambre.getTxtTVQ().setText(modeleAyant.ConvertirEnChaine(modeleAyant.getTVQ()) + " $");
 		winChambre.getTxtTotal().setText(modeleAyant.ConvertirEnChaine(modeleAyant.getTotalBon()) + " $");
-		 */
+		
 	}
 	
 	public void Premier(winChambre instance) {
