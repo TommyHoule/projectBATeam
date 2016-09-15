@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.SystemColor;
 
-public class winArriver extends winHeritage {
+public class WinArriver extends WinHeritage {
 
 	private JPanel contentPane;
 	private JTextField textFieldClientNo;
@@ -34,6 +34,7 @@ public class winArriver extends winHeritage {
 	private JTextField textFieldDateFin;
 	private JTextField textFieldClientNoReserv;
 	private JTextField textFieldNomReserv;
+	private JScrollPane scrollPaneZoneN;
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,7 @@ public class winArriver extends winHeritage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					winHeritage frame = new winArriver();
+					WinHeritage frame = new WinArriver();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +55,7 @@ public class winArriver extends winHeritage {
 	/**
 	 * Create the frame.
 	 */
-	public winArriver() {
+	public WinArriver() {
 		
 		JPanel panelClient = new JPanel();
 		panelClient.setBackground(SystemColor.windowBorder);
@@ -184,14 +185,67 @@ public class winArriver extends winHeritage {
 		lblInformationSurLa.setBounds(674, 60, 192, 16);
 		getContentPane().add(lblInformationSurLa);
 		
-		JScrollPane scrollPaneZoneN = new JScrollPane();
+		scrollPaneZoneN = new JScrollPane();
 		scrollPaneZoneN.setBounds(176, 392, 938, 235);
 		getContentPane().add(scrollPaneZoneN);
+		
 		/*setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);*/
+	}
+	
+	public JTextField getTxtClientNo(){
+		return this.textFieldClientNo;
+	}
+	
+	public JTextField getTxtClientNom(){
+		return this.textFieldClientNom;
+	}
+	
+	public JTextField getTxtAdresse(){
+		return this.textFieldAdresse;
+	}
+	
+	public JTextField getTxtTelephone(){
+		return this.textFieldTelephone;
+	}
+	
+	public JTextField getTxtFax(){
+		return this.textFieldFax;
+	}
+	
+	public JTextField getTxtNoCham(){
+		return this.textFieldNumeroChambre;
+	}
+	
+	public JTextField getTxtNoReser(){
+		return this.textFieldNoReser;
+	}
+	
+	public JTextField getTxtNomReserv(){
+		return this.textFieldNomReserv;
+	}
+	
+	public JTextField getTxtReservLe(){
+		return this.textFieldReservLe;
+	}
+	
+	public JTextField getTxtDateDebut(){
+		return this.textFieldDateDebut;
+		
+	}
+	
+	public void setScrollPane(JTable UneTable)
+	{
+	
+		if (this.scrollPaneZoneN == null) 
+		   {
+			scrollPaneZoneN = new JScrollPane(UneTable);
+			scrollPaneZoneN.setBounds(20, 7,515, 175);
+		   }
+		scrollPaneZoneN.setViewportView(UneTable);
 	}
 }
