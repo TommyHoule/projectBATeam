@@ -225,18 +225,27 @@ public class winArriver extends winHeritage {
 		return this.textFieldNoReser;
 	}
 	
-	public JTextField getTxtNomReserv(){
-		return this.textFieldNomReserv;
-	}
 	
 	public JTextField getTxtReservLe(){
 		return this.textFieldReservLe;
 	}
 	
 	public JTextField getTxtDateDebut(){
-		return this.textFieldDateDebut;
-		
+		return this.textFieldDateDebut;	
 	}
+	
+	public JTextField getTxtDateFin(){
+		return this.textFieldDateFin;
+	}
+	
+	public JTextField getTxtClientNoReserv(){
+		return this.textFieldClientNoReserv;
+	}
+	
+	public JTextField getTxtNomReserv(){
+		return this.textFieldNomReserv;
+	}
+	
 	
 	public void setScrollPane(JTable UneTable)
 	{
