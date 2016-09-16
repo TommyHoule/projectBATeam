@@ -21,7 +21,7 @@ public class modChambre extends AbstractTableModel{
 	private String descLoc;
 	private String memo;
 
-	private int courant = 0;
+	private int courant = 1;
 
 	private ArrayList<modChambre> lesChambre = new ArrayList<modChambre>();
 	public final  String[] lesTitres = {"noCham", "etage","prix","etat","memo","codTypCha","descType","codLoc","descLoc"};

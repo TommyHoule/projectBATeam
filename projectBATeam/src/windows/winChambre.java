@@ -247,19 +247,6 @@ public class winChambre extends winHeritage {
 			}
 		});
 	}
-
-/*	private Component getScrollPane() {
-		// TODO Auto-generated method stub
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(204, 370, 890, 205);
-		return scrollPane;
-	}
-	*/
-	public JTable gettProduit()
-	{	
-		return tableAyant;
-	}
-
 	
 	private JScrollPane getScrollPane() {
 		scrollPane = new JScrollPane();
@@ -275,9 +262,9 @@ public class winChambre extends winHeritage {
 			scrollPane.setBounds(20, 7,515, 175);
 		   }
 		scrollPane.setViewportView(UneTable);
+		scrollPane.setViewportView(UneTable);
 	}
 	public JTextField getTxtNoChambre() {
-		// TODO Auto-generated method stub
 		if(txtNoChambre == null)
 		{
 			txtNoChambre = new JTextField();
@@ -320,7 +307,7 @@ public class winChambre extends winHeritage {
 			txtMemo = new JTextField();
 			txtMemo.setText("Description spéciale de la chambre");
 			txtMemo.setEditable(false);
-			txtMemo.setBounds(556, 103, 230, 81);
+			txtMemo.setBounds(556, 103, 277, 81);
 			txtMemo.setColumns(10);
 		}
 		
@@ -360,7 +347,7 @@ public class winChambre extends winHeritage {
 			txtDescriptionCodeType = new JTextField();
 			txtDescriptionCodeType.setEditable(false);
 			txtDescriptionCodeType.setColumns(10);
-			txtDescriptionCodeType.setBounds(656, 1, 130, 26);
+			txtDescriptionCodeType.setBounds(656, 1, 177, 26);
 		}
 		
 		return txtDescriptionCodeType;
@@ -386,7 +373,7 @@ public class winChambre extends winHeritage {
 			txtDescriptionCodeLocalisation = new JTextField();
 			txtDescriptionCodeLocalisation.setEditable(false);
 			txtDescriptionCodeLocalisation.setColumns(10);
-			txtDescriptionCodeLocalisation.setBounds(656, 43, 130, 26);
+			txtDescriptionCodeLocalisation.setBounds(656, 43, 177, 26);
 		}
 		
 		return txtDescriptionCodeLocalisation;
