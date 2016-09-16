@@ -14,6 +14,12 @@ public class modAyant extends AbstractTableModel{
 	private String codCom;
 	private String descCom;
 	private int noCham;
+<<<<<<< HEAD
+=======
+	private String tmp = null;
+
+
+>>>>>>> master
 	private int courant = 0;
 	private ArrayList<modAyant> lesTypes = new ArrayList<modAyant>();
 	public final  String[] lesTitres = {"codCom", "descCom"};
@@ -61,9 +67,21 @@ public class modAyant extends AbstractTableModel{
 			ResultSet rs = state.executeQuery();
 			while (rs.next()) {
 					int noCham = rs.getInt("NOCHAM");
+<<<<<<< HEAD
 					this.noCham = noCham;
 				lesTypes.add(new modAyant(rs.getString("CODCOM"),rs.getString("DESCCOM"))); 
 				this.setCourant(noCham);
+=======
+					/*if(tmp != rs.getString("CODCOM"))
+					{*/
+						String codCom = rs.getString("CODCOM");
+						String tmp = codCom;
+						String descCom = rs.getString("DESCCOM");
+						this.noCham = noCham;
+						lesTypes.add(new modAyant(codCom,descCom)); 
+						this.setCourant(noCham);
+				//	}
+>>>>>>> master
 			} 		
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modAyant.java lors de listing",
