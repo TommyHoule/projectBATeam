@@ -17,13 +17,12 @@ public class ctrlChambre {
 	public ctrlChambre(winChambre instance) {
 		
 		modeleChambre = new modChambre();	
-		
 		AffecteValeurs(instance,position);
 
 	}
 	private void AffecteValeurs(winChambre instance, int ligne) {
 			
-		modeleChambre.setCourant((int) modeleChambre.getValueAt(ligne,0));
+		 modeleChambre.setCourant((int) modeleChambre.getValueAt(ligne,0));
 	    //Affichage des informations de la chambre
 		
 		
@@ -40,7 +39,10 @@ public class ctrlChambre {
 		
 		//Affichage des produits du bon
 		modeleAyant = new modAyant((int)modeleChambre.getCourant());
+		System.out.println(modeleAyant);
 		winChambre.setjScrollPane(new JTable(modeleAyant)); 
+		
+		//BonSuivant(instance);
 	    
 	}
 	

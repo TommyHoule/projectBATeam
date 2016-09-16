@@ -262,8 +262,9 @@ public class winChambre extends winHeritage {
 			scrollPane.setBounds(20, 7,515, 175);
 		   }
 		scrollPane.setViewportView(UneTable);
-		scrollPane.setViewportView(UneTable);
+		System.out.println(UneTable);
 	}
+
 	public JTextField getTxtNoChambre() {
 		if(txtNoChambre == null)
 		{

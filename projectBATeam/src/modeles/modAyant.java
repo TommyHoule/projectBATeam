@@ -67,8 +67,6 @@ public class modAyant extends AbstractTableModel{
 					this.noCham = noCham;
 					this.setCourant(noCham);
 						String codCom = rs.getString("CODCOM");
-						String tmp = codCom;
-						this.noCham = noCham;
 						lesTypes.add(new modAyant(rs.getString("CODCOM"),rs.getString("DESCCOM"))); 
 						this.setCourant(noCham);
 					
