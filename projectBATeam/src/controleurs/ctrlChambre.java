@@ -39,7 +39,6 @@ public class ctrlChambre {
 		
 		//Affichage des commodité de la chambre
 		modeleAyant = new modAyant((int)modeleChambre.getCourant());
-		System.out.println(modeleAyant);
 		winChambre.setjScrollPane(new JTable(modeleAyant)); 
 		
 	    

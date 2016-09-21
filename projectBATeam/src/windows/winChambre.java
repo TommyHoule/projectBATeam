@@ -212,13 +212,16 @@ public class winChambre extends winHeritage {
 		panelChambre.add(getTxtDescType());
 		panelChambre.add(getTxtCodLoc());
 		panelChambre.add(getTxtDescLoc());
-	
-		//composante graphique de Ayant
-		getContentPane().add(getScrollPane());
 		
+		//label titre indiquant l'information de la chambre
 		JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
 		lblInfoChambre.setBounds(204, 74, 196, 16);
 		getContentPane().add(lblInfoChambre);
+		
+		//composante graphique de Ayant
+		getContentPane().add(getScrollPane());
+		
+		
 		
 		//Gestion de la souris sur le menu et la navigation
 		
@@ -261,7 +264,6 @@ public class winChambre extends winHeritage {
 			scrollPane.setBounds(20, 7,515, 175);
 		   }
 		scrollPane.setViewportView(UneTable);
-		System.out.println(UneTable);
 	}
 
 	public JTextField getTxtNoChambre() {
