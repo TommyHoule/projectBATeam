@@ -37,12 +37,11 @@ public class ctrlChambre {
 		instance.getTxtDescLoc().setText(modeleChambre.getValueAt(ligne, 8).toString());
 
 		
-		//Affichage des produits du bon
+		//Affichage des commodité de la chambre
 		modeleAyant = new modAyant((int)modeleChambre.getCourant());
 		System.out.println(modeleAyant);
 		winChambre.setjScrollPane(new JTable(modeleAyant)); 
 		
-		//BonSuivant(instance);
 	    
 	}
 	

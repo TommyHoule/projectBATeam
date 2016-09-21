@@ -249,7 +249,6 @@ public class winChambre extends winHeritage {
 	}
 	
 	private JScrollPane getScrollPane() {
-		scrollPane = new JScrollPane();
 		scrollPane.setBounds(204, 370, 890, 205);
 		return scrollPane;		
 	}
@@ -277,7 +276,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtEtage() {
-		// TODO Auto-generated method stub
 		if(txtEtage == null)
 		{
 			txtEtage = new JTextField();
@@ -289,7 +287,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtPrix() {
-		// TODO Auto-generated method stub
 		if(txtPrix == null)
 		{
 			txtPrix = new JTextField("$",10);
@@ -302,7 +299,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtMemo() {
-		// TODO Auto-generated method stub
 		if(txtMemo == null)
 		{
 			txtMemo = new JTextField();
@@ -316,7 +312,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtEtat() {
-		// TODO Auto-generated method stub
 		if(txtEtat == null)
 		{
 			txtEtat = new JTextField();
@@ -329,7 +324,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtCodTypeCha() {
-		// TODO Auto-generated method stub
 		if(txtCodeType == null)
 		{
 			txtCodeType = new JTextField();
@@ -342,7 +336,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtDescType() {
-		// TODO Auto-generated method stub
 		if(txtDescriptionCodeType == null)
 		{
 			txtDescriptionCodeType = new JTextField();
@@ -355,7 +348,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtCodLoc() {
-		// TODO Auto-generated method stub
 		if(txtCodeLocalisation == null)
 		{
 			txtCodeLocalisation = new JTextField();
@@ -368,7 +360,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtDescLoc() {
-		// TODO Auto-generated method stub
 		if(txtDescriptionCodeLocalisation == null)
 		{
 			txtDescriptionCodeLocalisation = new JTextField();
