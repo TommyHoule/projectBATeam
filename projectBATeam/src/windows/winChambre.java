@@ -75,7 +75,8 @@ public class winChambre extends winHeritage {
 	public winChambre() {
 		super();
 		instance = this;
-
+		Setup();
+		ModeConsultation();
 		
 		
 
@@ -109,7 +110,7 @@ public class winChambre extends winHeritage {
 		btnConsulter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+				ModeConsultation();
 			}
 		});
 		btnSupprimer.addMouseListener(new MouseAdapter() {
@@ -156,77 +157,6 @@ public class winChambre extends winHeritage {
 			}
 		});
 		
-
-		
-		ModeConsultation();
-
-	}
-
-	private void ModeConsultation() {
-		
-		leControllerChambre = new ctrlChambre(instance);
-		
-	   //Composants graphiques des chambres	    
-		panelChambre = new JPanel();
-		panelChambre.setBackground(SystemColor.windowBorder);
-		panelChambre.setBounds(204, 108, 890, 205);
-		getContentPane().add(panelChambre);
-		panelChambre.setLayout(null);
-		
-		lblNoChambre = new JLabel("No. Chambre :");
-		lblNoChambre.setBounds(6, 6, 92, 16);
-		panelChambre.add(lblNoChambre);
-		
-		lblEtage = new JLabel("Etage :");
-		lblEtage.setBounds(6, 48, 82, 16);
-		panelChambre.add(lblEtage);
-		
-		lblEtat = new JLabel("Etat :");
-		lblEtat.setBounds(6, 103, 82, 16);
-		panelChambre.add(lblEtat);
-
-	    lblCodeType = new JLabel("Code_Type :");
-		lblCodeType.setBounds(255, 6, 130, 16);
-		panelChambre.add(lblCodeType);
-		
-		lblCodelocalisation = new JLabel("Code_Localisation :");
-		lblCodelocalisation.setBounds(255, 48, 130, 16);
-		panelChambre.add(lblCodelocalisation);
-		
-		lblPrix = new JLabel("Prix :");
-		lblPrix.setBounds(255, 103, 130, 16);
-		panelChambre.add(lblPrix);
-		
-		lblDescriptionCodeType = new JLabel("Description :");
-		lblDescriptionCodeType.setBounds(556, 6, 130, 16);
-		panelChambre.add(lblDescriptionCodeType);
-		
-		lblDescriptionCodeLocalisation = new JLabel("Description :");
-		lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
-		panelChambre.add(lblDescriptionCodeLocalisation);
-				
-		panelChambre.add(getTxtNoChambre());
-		panelChambre.add(getTxtEtage());
-		panelChambre.add(getTxtPrix());
-		panelChambre.add(getTxtEtat());
-		panelChambre.add(getTxtMemo());
-		panelChambre.add(getTxtCodTypeCha());
-		panelChambre.add(getTxtDescType());
-		panelChambre.add(getTxtCodLoc());
-		panelChambre.add(getTxtDescLoc());
-		
-		//label titre indiquant l'information de la chambre
-		JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
-		lblInfoChambre.setBounds(204, 74, 196, 16);
-		getContentPane().add(lblInfoChambre);
-		
-		//composante graphique de Ayant
-		getContentPane().add(getScrollPane());
-		
-		
-		
-		//Gestion de la souris sur le menu et la navigation
-		
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -257,13 +187,95 @@ public class winChambre extends winHeritage {
 			leControllerChambre.ListeChambres(instance);
 		}
 		});
+		
+		
+
 	}
-	
+	private void Setup()
+	{
+			leControllerChambre = new ctrlChambre(instance);
+		
+		   //Composants graphiques des chambres	    
+			panelChambre = new JPanel();
+			panelChambre.setBackground(SystemColor.windowBorder);
+			panelChambre.setBounds(204, 108, 890, 205);
+			getContentPane().add(panelChambre);
+			panelChambre.setLayout(null);
+			
+			lblNoChambre = new JLabel("No. Chambre :");
+			lblNoChambre.setBounds(6, 6, 92, 16);
+			panelChambre.add(lblNoChambre);
+			
+			lblEtage = new JLabel("Etage :");
+			lblEtage.setBounds(6, 48, 82, 16);
+			panelChambre.add(lblEtage);
+			
+			lblEtat = new JLabel("Etat :");
+			lblEtat.setBounds(6, 103, 82, 16);
+			panelChambre.add(lblEtat);
+
+		    lblCodeType = new JLabel("Code_Type :");
+			lblCodeType.setBounds(255, 6, 130, 16);
+			panelChambre.add(lblCodeType);
+			
+			lblCodelocalisation = new JLabel("Code_Localisation :");
+			lblCodelocalisation.setBounds(255, 48, 130, 16);
+			panelChambre.add(lblCodelocalisation);
+			
+			lblPrix = new JLabel("Prix :");
+			lblPrix.setBounds(255, 103, 130, 16);
+			panelChambre.add(lblPrix);
+			
+			lblDescriptionCodeType = new JLabel("Description :");
+			lblDescriptionCodeType.setBounds(556, 6, 130, 16);
+			panelChambre.add(lblDescriptionCodeType);
+			
+			lblDescriptionCodeLocalisation = new JLabel("Description :");
+			lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
+			panelChambre.add(lblDescriptionCodeLocalisation);
+					
+			panelChambre.add(getTxtNoChambre());
+			panelChambre.add(getTxtEtage());
+			panelChambre.add(getTxtPrix());
+			panelChambre.add(getTxtEtat());
+			panelChambre.add(getTxtMemo());
+			panelChambre.add(getTxtCodTypeCha());
+			panelChambre.add(getTxtDescType());
+			panelChambre.add(getTxtCodLoc());
+			panelChambre.add(getTxtDescLoc());
+			
+			//label titre indiquant l'information de la chambre
+			JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
+			lblInfoChambre.setBounds(204, 74, 196, 16);
+			getContentPane().add(lblInfoChambre);
+			
+			//composante graphique de Ayant
+			getContentPane().add(getScrollPane());
+			
+			
+			
+			//Gestion de la souris sur le menu et la navigation
+	}
+	private void ModeConsultation() {
+		
+		btnConsulter.setEnabled(false);
+		btnEnregistrer.setEnabled(false);
+		btnAnnuler.setEnabled(false);
+		txtNoChambre.setEditable(false);
+		txtEtage.setEditable(false);
+		txtPrix.setEditable(false);
+		txtMemo.setEditable(false);
+		txtEtat.setEditable(false);
+		txtCodeType.setEditable(false);
+		txtDescriptionCodeType.setEditable(false);
+		txtCodeLocalisation.setEditable(false);
+		txtDescriptionCodeLocalisation.setEditable(false);
+
+	}
 	private JScrollPane getScrollPane() {
 		scrollPane.setBounds(204, 370, 890, 205);
 		return scrollPane;		
 	}
-	
 	public static void setjScrollPane(JTable UneTable)
 	{
 		if (scrollPane == null) 
@@ -273,107 +285,89 @@ public class winChambre extends winHeritage {
 		   }
 		scrollPane.setViewportView(UneTable);
 	}
-
 	public JTextField getTxtNoChambre() {
 		if(txtNoChambre == null)
 		{
 			txtNoChambre = new JTextField();
-			txtNoChambre.setEditable(false);
 			txtNoChambre.setBounds(100, 1, 130, 26);
 			txtNoChambre.setColumns(10);
 		}
 		return txtNoChambre;
 	}
-
 	public JTextField getTxtEtage() {
 		if(txtEtage == null)
 		{
 			txtEtage = new JTextField();
-			txtEtage.setEditable(false);
 			txtEtage.setColumns(10);
 			txtEtage.setBounds(100, 43, 130, 26);
 		}
 		return txtEtage;
 	}
-
 	public JTextField getTxtPrix() {
 		if(txtPrix == null)
 		{
 			txtPrix = new JTextField("$",10);
-			txtPrix.setEditable(false);
 			txtPrix.setColumns(10);
 			txtPrix.setBounds(389, 98, 130, 26);
 		}
 		
 		return txtPrix;
 	}
-
 	public JTextField getTxtMemo() {
 		if(txtMemo == null)
 		{
 			txtMemo = new JTextField();
 			txtMemo.setText("Description spéciale de la chambre");
-			txtMemo.setEditable(false);
 			txtMemo.setBounds(556, 103, 277, 81);
 			txtMemo.setColumns(10);
 		}
 		
 		return txtMemo;
 	}
-
 	public JTextField getTxtEtat() {
 		if(txtEtat == null)
 		{
 			txtEtat = new JTextField();
-			txtEtat.setEditable(false);
 			txtEtat.setColumns(10);
 			txtEtat.setBounds(100, 98, 130, 26);
 		}
 		
 		return txtEtat;
 	}
-
 	public JTextField getTxtCodTypeCha() {
 		if(txtCodeType == null)
 		{
 			txtCodeType = new JTextField();
-			txtCodeType.setEditable(false);
 			txtCodeType.setBounds(389, 1, 130, 26);
 			txtCodeType.setColumns(10);
 		}
 		
 		return txtCodeType;
 	}
-
 	public JTextField getTxtDescType() {
 		if(txtDescriptionCodeType == null)
 		{
 			txtDescriptionCodeType = new JTextField();
-			txtDescriptionCodeType.setEditable(false);
 			txtDescriptionCodeType.setColumns(10);
 			txtDescriptionCodeType.setBounds(656, 1, 177, 26);
 		}
 		
 		return txtDescriptionCodeType;
 	}
-
 	public JTextField getTxtCodLoc() {
 		if(txtCodeLocalisation == null)
 		{
 			txtCodeLocalisation = new JTextField();
-			txtCodeLocalisation.setEditable(false);
 			txtCodeLocalisation.setColumns(10);
 			txtCodeLocalisation.setBounds(389, 43, 130, 26);
 		}
 		
 		return txtCodeLocalisation;
 	}
-
 	public JTextField getTxtDescLoc() {
 		if(txtDescriptionCodeLocalisation == null)
 		{
 			txtDescriptionCodeLocalisation = new JTextField();
-			txtDescriptionCodeLocalisation.setEditable(false);
 			txtDescriptionCodeLocalisation.setColumns(10);
 			txtDescriptionCodeLocalisation.setBounds(656, 43, 177, 26);
 		}
