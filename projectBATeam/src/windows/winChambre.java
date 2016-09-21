@@ -76,6 +76,7 @@ public class winChambre extends winHeritage {
 		super();
 		instance = this;
 		Setup();
+		ModeConsultation();
 		
 		
 
@@ -156,7 +157,36 @@ public class winChambre extends winHeritage {
 			}
 		});
 		
-
+		btnPremier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.Premier(instance);
+			}
+		});
+		btnPrecedent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.BonPrecedent(instance);
+			}
+		});
+		btnDernier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.Dernier(instance);
+			}
+		});
+		btnSuivant.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.BonSuivant(instance);
+			}
+		});
+		txtNoChambre.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			leControllerChambre.ListeChambres(instance);
+		}
+		});
 		
 		
 
@@ -164,7 +194,7 @@ public class winChambre extends winHeritage {
 
 	private void Setup()
 	{
-			//leControllerChambre = new ctrlChambre(instance);
+			leControllerChambre = new ctrlChambre(instance);
 		
 		   //Composants graphiques des chambres	    
 			panelChambre = new JPanel();
@@ -229,38 +259,19 @@ public class winChambre extends winHeritage {
 	}
 	private void ModeConsultation() {
 		
-		leControllerChambre = new ctrlChambre(instance);
-		
-		btnPremier.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.Premier(instance);
-			}
-		});
-		btnPrecedent.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.BonPrecedent(instance);
-			}
-		});
-		btnDernier.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.Dernier(instance);
-			}
-		});
-		btnSuivant.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				leControllerChambre.BonSuivant(instance);
-			}
-		});
-		txtNoChambre.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			leControllerChambre.ListeChambres(instance);
-		}
-		});
+		btnConsulter.setEnabled(false);
+		btnEnregistrer.setEnabled(false);
+		btnAnnuler.setEnabled(false);
+		txtNoChambre.setEditable(false);
+		txtEtage.setEditable(false);
+		txtPrix.setEditable(false);
+		txtMemo.setEditable(false);
+		txtEtat.setEditable(false);
+		txtCodeType.setEditable(false);
+		txtDescriptionCodeType.setEditable(false);
+		txtCodeLocalisation.setEditable(false);
+		txtDescriptionCodeLocalisation.setEditable(false);
+
 	}
 	
 	private JScrollPane getScrollPane() {
@@ -283,7 +294,6 @@ public class winChambre extends winHeritage {
 		if(txtNoChambre == null)
 		{
 			txtNoChambre = new JTextField();
-			txtNoChambre.setEditable(false);
 			txtNoChambre.setBounds(100, 1, 130, 26);
 			txtNoChambre.setColumns(10);
 		}
@@ -294,7 +304,6 @@ public class winChambre extends winHeritage {
 		if(txtEtage == null)
 		{
 			txtEtage = new JTextField();
-			txtEtage.setEditable(false);
 			txtEtage.setColumns(10);
 			txtEtage.setBounds(100, 43, 130, 26);
 		}
@@ -305,7 +314,6 @@ public class winChambre extends winHeritage {
 		if(txtPrix == null)
 		{
 			txtPrix = new JTextField("$",10);
-			txtPrix.setEditable(false);
 			txtPrix.setColumns(10);
 			txtPrix.setBounds(389, 98, 130, 26);
 		}
@@ -318,7 +326,6 @@ public class winChambre extends winHeritage {
 		{
 			txtMemo = new JTextField();
 			txtMemo.setText("Description spéciale de la chambre");
-			txtMemo.setEditable(false);
 			txtMemo.setBounds(556, 103, 277, 81);
 			txtMemo.setColumns(10);
 		}
@@ -330,7 +337,6 @@ public class winChambre extends winHeritage {
 		if(txtEtat == null)
 		{
 			txtEtat = new JTextField();
-			txtEtat.setEditable(false);
 			txtEtat.setColumns(10);
 			txtEtat.setBounds(100, 98, 130, 26);
 		}
@@ -342,7 +348,6 @@ public class winChambre extends winHeritage {
 		if(txtCodeType == null)
 		{
 			txtCodeType = new JTextField();
-			txtCodeType.setEditable(false);
 			txtCodeType.setBounds(389, 1, 130, 26);
 			txtCodeType.setColumns(10);
 		}
@@ -354,7 +359,6 @@ public class winChambre extends winHeritage {
 		if(txtDescriptionCodeType == null)
 		{
 			txtDescriptionCodeType = new JTextField();
-			txtDescriptionCodeType.setEditable(false);
 			txtDescriptionCodeType.setColumns(10);
 			txtDescriptionCodeType.setBounds(656, 1, 177, 26);
 		}
@@ -366,7 +370,6 @@ public class winChambre extends winHeritage {
 		if(txtCodeLocalisation == null)
 		{
 			txtCodeLocalisation = new JTextField();
-			txtCodeLocalisation.setEditable(false);
 			txtCodeLocalisation.setColumns(10);
 			txtCodeLocalisation.setBounds(389, 43, 130, 26);
 		}
@@ -378,7 +381,6 @@ public class winChambre extends winHeritage {
 		if(txtDescriptionCodeLocalisation == null)
 		{
 			txtDescriptionCodeLocalisation = new JTextField();
-			txtDescriptionCodeLocalisation.setEditable(false);
 			txtDescriptionCodeLocalisation.setColumns(10);
 			txtDescriptionCodeLocalisation.setBounds(656, 43, 177, 26);
 		}
