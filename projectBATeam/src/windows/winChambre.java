@@ -75,7 +75,7 @@ public class winChambre extends winHeritage {
 	public winChambre() {
 		super();
 		instance = this;
-
+		Setup();
 		
 		
 
@@ -109,7 +109,7 @@ public class winChambre extends winHeritage {
 		btnConsulter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+				ModeConsultation();
 			}
 		});
 		btnSupprimer.addMouseListener(new MouseAdapter() {
@@ -158,74 +158,78 @@ public class winChambre extends winHeritage {
 		
 
 		
-		ModeConsultation();
+		
 
 	}
 
+	private void Setup()
+	{
+			//leControllerChambre = new ctrlChambre(instance);
+		
+		   //Composants graphiques des chambres	    
+			panelChambre = new JPanel();
+			panelChambre.setBackground(SystemColor.windowBorder);
+			panelChambre.setBounds(204, 108, 890, 205);
+			getContentPane().add(panelChambre);
+			panelChambre.setLayout(null);
+			
+			lblNoChambre = new JLabel("No. Chambre :");
+			lblNoChambre.setBounds(6, 6, 92, 16);
+			panelChambre.add(lblNoChambre);
+			
+			lblEtage = new JLabel("Etage :");
+			lblEtage.setBounds(6, 48, 82, 16);
+			panelChambre.add(lblEtage);
+			
+			lblEtat = new JLabel("Etat :");
+			lblEtat.setBounds(6, 103, 82, 16);
+			panelChambre.add(lblEtat);
+
+		    lblCodeType = new JLabel("Code_Type :");
+			lblCodeType.setBounds(255, 6, 130, 16);
+			panelChambre.add(lblCodeType);
+			
+			lblCodelocalisation = new JLabel("Code_Localisation :");
+			lblCodelocalisation.setBounds(255, 48, 130, 16);
+			panelChambre.add(lblCodelocalisation);
+			
+			lblPrix = new JLabel("Prix :");
+			lblPrix.setBounds(255, 103, 130, 16);
+			panelChambre.add(lblPrix);
+			
+			lblDescriptionCodeType = new JLabel("Description :");
+			lblDescriptionCodeType.setBounds(556, 6, 130, 16);
+			panelChambre.add(lblDescriptionCodeType);
+			
+			lblDescriptionCodeLocalisation = new JLabel("Description :");
+			lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
+			panelChambre.add(lblDescriptionCodeLocalisation);
+					
+			panelChambre.add(getTxtNoChambre());
+			panelChambre.add(getTxtEtage());
+			panelChambre.add(getTxtPrix());
+			panelChambre.add(getTxtEtat());
+			panelChambre.add(getTxtMemo());
+			panelChambre.add(getTxtCodTypeCha());
+			panelChambre.add(getTxtDescType());
+			panelChambre.add(getTxtCodLoc());
+			panelChambre.add(getTxtDescLoc());
+			
+			//label titre indiquant l'information de la chambre
+			JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
+			lblInfoChambre.setBounds(204, 74, 196, 16);
+			getContentPane().add(lblInfoChambre);
+			
+			//composante graphique de Ayant
+			getContentPane().add(getScrollPane());
+			
+			
+			
+			//Gestion de la souris sur le menu et la navigation
+	}
 	private void ModeConsultation() {
 		
 		leControllerChambre = new ctrlChambre(instance);
-		
-	   //Composants graphiques des chambres	    
-		panelChambre = new JPanel();
-		panelChambre.setBackground(SystemColor.windowBorder);
-		panelChambre.setBounds(204, 108, 890, 205);
-		getContentPane().add(panelChambre);
-		panelChambre.setLayout(null);
-		
-		lblNoChambre = new JLabel("No. Chambre :");
-		lblNoChambre.setBounds(6, 6, 92, 16);
-		panelChambre.add(lblNoChambre);
-		
-		lblEtage = new JLabel("Etage :");
-		lblEtage.setBounds(6, 48, 82, 16);
-		panelChambre.add(lblEtage);
-		
-		lblEtat = new JLabel("Etat :");
-		lblEtat.setBounds(6, 103, 82, 16);
-		panelChambre.add(lblEtat);
-
-	    lblCodeType = new JLabel("Code_Type :");
-		lblCodeType.setBounds(255, 6, 130, 16);
-		panelChambre.add(lblCodeType);
-		
-		lblCodelocalisation = new JLabel("Code_Localisation :");
-		lblCodelocalisation.setBounds(255, 48, 130, 16);
-		panelChambre.add(lblCodelocalisation);
-		
-		lblPrix = new JLabel("Prix :");
-		lblPrix.setBounds(255, 103, 130, 16);
-		panelChambre.add(lblPrix);
-		
-		lblDescriptionCodeType = new JLabel("Description :");
-		lblDescriptionCodeType.setBounds(556, 6, 130, 16);
-		panelChambre.add(lblDescriptionCodeType);
-		
-		lblDescriptionCodeLocalisation = new JLabel("Description :");
-		lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
-		panelChambre.add(lblDescriptionCodeLocalisation);
-				
-		panelChambre.add(getTxtNoChambre());
-		panelChambre.add(getTxtEtage());
-		panelChambre.add(getTxtPrix());
-		panelChambre.add(getTxtEtat());
-		panelChambre.add(getTxtMemo());
-		panelChambre.add(getTxtCodTypeCha());
-		panelChambre.add(getTxtDescType());
-		panelChambre.add(getTxtCodLoc());
-		panelChambre.add(getTxtDescLoc());
-		
-		//label titre indiquant l'information de la chambre
-		JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
-		lblInfoChambre.setBounds(204, 74, 196, 16);
-		getContentPane().add(lblInfoChambre);
-		
-		//composante graphique de Ayant
-		getContentPane().add(getScrollPane());
-		
-		
-		
-		//Gestion de la souris sur le menu et la navigation
 		
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
@@ -260,6 +264,7 @@ public class winChambre extends winHeritage {
 	}
 	
 	private JScrollPane getScrollPane() {
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(204, 370, 890, 205);
 		return scrollPane;		
 	}
