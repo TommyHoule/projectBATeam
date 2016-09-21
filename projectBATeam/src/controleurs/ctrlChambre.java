@@ -6,6 +6,7 @@ import javax.swing.JTable;
 import modeles.modAyant;
 import modeles.modChambre;
 import windows.winChambre;
+import windows.winPickList;
 import windows.winPrincipale;
 
 
@@ -65,6 +66,10 @@ public class ctrlChambre {
 		else position = modeleChambre.getLesEnreg().size()-1;
 		modeleChambre.setCourant((int)modeleChambre.getValueAt(position, 0));
 		AffecteValeurs(instance,position);		
+	}
+	public void ListeChambres (winChambre instance){   
+	    position = winPickList.pickFromTable(new modChambre(),"listes des chambres");
+		AffecteValeurs(instance, position);	
 	}
 
 
