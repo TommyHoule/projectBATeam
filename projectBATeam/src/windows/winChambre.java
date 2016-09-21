@@ -191,7 +191,6 @@ public class winChambre extends winHeritage {
 		
 
 	}
-
 	private void Setup()
 	{
 			leControllerChambre = new ctrlChambre(instance);
@@ -273,13 +272,10 @@ public class winChambre extends winHeritage {
 		txtDescriptionCodeLocalisation.setEditable(false);
 
 	}
-	
 	private JScrollPane getScrollPane() {
-		scrollPane = new JScrollPane();
 		scrollPane.setBounds(204, 370, 890, 205);
 		return scrollPane;		
 	}
-	
 	public static void setjScrollPane(JTable UneTable)
 	{
 		if (scrollPane == null) 
@@ -289,7 +285,6 @@ public class winChambre extends winHeritage {
 		   }
 		scrollPane.setViewportView(UneTable);
 	}
-
 	public JTextField getTxtNoChambre() {
 		if(txtNoChambre == null)
 		{
@@ -299,7 +294,6 @@ public class winChambre extends winHeritage {
 		}
 		return txtNoChambre;
 	}
-
 	public JTextField getTxtEtage() {
 		if(txtEtage == null)
 		{
@@ -309,7 +303,6 @@ public class winChambre extends winHeritage {
 		}
 		return txtEtage;
 	}
-
 	public JTextField getTxtPrix() {
 		if(txtPrix == null)
 		{
@@ -320,7 +313,6 @@ public class winChambre extends winHeritage {
 		
 		return txtPrix;
 	}
-
 	public JTextField getTxtMemo() {
 		if(txtMemo == null)
 		{
@@ -332,7 +324,6 @@ public class winChambre extends winHeritage {
 		
 		return txtMemo;
 	}
-
 	public JTextField getTxtEtat() {
 		if(txtEtat == null)
 		{
@@ -343,7 +334,6 @@ public class winChambre extends winHeritage {
 		
 		return txtEtat;
 	}
-
 	public JTextField getTxtCodTypeCha() {
 		if(txtCodeType == null)
 		{
@@ -354,7 +344,6 @@ public class winChambre extends winHeritage {
 		
 		return txtCodeType;
 	}
-
 	public JTextField getTxtDescType() {
 		if(txtDescriptionCodeType == null)
 		{
@@ -365,7 +354,6 @@ public class winChambre extends winHeritage {
 		
 		return txtDescriptionCodeType;
 	}
-
 	public JTextField getTxtCodLoc() {
 		if(txtCodeLocalisation == null)
 		{
@@ -376,7 +364,6 @@ public class winChambre extends winHeritage {
 		
 		return txtCodeLocalisation;
 	}
-
 	public JTextField getTxtDescLoc() {
 		if(txtDescriptionCodeLocalisation == null)
 		{
