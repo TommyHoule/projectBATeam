@@ -156,6 +156,8 @@ public class winChambre extends winHeritage {
 			}
 		});
 		
+
+		
 		ModeConsultation();
 
 	}
@@ -249,6 +251,12 @@ public class winChambre extends winHeritage {
 				leControllerChambre.BonSuivant(instance);
 			}
 		});
+		txtNoChambre.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			leControllerChambre.ListeChambres(instance);
+		}
+		});
 	}
 	
 	private JScrollPane getScrollPane() {
@@ -274,7 +282,7 @@ public class winChambre extends winHeritage {
 			txtNoChambre.setBounds(100, 1, 130, 26);
 			txtNoChambre.setColumns(10);
 		}
-		return this.txtNoChambre;
+		return txtNoChambre;
 	}
 
 	public JTextField getTxtEtage() {
