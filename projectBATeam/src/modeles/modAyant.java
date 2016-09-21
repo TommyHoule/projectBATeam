@@ -60,21 +60,16 @@ public class modAyant extends AbstractTableModel{
 	}	
 	public void lireEnreg(int noCham2) {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.AYANT.NOCHAM,EQU03PRG01.AYANT.CODCOM, EQU03PRG01.COMMODITE.DESCCOM FROM EQU03PRG01.COMMODITE,EQU03PRG01.CHAMBRE,EQU03PRG01.AYANT WHERE EQU03PRG01.AYANT.NOCHAM = "+noCham2+" AND EQU03PRG01.AYANT.CODCOM = EQU03PRG01.COMMODITE.CODCOM");			
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT DISTINCT EQU03PRG01.AYANT.NOCHAM,EQU03PRG01.AYANT.CODCOM, EQU03PRG01.COMMODITE.DESCCOM FROM EQU03PRG01.COMMODITE,EQU03PRG01.CHAMBRE,EQU03PRG01.AYANT WHERE EQU03PRG01.AYANT.NOCHAM = "+noCham2+" AND EQU03PRG01.AYANT.CODCOM = EQU03PRG01.COMMODITE.CODCOM");			
 			ResultSet rs = state.executeQuery();
 			while (rs.next()) {
 					int noCham = rs.getInt("NOCHAM");
 					this.noCham = noCham;
 					this.setCourant(noCham);
-					/*if(tmp != rs.getString("CODCOM"))
-					{*/
 						String codCom = rs.getString("CODCOM");
-						String tmp = codCom;
-						String descCom = rs.getString("DESCCOM");
-						this.noCham = noCham;
 						lesTypes.add(new modAyant(rs.getString("CODCOM"),rs.getString("DESCCOM"))); 
 						this.setCourant(noCham);
-				//	}
+					
 			} 		
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modAyant.java lors de listing",

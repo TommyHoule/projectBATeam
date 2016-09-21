@@ -212,13 +212,16 @@ public class winChambre extends winHeritage {
 		panelChambre.add(getTxtDescType());
 		panelChambre.add(getTxtCodLoc());
 		panelChambre.add(getTxtDescLoc());
-	
-		//composante graphique de Ayant
-		getContentPane().add(getScrollPane());
 		
+		//label titre indiquant l'information de la chambre
 		JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
 		lblInfoChambre.setBounds(204, 74, 196, 16);
 		getContentPane().add(lblInfoChambre);
+		
+		//composante graphique de Ayant
+		getContentPane().add(getScrollPane());
+		
+		
 		
 		//Gestion de la souris sur le menu et la navigation
 		
@@ -247,22 +250,8 @@ public class winChambre extends winHeritage {
 			}
 		});
 	}
-
-/*	private Component getScrollPane() {
-		// TODO Auto-generated method stub
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(204, 370, 890, 205);
-		return scrollPane;
-	}
-	*/
-	public JTable gettProduit()
-	{	
-		return tableAyant;
-	}
-
 	
 	private JScrollPane getScrollPane() {
-		scrollPane = new JScrollPane();
 		scrollPane.setBounds(204, 370, 890, 205);
 		return scrollPane;		
 	}
@@ -276,8 +265,8 @@ public class winChambre extends winHeritage {
 		   }
 		scrollPane.setViewportView(UneTable);
 	}
+
 	public JTextField getTxtNoChambre() {
-		// TODO Auto-generated method stub
 		if(txtNoChambre == null)
 		{
 			txtNoChambre = new JTextField();
@@ -289,7 +278,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtEtage() {
-		// TODO Auto-generated method stub
 		if(txtEtage == null)
 		{
 			txtEtage = new JTextField();
@@ -301,7 +289,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtPrix() {
-		// TODO Auto-generated method stub
 		if(txtPrix == null)
 		{
 			txtPrix = new JTextField("$",10);
@@ -314,13 +301,12 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtMemo() {
-		// TODO Auto-generated method stub
 		if(txtMemo == null)
 		{
 			txtMemo = new JTextField();
 			txtMemo.setText("Description spéciale de la chambre");
 			txtMemo.setEditable(false);
-			txtMemo.setBounds(556, 103, 230, 81);
+			txtMemo.setBounds(556, 103, 277, 81);
 			txtMemo.setColumns(10);
 		}
 		
@@ -328,7 +314,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtEtat() {
-		// TODO Auto-generated method stub
 		if(txtEtat == null)
 		{
 			txtEtat = new JTextField();
@@ -341,7 +326,6 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtCodTypeCha() {
-		// TODO Auto-generated method stub
 		if(txtCodeType == null)
 		{
 			txtCodeType = new JTextField();
@@ -354,20 +338,18 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtDescType() {
-		// TODO Auto-generated method stub
 		if(txtDescriptionCodeType == null)
 		{
 			txtDescriptionCodeType = new JTextField();
 			txtDescriptionCodeType.setEditable(false);
 			txtDescriptionCodeType.setColumns(10);
-			txtDescriptionCodeType.setBounds(656, 1, 130, 26);
+			txtDescriptionCodeType.setBounds(656, 1, 177, 26);
 		}
 		
 		return txtDescriptionCodeType;
 	}
 
 	public JTextField getTxtCodLoc() {
-		// TODO Auto-generated method stub
 		if(txtCodeLocalisation == null)
 		{
 			txtCodeLocalisation = new JTextField();
@@ -380,13 +362,12 @@ public class winChambre extends winHeritage {
 	}
 
 	public JTextField getTxtDescLoc() {
-		// TODO Auto-generated method stub
 		if(txtDescriptionCodeLocalisation == null)
 		{
 			txtDescriptionCodeLocalisation = new JTextField();
 			txtDescriptionCodeLocalisation.setEditable(false);
 			txtDescriptionCodeLocalisation.setColumns(10);
-			txtDescriptionCodeLocalisation.setBounds(656, 43, 130, 26);
+			txtDescriptionCodeLocalisation.setBounds(656, 43, 177, 26);
 		}
 		
 		return txtDescriptionCodeLocalisation;
