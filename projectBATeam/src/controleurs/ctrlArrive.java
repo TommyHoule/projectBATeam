@@ -21,9 +21,10 @@ public class ctrlArrive {
 	public void AffecteValeurs(winArriver instance, int ligne){
 		
 		modArrive.setCurrent((int) modArrive.getValueAt(ligne, 13));
+		System.out.println(modArrive.getValueAt(ligne, 13).toString());
 		//SectionArriver
 		instance.getTxtClientNo().setText(modArrive.getValueAt(ligne, 0).toString());
-		instance.getTxtClientNom().setText(modArrive.getValueAt(ligne, 1).toString());
+		/*instance.getTxtClientNom().setText(modArrive.getValueAt(ligne, 1).toString());
 		instance.getTxtAdresse().setText(modArrive.getValueAt(ligne, 2).toString());
 		instance.getTxtTelephone().setText(modArrive.getValueAt(ligne, 3).toString());
 		instance.getTxtFax().setText(modArrive.getValueAt(ligne, 4).toString());
@@ -39,7 +40,7 @@ public class ctrlArrive {
 		
 		//Section N
 		modDe_ = new modDe((int)modArrive.getValueAt(ligne, 7));
-		instance.setScrollPane(new JTable(modDe_)); 
+		instance.setScrollPane(new JTable(modDe_)); */
 	}
 	
 	public void Premier(winArriver instance) {
