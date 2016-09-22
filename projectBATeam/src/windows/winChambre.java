@@ -1,18 +1,10 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-
 import controleurs.ctrlChambre;
-import controleurs.ctrlPrincipale;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -27,7 +19,6 @@ public class winChambre extends winHeritage {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JPanel panelChambre;
 	private JLabel lblNoChambre;
 	private JLabel lblEtage;
@@ -153,7 +144,9 @@ public class winChambre extends winHeritage {
 				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		
+
+		//Gestion de la souris sur le menu et la navigation
+
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -251,7 +244,6 @@ public class winChambre extends winHeritage {
 			
 			
 			
-			//Gestion de la souris sur le menu et la navigation
 	}
 	private void ModeConsultation() {
 		

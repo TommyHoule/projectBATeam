@@ -1,13 +1,11 @@
 package controleurs;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import modeles.modAyant;
 import modeles.modChambre;
 import windows.winChambre;
 import windows.winPickList;
-import windows.winPrincipale;
 
 
 public class ctrlChambre {
