@@ -24,7 +24,7 @@ public class modChambre extends AbstractTableModel{
 	private int courant = 0;
 
 	private ArrayList<modChambre> lesChambre = new ArrayList<modChambre>();
-	public final  String[] lesTitres = {"noCham", "etage","prix","etat","memo","codTypCha","descType","codLoc","descLoc"};
+	//public final  String[] lesTitres = {"noCham", "etage","prix","etat","memo","codTypCha","descType","codLoc","descLoc"};
 	/*
 	 * Constructeur 1
 	 */
@@ -51,11 +51,13 @@ public class modChambre extends AbstractTableModel{
 	}
 	@Override
 	public int getColumnCount() {	
-		return lesTitres.length;
-		}
+		//return lesTitres.length;
+		return 0;
+	}
 	public String getColumnName(int columnIndex)
 	{
-		return lesTitres[columnIndex];
+		//return lesTitres[columnIndex];
+		return "";
 	}
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		modChambre uneChambre = (modChambre)lesChambre.get(rowIndex);
@@ -81,7 +83,7 @@ public class modChambre extends AbstractTableModel{
 				this.setCourant(noCham);
 			} 		
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modChambre.java lors de listing",
+			JOptionPane.showMessageDialog(null, "Probleme rencontré, il n'y a aucune chambre a afficher",
 					"ALERTE", JOptionPane.ERROR_MESSAGE);
 		}
 	}

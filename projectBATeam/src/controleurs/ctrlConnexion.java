@@ -23,7 +23,7 @@ public class ctrlConnexion {
 	       
 	  	    modConnexion.getInstance().connexion(nomUsager,mdp);   	
 	       	
-	       	testConnexion();
+	       	//testConnexion();
 	       	
 	       	fenetre.dispose();
 	        
@@ -41,36 +41,6 @@ public class ctrlConnexion {
 	    
 	  }
 	
-	
-private static void testConnexion() throws SQLException
- { 
-	
-	//Appel de procédure stockée avec un paramètre en lecture
-	
-/*	String sql = "{call test(?)}";
-	CallableStatement call = ModConnexion.getInstance().getLaConnectionStatique().prepareCall(sql); 
-	//passage de la chaîne "ioio" comme valeur du premier paramètre 
-	call.setString(1,"ioio"); 
-	call.execute();*/
-	
-/*	
- * 
- *  Exécution d'une requête simple*/
-  
-    String vCode = "";
-	String vNom = "";
-	
-	PreparedStatement prepare = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT * FROM FJEAN.DM_ACH");
-  	jeuEnreg = prepare.executeQuery();
-	
-  	while (jeuEnreg.next())
-		{
-			vCode = jeuEnreg.getString(1);
-			vNom = jeuEnreg.getString(2);
-			//System.out.println(" " +vCode + "  " + vNom);
-		}
-	
-}
 
 } 
 

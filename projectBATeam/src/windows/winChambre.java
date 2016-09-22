@@ -153,7 +153,9 @@ public class winChambre extends winHeritage {
 				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
 			}
 		});
-		
+
+		//Gestion de la souris sur le menu et la navigation
+
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -251,7 +253,6 @@ public class winChambre extends winHeritage {
 			
 			
 			
-			//Gestion de la souris sur le menu et la navigation
 	}
 	private void ModeConsultation() {
 		
