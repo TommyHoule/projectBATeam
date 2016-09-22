@@ -21,7 +21,7 @@ public class modChambre extends AbstractTableModel{
 	private int courant = 0;
 
 	private ArrayList<modChambre> lesChambre = new ArrayList<modChambre>();
-	//public final  String[] lesTitres = {"noCham", "etage","prix","etat","memo","codTypCha","descType","codLoc","descLoc"};
+	public final  String[] lesTitres = {"noCham", "etage","prix","etat","memo","codTypCha","descType","codLoc","descLoc"};
 	/*
 	 * Constructeur 1
 	 */
