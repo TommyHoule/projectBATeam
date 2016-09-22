@@ -52,7 +52,7 @@ public class ctrlChambre {
 	public void BonPrecedent(winChambre instance) {
 		if (position> 0)
 			position--;
-		else position= 0;
+		else position= modeleChambre.getLesEnreg().size()-1;
 		modeleChambre.setCourant((int)modeleChambre.getValueAt(position, 0));
 		AffecteValeurs(instance,position);	
 	}
@@ -61,9 +61,9 @@ public class ctrlChambre {
 	     AffecteValeurs(instance,position);		
 	}
 	public void BonSuivant(winChambre instance) {
-		if (position< modeleChambre.getLesEnreg().size())
+		if (position< modeleChambre.getLesEnreg().size()-1)
 			 position++;
-		else position = modeleChambre.getLesEnreg().size()-1;
+		else position = 0;
 		modeleChambre.setCourant((int)modeleChambre.getValueAt(position, 0));
 		AffecteValeurs(instance,position);		
 	}

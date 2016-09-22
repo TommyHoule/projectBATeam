@@ -49,10 +49,7 @@ public class winChambre extends winHeritage {
 	
 	private ctrlChambre leControllerChambre ;
 	private winChambre instance;
-	public JTable tableAyant;
 	private static JScrollPane scrollPane;
-
-
 	/**
 	 * Launch the application.
 	 */
