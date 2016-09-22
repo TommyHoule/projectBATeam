@@ -21,10 +21,9 @@ public class ctrlArrive {
 	public void AffecteValeurs(winArriver instance, int ligne){
 		
 		modArrive.setCurrent((int) modArrive.getValueAt(ligne, 13));
-		System.out.println(modArrive.getValueAt(ligne, 13).toString());
 		//SectionArriver
 		instance.getTxtClientNo().setText(modArrive.getValueAt(ligne, 0).toString());
-		/*instance.getTxtClientNom().setText(modArrive.getValueAt(ligne, 1).toString());
+		instance.getTxtClientNom().setText(modArrive.getValueAt(ligne, 1).toString());
 		instance.getTxtAdresse().setText(modArrive.getValueAt(ligne, 2).toString());
 		instance.getTxtTelephone().setText(modArrive.getValueAt(ligne, 3).toString());
 		instance.getTxtFax().setText(modArrive.getValueAt(ligne, 4).toString());
@@ -39,8 +38,14 @@ public class ctrlArrive {
 		instance.getTxtNomReserv().setText(modArrive.getValueAt(ligne, 12).toString());
 		
 		//Section N
+		//System.out.println(modArrive.getValueAt(ligne, 7));
 		modDe_ = new modDe((int)modArrive.getValueAt(ligne, 7));
-		instance.setScrollPane(new JTable(modDe_)); */
+		winArriver.setScrollPane(new JTable(modDe_));
+		
+	}
+	
+	public void PkArriver(winArriver instance){
+		//a faire
 	}
 	
 	public void Premier(winArriver instance) {
@@ -50,7 +55,7 @@ public class ctrlArrive {
 	public void BonPrecedent(winArriver instance) {
 		if (position> 0)
 			position--;
-		else position= 0;
+		else position = modArrive.getLesEnreg().size()-1;
 		modArrive.setCurrent((int)modArrive.getValueAt(position, 13));
 		AffecteValeurs(instance,position);	
 	}
@@ -59,10 +64,10 @@ public class ctrlArrive {
 	     AffecteValeurs(instance,position);		
 	}
 	public void BonSuivant(winArriver instance) {
-		if (position< modArrive.getLesEnreg().size())
+		if (position< modArrive.getLesEnreg().size()-1)
 			 position++;
-		else position = modArrive.getLesEnreg().size()-1;
-		modArrive.setCurrent((int)modArrive.getValueAt(position, 0));
+		else position = 0;
+		modArrive.setCurrent((int)modArrive.getValueAt(position, 13));
 		AffecteValeurs(instance,position);		
 	}
 }

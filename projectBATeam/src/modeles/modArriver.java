@@ -71,7 +71,7 @@ public class modArriver extends AbstractTableModel{
 	
 	public void lireEnreg() {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("Select viewArriver.NoArrive , viewArriver.IdReser as IdR, viewArriver.IdCli , viewArriver.Nom, viewArriver.NoCham, viewArriver.Telephone, viewArriver.Fax, viewArriver.Adresse, viewArriverReservation.IdReser, viewArriverReservation.dateReser, viewArriverReservation.dateDebut, viewArriverReservation.dateFin, viewArriverReservation.IdCli, viewArriverReservation.Nom as NomR FROM EQU03prg01.viewArriver, EQU03prg01.viewArriverReservation where viewArriverReservation.IdReser = viewArriver.IdReser");
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("Select viewArriver.NoArrive , viewArriver.IdReser as IdR, viewArriver.IdCli , viewArriver.Nom, viewArriver.NoCham, viewArriver.Telephone, viewArriver.Fax, viewArriver.Adresse, viewArriverReservation.IdReser, viewArriverReservation.dateReser, viewArriverReservation.dateDebut, viewArriverReservation.dateFin, viewArriverReservation.IdCli as IdCliR, viewArriverReservation.Nom as NomR FROM EQU03prg01.viewArriver, EQU03prg01.viewArriverReservation where viewArriverReservation.IdReser = viewArriver.IdReser");
 			ResultSet rs = state.executeQuery();
 			while (rs.next()) {
 				
@@ -87,7 +87,7 @@ public class modArriver extends AbstractTableModel{
 											   rs.getDate("dateReser"),
 											   rs.getDate("dateDebut"),
 											   rs.getDate("dateFin"),
-											   rs.getInt("IdCli"),
+											   rs.getInt("IdCliR"),
 											   rs.getString("NomR")
 											   ) );
 				this.setCurrent(rs.getInt("NoArrive"));
