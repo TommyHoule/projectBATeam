@@ -48,13 +48,11 @@ public class modChambre extends AbstractTableModel{
 	}
 	@Override
 	public int getColumnCount() {	
-		//return lesTitres.length;
-		return 0;
+		return lesTitres.length;
 	}
 	public String getColumnName(int columnIndex)
 	{
-		//return lesTitres[columnIndex];
-		return "";
+		return lesTitres[columnIndex];
 	}
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		modChambre uneChambre = (modChambre)lesChambre.get(rowIndex);

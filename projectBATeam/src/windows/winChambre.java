@@ -12,6 +12,8 @@ import java.awt.SystemColor;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
+import javax.swing.JButton;
 
 public class winChambre extends winHeritage {
 
@@ -37,10 +39,17 @@ public class winChambre extends winHeritage {
 	private JTextField txtDescriptionCodeType;
 	private JTextField txtDescriptionCodeLocalisation;
 	private JTextField txtMemo;
+	public JCheckBox chckbxEnEtat;
+	public JCheckBox chckbxHorsDusage;
+	public JButton btnAjoutAyant;
+	public JButton btnSupprimerAyant;
+	
+	public boolean AjoutActive = false;
 	
 	private ctrlChambre leControllerChambre ;
 	private winChambre instance;
 	private static JScrollPane scrollPane;
+
 	/**
 	 * Launch the application.
 	 */
@@ -110,7 +119,7 @@ public class winChambre extends winHeritage {
 		btnAjouter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+				ModeAjout();
 			}
 		});
 		
@@ -174,8 +183,41 @@ public class winChambre extends winHeritage {
 		txtNoChambre.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			leControllerChambre.ListeChambres(instance);
+			if(AjoutActive == false)
+			{
+				leControllerChambre.ListeChambres(instance, AjoutActive);
+			}
 		}
+		});
+		txtCodeType.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if(AjoutActive == true)
+			{
+				leControllerChambre.ListeCodType(instance, AjoutActive);
+			}
+		}
+		});
+		txtCodeLocalisation.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if(AjoutActive == true)
+			{
+				leControllerChambre.ListeCodLocalisation(instance, AjoutActive);
+			}
+		}
+		});
+		chckbxEnEtat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.setChckbxEnEtatSelected(leControllerChambre.getChckbxEnEtatSelected(instance), instance);
+			}
+		});
+		chckbxHorsDusage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.setChckbxHorsDusageSelected(leControllerChambre.getChckbxEnEtatSelected(instance), instance);
+			}
 		});
 		
 		
@@ -224,6 +266,19 @@ public class winChambre extends winHeritage {
 			lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
 			panelChambre.add(lblDescriptionCodeLocalisation);
 					
+			chckbxEnEtat = new JCheckBox("En état");
+			chckbxEnEtat.setEnabled(false);
+			chckbxEnEtat.setVisible(false);
+			chckbxEnEtat.setBounds(102, 131, 75, 23);
+
+			
+			chckbxHorsDusage = new JCheckBox("Hors d'usage");
+			chckbxHorsDusage.setEnabled(false);
+			chckbxHorsDusage.setVisible(false);
+			chckbxHorsDusage.setBounds(102, 150, 128, 23);
+
+
+			
 			panelChambre.add(getTxtNoChambre());
 			panelChambre.add(getTxtEtage());
 			panelChambre.add(getTxtPrix());
@@ -233,6 +288,22 @@ public class winChambre extends winHeritage {
 			panelChambre.add(getTxtDescType());
 			panelChambre.add(getTxtCodLoc());
 			panelChambre.add(getTxtDescLoc());
+			panelChambre.add(chckbxEnEtat);
+			panelChambre.add(chckbxHorsDusage);
+
+
+			btnAjoutAyant = new JButton("+");
+			btnAjoutAyant.setEnabled(false);
+			btnAjoutAyant.setVisible(false);
+			btnAjoutAyant.setBounds(204, 324, 30, 30);
+			getContentPane().add(btnAjoutAyant);
+			
+			btnSupprimerAyant = new JButton("-");
+			btnSupprimerAyant.setEnabled(false);
+			btnSupprimerAyant.setVisible(false);
+			btnSupprimerAyant.setBounds(246, 324, 30, 30);
+			getContentPane().add(btnSupprimerAyant);
+
 			
 			//label titre indiquant l'information de la chambre
 			JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
@@ -242,14 +313,28 @@ public class winChambre extends winHeritage {
 			//composante graphique de Ayant
 			getContentPane().add(getScrollPane());
 			
+
+			
 			
 			
 	}
 	private void ModeConsultation() {
 		
+		this.AjoutActive = false;
+		
 		btnConsulter.setEnabled(false);
 		btnEnregistrer.setEnabled(false);
 		btnAnnuler.setEnabled(false);
+		btnAjoutAyant.setEnabled(false);
+		btnAjoutAyant.setVisible(false);
+		btnSupprimerAyant.setEnabled(false);
+		btnSupprimerAyant.setVisible(false);
+		btnAjouter.setEnabled(true);
+		btnPrecedent.setEnabled(true);
+		btnDernier.setEnabled(true);
+		btnPremier.setEnabled(true);
+		btnSuivant.setEnabled(true);
+
 		txtNoChambre.setEditable(false);
 		txtEtage.setEditable(false);
 		txtPrix.setEditable(false);
@@ -259,6 +344,45 @@ public class winChambre extends winHeritage {
 		txtDescriptionCodeType.setEditable(false);
 		txtCodeLocalisation.setEditable(false);
 		txtDescriptionCodeLocalisation.setEditable(false);
+		chckbxEnEtat.setVisible(false);
+		chckbxHorsDusage.setVisible(false);
+	
+	}
+	private void ModeAjout()
+	{
+		btnAjouter.setEnabled(false);
+		btnConsulter.setEnabled(true);
+		btnEnregistrer.setEnabled(true);
+		btnAnnuler.setEnabled(true);
+		btnPrecedent.setEnabled(false);
+		btnDernier.setEnabled(false);
+		btnPremier.setEnabled(false);
+		btnSuivant.setEnabled(false);
+		btnAjoutAyant.setEnabled(true);
+		btnAjoutAyant.setVisible(true);
+		btnSupprimerAyant.setEnabled(true);
+		btnSupprimerAyant.setVisible(true);
+		
+		this.AjoutActive = true;
+		
+		txtNoChambre.setEditable(true);
+		txtEtage.setEditable(true);
+		txtPrix.setEditable(true);
+		txtMemo.setEditable(true);
+		txtEtat.setEditable(false);
+		txtCodeType.setEditable(false);
+		txtDescriptionCodeType.setEditable(false);
+		txtCodeLocalisation.setEditable(false);
+		txtDescriptionCodeLocalisation.setEditable(false);
+		
+		chckbxEnEtat.setEnabled(true);
+		chckbxEnEtat.setVisible(true);
+		
+
+		chckbxHorsDusage.setEnabled(true);
+		chckbxHorsDusage.setVisible(true);
+		
+
 
 	}
 	private JScrollPane getScrollPane() {
@@ -307,7 +431,7 @@ public class winChambre extends winHeritage {
 		{
 			txtMemo = new JTextField();
 			txtMemo.setText("Description spéciale de la chambre");
-			txtMemo.setBounds(556, 103, 277, 81);
+			txtMemo.setBounds(556, 103, 328, 81);
 			txtMemo.setColumns(10);
 		}
 		
@@ -338,7 +462,7 @@ public class winChambre extends winHeritage {
 		{
 			txtDescriptionCodeType = new JTextField();
 			txtDescriptionCodeType.setColumns(10);
-			txtDescriptionCodeType.setBounds(656, 1, 177, 26);
+			txtDescriptionCodeType.setBounds(656, 1, 228, 26);
 		}
 		
 		return txtDescriptionCodeType;
@@ -358,7 +482,7 @@ public class winChambre extends winHeritage {
 		{
 			txtDescriptionCodeLocalisation = new JTextField();
 			txtDescriptionCodeLocalisation.setColumns(10);
-			txtDescriptionCodeLocalisation.setBounds(656, 43, 177, 26);
+			txtDescriptionCodeLocalisation.setBounds(656, 43, 228, 26);
 		}
 		
 		return txtDescriptionCodeLocalisation;
