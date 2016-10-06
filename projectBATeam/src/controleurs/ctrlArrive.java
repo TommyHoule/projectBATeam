@@ -3,7 +3,9 @@ package controleurs;
 import javax.swing.JTable;
 import windows.winArriver;
 import windows.winChambre;
+import windows.winPickList;
 import modeles.modArriver;
+import modeles.modChambre;
 import modeles.modDe;
 
 public class ctrlArrive {
@@ -38,8 +40,15 @@ public class ctrlArrive {
 		instance.getTxtNomReserv().setText(modArrive.getValueAt(ligne, 12).toString());
 		
 		//Section N
+		//System.out.println(modArrive.getValueAt(ligne, 7));
 		modDe_ = new modDe((int)modArrive.getValueAt(ligne, 7));
-		instance.setScrollPane(new JTable(modDe_)); 
+		winArriver.setScrollPane(new JTable(modDe_));
+		
+	}
+	
+	public void PkArriver(winArriver instance){
+		position = winPickList.pickFromTable(new modArriver(),"listes des arrive");
+		AffecteValeurs(instance, position);	
 	}
 	
 	public void Premier(winArriver instance) {
@@ -49,7 +58,7 @@ public class ctrlArrive {
 	public void BonPrecedent(winArriver instance) {
 		if (position> 0)
 			position--;
-		else position= 0;
+		else position = modArrive.getLesEnreg().size()-1;
 		modArrive.setCurrent((int)modArrive.getValueAt(position, 13));
 		AffecteValeurs(instance,position);	
 	}
@@ -58,10 +67,10 @@ public class ctrlArrive {
 	     AffecteValeurs(instance,position);		
 	}
 	public void BonSuivant(winArriver instance) {
-		if (position< modArrive.getLesEnreg().size())
+		if (position< modArrive.getLesEnreg().size()-1)
 			 position++;
-		else position = modArrive.getLesEnreg().size()-1;
-		modArrive.setCurrent((int)modArrive.getValueAt(position, 0));
+		else position = 0;
+		modArrive.setCurrent((int)modArrive.getValueAt(position, 13));
 		AffecteValeurs(instance,position);		
 	}
 }

@@ -1,33 +1,26 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-
-import controleurs.ctrlChambre;
-import controleurs.ctrlPrincipale;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import java.awt.SystemColor;
-import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import controleurs.ctrlReservation;
+
 public class winReservation extends winHeritage {
-//------test
+//------test2
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelReservationDeGauche;
 	private JLabel lblNoClient;
 	private JTextField txtNoClient;
-	
-	private winReservation instance;
 	public JTable tableReservationDe;
 	private JPanel panelReservationDeDroite;
 	private JLabel lblNoreservation;
@@ -52,7 +45,12 @@ public class winReservation extends winHeritage {
 	private JTextField txtDateReser;
 	private JTextField txtDateDebut;
 	private JTextField txtDateFin;
-
+	private JLabel lblInformationSurLe;
+	private JLabel lblInformationSurLa;
+	
+	private ctrlReservation leControllerReservation;
+	private winReservation instance;
+	private static JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -160,173 +158,262 @@ public class winReservation extends winHeritage {
 		ModeConsultation();
 
 	}
-
-	private void ModeConsultation() {
-		  
+	
+	private void setup(){
+		
+		leControllerReservation = new ctrlReservation(instance);
+		
 		panelReservationDeGauche = new JPanel();
 		panelReservationDeGauche.setBackground(SystemColor.windowBorder);
 		panelReservationDeGauche.setBounds(182, 108, 469, 205);
 		getContentPane().add(panelReservationDeGauche);
 		panelReservationDeGauche.setLayout(null);
-		
+
 		lblNoClient = new JLabel("Client no :");
 		lblNoClient.setBounds(20, 10, 77, 16);
 		panelReservationDeGauche.add(lblNoClient);
-		
-		txtNoClient = new JTextField();
-		txtNoClient.setEditable(false);
-		txtNoClient.setBounds(125, 5, 64, 26);
-		panelReservationDeGauche.add(txtNoClient);
-		txtNoClient.setColumns(10);
-		
+		panelReservationDeGauche.add(getTxtNoClient());
 		lblNom = new JLabel("Nom :");
 		lblNom.setBounds(200, 10, 46, 16);
 		panelReservationDeGauche.add(lblNom);
-		
-		txtNom = new JTextField();
-		txtNom.setEditable(false);
-		txtNom.setColumns(10);
-		txtNom.setBounds(250, 5, 200, 26);
-		panelReservationDeGauche.add(txtNom);
-		
+		panelReservationDeGauche.add(getTxtNom());
 		lblAdresse = new JLabel("Adresse :");
 		lblAdresse.setBounds(20, 50, 77, 16);
 		panelReservationDeGauche.add(lblAdresse);
-		
-		txtAdresse = new JTextField();
-		txtAdresse.setEditable(false);
-		txtAdresse.setColumns(10);
-		txtAdresse.setBounds(125, 45, 200, 26);
-		panelReservationDeGauche.add(txtAdresse);
-		
+		panelReservationDeGauche.add(getTxtAdresse());
 		lblTlphone = new JLabel("Téléphone :");
 		lblTlphone.setBounds(20, 90, 77, 16);
 		panelReservationDeGauche.add(lblTlphone);
-		
-		txtTelephone = new JTextField();
-		txtTelephone.setEditable(false);
-		txtTelephone.setColumns(10);
-		txtTelephone.setBounds(125, 85, 125, 26);
-		panelReservationDeGauche.add(txtTelephone);
-		
-		txtFax = new JTextField();
-		txtFax.setEditable(false);
-		txtFax.setColumns(10);
-		txtFax.setBounds(325, 85, 125, 26);
-		panelReservationDeGauche.add(txtFax);
-		
+		panelReservationDeGauche.add(getTxtTelephone());
+		panelReservationDeGauche.add(getTxtFax());
 		lblFax = new JLabel("Fax :");
 		lblFax.setBounds(275, 90, 35, 16);
 		panelReservationDeGauche.add(lblFax);
-		
 		lblTypeDeCarte = new JLabel("Type de Carte :");
 		lblTypeDeCarte.setBounds(20, 130, 100, 16);
 		panelReservationDeGauche.add(lblTypeDeCarte);
-		
-		txtTypeCarte = new JTextField();
-		txtTypeCarte.setEditable(false);
-		txtTypeCarte.setColumns(10);
-		txtTypeCarte.setBounds(125, 123, 200, 26);
-		panelReservationDeGauche.add(txtTypeCarte);
-		
+		panelReservationDeGauche.add(getTxtTypeCarte());
 		lblExpiration = new JLabel("Expiration :");
 		lblExpiration.setBounds(20, 170, 100, 16);
 		panelReservationDeGauche.add(lblExpiration);
-		
-		txtExpiration = new JTextField();
-		txtExpiration.setEditable(false);
-		txtExpiration.setColumns(10);
-		txtExpiration.setBounds(125, 165, 100, 26);
-		panelReservationDeGauche.add(txtExpiration);
-		
+		panelReservationDeGauche.add(getTxtExpiration());
 		lblSoldeD = new JLabel("Solde dü :");
-		lblSoldeD.setBounds(250, 170, 64, 16);
+		lblSoldeD.setBounds(274, 170, 64, 16);
 		panelReservationDeGauche.add(lblSoldeD);
-		
-		txtSoldeDu = new JTextField();
-		txtSoldeDu.setEditable(false);
-		txtSoldeDu.setColumns(10);
-		txtSoldeDu.setBounds(325, 165, 100, 26);
-		panelReservationDeGauche.add(txtSoldeDu);
-		
-		
-		//composante graphique de Ayant
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(204, 370, 890, 205);
-		getContentPane().add(scrollPane);
-		
+		panelReservationDeGauche.add(getTxtSoldeDu());
 		panelReservationDeDroite = new JPanel();
 		panelReservationDeDroite.setLayout(null);
 		panelReservationDeDroite.setBackground(SystemColor.windowBorder);
 		panelReservationDeDroite.setBounds(685, 108, 440, 205);
 		getContentPane().add(panelReservationDeDroite);
-		
 		lblNoreservation = new JLabel("No.Reservation :");
 		lblNoreservation.setBounds(70, 20, 115, 16);
 		panelReservationDeDroite.add(lblNoreservation);
-		
-		txtNoReser = new JTextField();
-		txtNoReser.setEditable(false);
-		txtNoReser.setColumns(10);
-		txtNoReser.setBounds(225, 15, 130, 26);
-		panelReservationDeDroite.add(txtNoReser);
-		
+		panelReservationDeDroite.add(getTxtNoReser());
 		lblRservLe = new JLabel("Réservé le :");
 		lblRservLe.setBounds(70, 70, 92, 16);
 		panelReservationDeDroite.add(lblRservLe);
-		
 		lblDateDeDbut = new JLabel("Date de début :");
 		lblDateDeDbut.setBounds(70, 120, 115, 16);
 		panelReservationDeDroite.add(lblDateDeDbut);
-		
 		lblDateDeFin = new JLabel("Date de fin :");
 		lblDateDeFin.setBounds(70, 170, 92, 16);
 		panelReservationDeDroite.add(lblDateDeFin);
+		panelReservationDeDroite.add(getTxtDateReser());
+		panelReservationDeDroite.add(getTxtDateDebut());
+		panelReservationDeDroite.add(getTxtDateFin());
+	
+		getContentPane().add(getScrollPane());
 		
-		txtDateReser = new JTextField();
-		txtDateReser.setEditable(false);
-		txtDateReser.setColumns(10);
-		txtDateReser.setBounds(225, 65, 130, 26);
-		panelReservationDeDroite.add(txtDateReser);
+		JLabel lblInformationSurLe = new JLabel("Information sur le client qui réserve");
+		lblInformationSurLe.setBounds(182, 80, 290, 16);
+		getContentPane().add(lblInformationSurLe);
 		
-		txtDateDebut = new JTextField();
-		txtDateDebut.setEditable(false);
-		txtDateDebut.setColumns(10);
-		txtDateDebut.setBounds(225, 115, 130, 26);
-		panelReservationDeDroite.add(txtDateDebut);
+		JLabel lblInformationSurLa = new JLabel("Information sur la réservation");
+		lblInformationSurLa.setBounds(685, 80, 290, 16);
+		getContentPane().add(lblInformationSurLa);
 		
-		txtDateFin = new JTextField();
-		txtDateFin.setEditable(false);
-		txtDateFin.setColumns(10);
-		txtDateFin.setBounds(225, 165, 130, 26);
-		panelReservationDeDroite.add(txtDateFin);
+		
+	}
+
+	private void ModeConsultation() {
+		setup();
+		
+		lblInformationSurLe = new JLabel("Information sur le client qui réserve");
+		lblInformationSurLe.setBounds(182, 80, 240, 16);
+		getContentPane().add(lblInformationSurLe);
+		
+		lblInformationSurLa = new JLabel("Information sur la réservation");
+		lblInformationSurLa.setBounds(685, 80, 240, 16);
+		getContentPane().add(lblInformationSurLa);
 		
 		//Gestion de la souris sur le menu et la navigation
 		
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//leControllerChambre.Premier(instance);
+				leControllerReservation.Premier(instance);
 			}
 		});
 		btnPrecedent.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//leControllerChambre.BonPrecedent(instance);
+				leControllerReservation.BonPrecedent(instance);
 			}
 		});
 		btnDernier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//leControllerChambre.Dernier(instance);
+				leControllerReservation.Dernier(instance);
 			}
 		});
 		btnSuivant.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//leControllerChambre.BonSuivant(instance);
+				leControllerReservation.BonSuivant(instance);
 			}
 		});
 	}
-
+	
+	private JScrollPane getScrollPane() {
+		scrollPane.setBounds(204, 370, 890, 205);
+		return scrollPane;		
+	}
+	
+	public static void setjScrollPane(JTable UneTable)
+	{
+		if (scrollPane == null) 
+		   {
+			scrollPane = new JScrollPane(UneTable);
+			scrollPane.setBounds(20, 7,515, 175);
+		   }
+		scrollPane.setViewportView(UneTable);
+	}
+	
+	public JTextField getTxtNoClient() {
+		if(txtNoClient == null)
+		{
+			txtNoClient = new JTextField();
+			txtNoClient.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					leControllerReservation.ListeClient(instance);
+				}
+			});
+			txtNoClient.setEditable(false);
+			txtNoClient.setBounds(125, 5, 64, 26);
+			txtNoClient.setColumns(10);
+		}
+		return txtNoClient;
+	}
+	public JTextField getTxtNom() {
+		if(txtNom == null)
+		{
+			txtNom = new JTextField();
+			txtNom.setEditable(false);
+			txtNom.setBounds(250, 5, 200, 26);
+			txtNom.setColumns(10);
+		}
+		return txtNom;
+	}
+	public JTextField getTxtAdresse() {
+		if(txtAdresse == null)
+		{
+			txtAdresse = new JTextField();
+			txtAdresse.setEditable(false);
+			txtAdresse.setBounds(125, 45, 325, 26);
+			txtAdresse.setColumns(10);
+		}
+		return txtAdresse;
+	}
+	public JTextField getTxtTelephone() {
+		if(txtTelephone == null)
+		{
+			txtTelephone = new JTextField();
+			txtTelephone.setEditable(false);
+			txtTelephone.setBounds(125, 85, 130, 26);
+			txtTelephone.setColumns(10);
+		}
+		return txtTelephone;
+	}
+	public JTextField getTxtFax() {
+		if(txtFax == null)
+		{
+			txtFax = new JTextField();
+			txtFax.setEditable(false);
+			txtFax.setBounds(320, 85, 130, 26);
+			txtFax.setColumns(10);
+		}
+		return txtFax;
+	}
+	public JTextField getTxtTypeCarte() {
+		if(txtTypeCarte == null)
+		{
+			txtTypeCarte = new JTextField();
+			txtTypeCarte.setEditable(false);
+			txtTypeCarte.setBounds(125, 125, 130, 26);
+			txtTypeCarte.setColumns(10);
+		}
+		return txtTypeCarte;
+	}
+	public JTextField getTxtExpiration() {
+		if(txtExpiration == null)
+		{
+			txtExpiration = new JTextField();
+			txtExpiration.setEditable(false);
+			txtExpiration.setBounds(125, 165, 130, 26);
+			txtExpiration.setColumns(10);
+		}
+		return txtExpiration;
+	}
+	public JTextField getTxtSoldeDu() {
+		if(txtSoldeDu == null)
+		{
+			txtSoldeDu = new JTextField();
+			txtSoldeDu.setEditable(false);
+			txtSoldeDu.setBounds(350, 165, 100, 26);
+			txtSoldeDu.setColumns(10);
+		}
+		return txtSoldeDu;
+	}
+	public JTextField getTxtNoReser() {
+		if(txtNoReser == null)
+		{
+			txtNoReser = new JTextField();
+			txtNoReser.setEditable(false);
+			txtNoReser.setBounds(217, 15, 130, 26);
+			txtNoReser.setColumns(10);
+		}
+		return txtNoReser;
+	}
+	public JTextField getTxtDateReser() {
+		if(txtDateReser == null)
+		{
+			txtDateReser = new JTextField();
+			txtDateReser.setEditable(false);
+			txtDateReser.setBounds(217, 65, 130, 26);
+			txtDateReser.setColumns(10);
+		}
+		return txtDateReser;
+	}
+	public JTextField getTxtDateDebut() {
+		if(txtDateDebut == null)
+		{
+			txtDateDebut = new JTextField();
+			txtDateDebut.setEditable(false);
+			txtDateDebut.setBounds(217, 115, 130, 26);
+			txtDateDebut.setColumns(10);
+		}
+		return txtDateDebut;
+	}
+	public JTextField getTxtDateFin() {
+		if(txtDateFin == null)
+		{
+			txtDateFin = new JTextField();
+			txtDateFin.setEditable(false);
+			txtDateFin.setBounds(217, 165, 130, 26);
+			txtDateFin.setColumns(10);
+		}
+		return txtDateFin;
+	}
 }

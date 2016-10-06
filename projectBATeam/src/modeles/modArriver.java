@@ -42,7 +42,7 @@ public class modArriver extends AbstractTableModel{
 
 
 	private ArrayList<modArriver> lesArrivees = new ArrayList<modArriver>();
-	public final  String[] lesTitres = {" "};
+	public final  String[] lesTitres = {"NoArrive", "Nom"};
 	
 	public modArriver(){
 		lireEnreg();
@@ -71,36 +71,30 @@ public class modArriver extends AbstractTableModel{
 	
 	public void lireEnreg() {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement
-					("Select viewArriver.NoArrive , viewArriver.IdReser, viewArriver.IdCli, viewArriver.Nom, viewArriver.NoCham, "
-							+ "viewArriver.Telephone, viewArriver.Fax, viewArriver.Adresse,  "
-							+ "viewArriverReservation.IdReser, viewArriverReservation.dateReser, viewArriverReservation.dateDebut"
-							+ ", viewArriverReservation.dateFin, viewArriverReservation.IdCli, viewArriverReservation.Nom"
-							+ "  from viewArriver, viewArriverReservation where viewArriverReservation.IdReser = viewArriver.IdReser"); //requete
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("Select viewArriver.NoArrive , viewArriver.IdReser as IdR, viewArriver.IdCli , viewArriver.Nom, viewArriver.NoCham, viewArriver.Telephone, viewArriver.Fax, viewArriver.Adresse, viewArriverReservation.IdReser, viewArriverReservation.dateReser, viewArriverReservation.dateDebut, viewArriverReservation.dateFin, viewArriverReservation.IdCli as IdCliR, viewArriverReservation.Nom as NomR FROM EQU03prg01.viewArriver, EQU03prg01.viewArriverReservation where viewArriverReservation.IdReser = viewArriver.IdReser");
 			ResultSet rs = state.executeQuery();
-			
 			while (rs.next()) {
 				
-				lesArrivees.add(new modArriver(rs.getInt("viewArriver.NoArrive"),
-											   rs.getInt("viewArriver.IdCli"), 
-											   rs.getString("viewArriver.Nom"), 
-											   rs.getString("viewArriver.Adresse"), 
-											   rs.getString("viewArriver.Telephone"), 
-											   rs.getString("viewArriver.Fax"), 
-											   rs.getInt("viewArriver.NoCham"), 
-											   rs.getInt("viewArriver.IdReser"),
-											   rs.getInt("viewArriverReservation.IdReser"), 
-											   rs.getDate("viewArriverReservation.dateReser"),
-											   rs.getDate("viewArriverReservation.dateDebut"),
-											   rs.getDate("viewArriverReservation.dateFin"),
-											   rs.getInt("viewArriverReservation.IdCli"),
-											   rs.getString("viewArriverReservation.Nom")
+				lesArrivees.add(new modArriver(rs.getInt("NoArrive"),
+											   rs.getInt("IdCli"), 
+											   rs.getString("Nom"), 
+											   rs.getString("Adresse"), 
+											   rs.getString("Telephone"), 
+											   rs.getString("Fax"), 
+											   rs.getInt("NoCham"), 
+											   rs.getInt("IdR"),
+											   rs.getInt("IdReser"), 
+											   rs.getDate("dateReser"),
+											   rs.getDate("dateDebut"),
+											   rs.getDate("dateFin"),
+											   rs.getInt("IdCliR"),
+											   rs.getString("NomR")
 											   ) );
-				this.setCurrent(rs.getInt("viewArriver.NoArrive"));
+				this.setCurrent(rs.getInt("NoArrive"));
 			} 
 			
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Probleme rencontré dans Arriver.java",
+			JOptionPane.showMessageDialog(null,e.getMessage(),
 					"ALERTE", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -125,14 +119,22 @@ public class modArriver extends AbstractTableModel{
 	
 	@Override
 	public int getRowCount() {
+		// TODO Auto-generated method stub
 		return lesArrivees.size();
 	}
 
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return lesTitres.length;
+	}
 	
 	@Override
-	public int getColumnCount() {	
-		return lesTitres.length;
-		}
+	public String getColumnName(int columnIndex)
+	{
+		// TODO Auto-generated method stub
+		return lesTitres[columnIndex];
+	}
 	
 	public ArrayList<modArriver> getLesEnreg() {
 		return lesArrivees;

@@ -21,7 +21,7 @@ public class ctrlConnexion {
 		
 	    try {
 	       
-	  	    modConnexion.getInstance().connexion(nomUsager,mdp);   	
+	  	    modConnexion.getInstance().connexion("EQU03PRG03","j11254");   	
 	       	
 	       	//testConnexion();
 	       	
@@ -36,11 +36,45 @@ public class ctrlConnexion {
 	    catch (Exception e) 
 	    	{
 	    		e.printStackTrace();
+	    	//System.out.println(e.getMessage());
 	     	JOptionPane.showMessageDialog(null, "Information inexistante", "Désolé", JOptionPane.WARNING_MESSAGE);
 	    	}
 	    
 	  }
 	
+<<<<<<< HEAD
+=======
+	
+private static void testConnexion() throws SQLException
+ { 
+	
+	//Appel de procédure stockée avec un paramètre en lecture
+	
+/*	String sql = "{call test(?)}";
+	CallableStatement call = ModConnexion.getInstance().getLaConnectionStatique().prepareCall(sql); 
+	//passage de la chaîne "ioio" comme valeur du premier paramètre 
+	call.setString(1,"ioio"); 
+	call.execute();*/
+	
+/*	
+ * 
+ *  Exécution d'une requête simple*/
+  
+    String vCode = "";
+	String vNom = "";
+	
+	PreparedStatement prepare = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("Select viewArriver.NoArrive from EQU03prg01.viewArriver");
+  	jeuEnreg = prepare.executeQuery();
+	
+  	while (jeuEnreg.next())
+		{
+			vCode = jeuEnreg.getString(1);
+			//vNom = jeuEnreg.getString(2);
+			System.out.println(" " +vCode);
+		}
+	
+}
+>>>>>>> 376cda7caa4eebdc1ddefb53b20358b50dd52281
 
 } 
 

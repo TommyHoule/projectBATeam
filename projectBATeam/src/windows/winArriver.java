@@ -22,7 +22,10 @@ import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import controleurs.ctrlArrive;;
+import controleurs.ctrlArrive;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;;
 
 public class winArriver extends winHeritage {
 
@@ -39,9 +42,10 @@ public class winArriver extends winHeritage {
 	private JTextField textFieldDateFin;
 	private JTextField textFieldClientNoReserv;
 	private JTextField textFieldNomReserv;
-	private JScrollPane scrollPaneZoneN;
+	private static JScrollPane scrollPaneZoneN;
 	private winArriver instance;
 	private ctrlArrive ctrlArr = null;
+	private JButton btnPickList;
 
 	/**
 	 * Launch the application.
@@ -64,9 +68,11 @@ public class winArriver extends winHeritage {
 	 */
 	public winArriver() {
 		instance = this;
-		ctrlArr = new ctrlArrive(instance);
-		Setup();
 		
+		Setup();
+		ctrlArr = new ctrlArrive(instance);
+		
+		ModeConsultation();
 		
 		
 		/*setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -158,6 +164,24 @@ public class winArriver extends winHeritage {
 		
 	}
 	
+	private void ModeConsultation(){
+		this.textFieldAdresse.setEditable(false);
+		this.textFieldClientNo.setEditable(false);
+		this.textFieldClientNom.setEditable(false);
+		this.textFieldClientNoReserv.setEditable(false);
+		this.textFieldDateDebut.setEditable(false);
+		this.textFieldDateFin.setEditable(false);
+		this.textFieldFax.setEditable(false);
+		this.textFieldNomReserv.setEditable(false);
+		this.textFieldNoReser.setEditable(false);
+		this.textFieldNumeroChambre.setEditable(false);
+		this.textFieldReservLe.setEditable(false);
+		this.textFieldTelephone.setEditable(false);
+		this.btnConsulter.setEnabled(false);
+		this.btnEnregistrer.setEnabled(false);
+		this.btnAnnuler.setEnabled(false);
+	}
+	
 	private void Setup(){
 		JPanel panelClient = new JPanel();
 		panelClient.setBackground(SystemColor.windowBorder);
@@ -175,7 +199,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblClientNo);
 		
 		textFieldClientNom = new JTextField();
-		textFieldClientNom.setBounds(296, 40, 130, 26);
+		textFieldClientNom.setBounds(296, 40, 138, 26);
 		panelClient.add(textFieldClientNom);
 		textFieldClientNom.setColumns(10);
 		
@@ -188,7 +212,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblAdresse);
 		
 		textFieldAdresse = new JTextField();
-		textFieldAdresse.setBounds(97, 99, 329, 26);
+		textFieldAdresse.setBounds(97, 99, 337, 26);
 		panelClient.add(textFieldAdresse);
 		textFieldAdresse.setColumns(10);
 		
@@ -206,7 +230,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblFax);
 		
 		textFieldFax = new JTextField();
-		textFieldFax.setBounds(296, 158, 130, 26);
+		textFieldFax.setBounds(296, 158, 138, 26);
 		panelClient.add(textFieldFax);
 		textFieldFax.setColumns(10);
 		
@@ -218,6 +242,10 @@ public class winArriver extends winHeritage {
 		JLabel lblNumroChambre = new JLabel("Numéro Chambre:");
 		lblNumroChambre.setBounds(30, 223, 114, 16);
 		panelClient.add(lblNumroChambre);
+		
+		btnPickList = new JButton("...");
+		btnPickList.setBounds(6, 6, 44, 29);
+		panelClient.add(btnPickList);
 		
 		JPanel panelReservation = new JPanel();
 		panelReservation.setBackground(SystemColor.windowBorder);
@@ -275,7 +303,7 @@ public class winArriver extends winHeritage {
 		panelReservation.add(lblNomReserv);
 		
 		textFieldNomReserv = new JTextField();
-		textFieldNomReserv.setBounds(235, 234, 130, 26);
+		textFieldNomReserv.setBounds(235, 234, 145, 26);
 		panelReservation.add(textFieldNomReserv);
 		textFieldNomReserv.setColumns(10);
 		
@@ -290,6 +318,12 @@ public class winArriver extends winHeritage {
 		scrollPaneZoneN = new JScrollPane();
 		scrollPaneZoneN.setBounds(176, 392, 938, 235);
 		getContentPane().add(scrollPaneZoneN);
+		
+		btnPickList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrlArr.PkArriver(instance);
+			}
+		});
 		
 		btnPremier.addMouseListener(new MouseAdapter() {
 			@Override
@@ -365,15 +399,13 @@ public class winArriver extends winHeritage {
 		return this.textFieldNomReserv;
 	}
 	
-	public void setScrollPane(JTable UneTable)
+	public static void setScrollPane(JTable UneTable)
 	{
-	
-		if (this.scrollPaneZoneN == null) 
-		   {
-			scrollPaneZoneN = new JScrollPane(UneTable);
-			scrollPaneZoneN.setBounds(20, 7,515, 175);
-		   }
 		scrollPaneZoneN.setViewportView(UneTable);
 	}
 	
+	public static JScrollPane getScrollPane()
+	{
+		return scrollPaneZoneN;
+	}
 }
