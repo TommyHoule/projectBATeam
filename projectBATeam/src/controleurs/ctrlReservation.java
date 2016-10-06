@@ -50,9 +50,9 @@ public class ctrlReservation {
 	     AffecteValeurs(instance,position);		
 	}
 	public void BonPrecedent(winReservation instance) {
-		if (position> 0)
+		if (position > 0)
 			position--;
-		else position= 0;
+		else position = modeleReservation.getLesEnreg().size()-1;
 		modeleReservation.setCourant((int)modeleReservation.getValueAt(position, 0));
 		AffecteValeurs(instance,position);	
 	}
@@ -61,14 +61,14 @@ public class ctrlReservation {
 	     AffecteValeurs(instance,position);		
 	}
 	public void BonSuivant(winReservation instance) {
-		if (position< modeleReservation.getLesEnreg().size())
+		if (position< modeleReservation.getLesEnreg().size()-1)
 			 position++;
-		else position = modeleReservation.getLesEnreg().size()-1;
+		else position = 0;
 		modeleReservation.setCourant((int)modeleReservation.getValueAt(position, 0));
 		AffecteValeurs(instance,position);		
 	}
-	public void ListeChambres (winReservation instance){   
-	    position = winPickList.pickFromTable(new modReservation(),"listes des chambres");
+	public void ListeClient (winReservation instance){   
+	    position = winPickList.pickFromTable(new modReservation(),"listes des client");
 		AffecteValeurs(instance, position);	
 	}
 

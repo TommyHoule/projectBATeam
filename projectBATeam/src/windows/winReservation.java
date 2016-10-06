@@ -294,6 +294,12 @@ public class winReservation extends winHeritage {
 		if(txtNoClient == null)
 		{
 			txtNoClient = new JTextField();
+			txtNoClient.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					leControllerReservation.ListeClient(instance);
+				}
+			});
 			txtNoClient.setEditable(false);
 			txtNoClient.setBounds(125, 5, 64, 26);
 			txtNoClient.setColumns(10);
