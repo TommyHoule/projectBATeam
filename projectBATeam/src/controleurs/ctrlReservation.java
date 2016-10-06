@@ -71,6 +71,9 @@ public class ctrlReservation {
 	    position = winPickList.pickFromTable(new modReservation(),"listes des client");
 		AffecteValeurs(instance, position);	
 	}
-
+	public void ListeReserv (winReservation instance){   
+	    position = winPickList.pickFromTable(new modReservation(1),"listes des reservations");
+		AffecteValeurs(instance, position);	
+	}
 
 }

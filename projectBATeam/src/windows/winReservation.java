@@ -380,6 +380,12 @@ public class winReservation extends winHeritage {
 		if(txtNoReser == null)
 		{
 			txtNoReser = new JTextField();
+			txtNoReser.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					leControllerReservation.ListeReserv(instance);
+				}
+			});
 			txtNoReser.setEditable(false);
 			txtNoReser.setBounds(217, 15, 130, 26);
 			txtNoReser.setColumns(10);

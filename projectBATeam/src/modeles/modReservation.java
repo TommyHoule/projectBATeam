@@ -35,6 +35,9 @@ public class modReservation extends AbstractTableModel{
 	public modReservation() {
 		lireEnreg();
 	}
+	public modReservation(int i) {
+		lireEnregReserv();
+	}
 	/*
 	 * Constructeur 2 - sert surtout pour peupler la liste des bons pour la consultation
 	 */
@@ -84,7 +87,20 @@ public class modReservation extends AbstractTableModel{
 	}
 	public void lireEnreg() {
 		try {    
-			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.CLIENT.IDCLI,EQU03PRG01.CLIENT.NOM,EQU03PRG01.CLIENT.ADRESSE,EQU03PRG01.CLIENT.TELEPHONE,EQU03PRG01.CLIENT.FAX,EQU03PRG01.CLIENT.TYPECARTE,EQU03PRG01.CLIENT.DATEEXP,EQU03PRG01.CLIENT.SOLDE_DU,EQU03PRG01.RESERVATION.IDRESER,EQU03PRG01.RESERVATION.DATERESER,EQU03PRG01.RESERVATION.DATEDEBUT,EQU03PRG01.RESERVATION.DATEFIN FROM EQU03PRG01.CLIENT,EQU03PRG01.RESERVATION WHERE EQU03PRG01.CLIENT.IDCLI = EQU03PRG01.RESERVATION.IDCLI order by EQU03PRG01.RESERVATION.IDRESER");
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT EQU03PRG01.CLIENT.IDCLI,EQU03PRG01.CLIENT.NOM,EQU03PRG01.CLIENT.ADRESSE,EQU03PRG01.CLIENT.TELEPHONE,EQU03PRG01.CLIENT.FAX,EQU03PRG01.CLIENT.TYPECARTE,EQU03PRG01.CLIENT.DATEEXP,EQU03PRG01.CLIENT.SOLDE_DU,EQU03PRG01.RESERVATION.IDRESER,EQU03PRG01.RESERVATION.DATERESER,EQU03PRG01.RESERVATION.DATEDEBUT,EQU03PRG01.RESERVATION.DATEFIN FROM EQU03PRG01.CLIENT,EQU03PRG01.RESERVATION WHERE EQU03PRG01.CLIENT.IDCLI = EQU03PRG01.RESERVATION.IDCLI order by EQU03PRG01.RESERVATION.IDClI");
+			ResultSet rs = state.executeQuery();
+			while (rs.next()) {
+				lesReservations.add(new modReservation(rs.getInt("IDCLI"),rs.getString("NOM"),rs.getString("ADRESSE"),rs.getString("TELEPHONE"),rs.getString("FAX"),rs.getString("TYPECARTE"),rs.getDate("DATEEXP"),rs.getFloat("SOLDE_DU"),rs.getInt("IDRESER"), rs.getDate("DATERESER"), rs.getDate("DATEDEBUT"), rs.getDate("DATEFIN"))); 
+				this.setCourant(noClient);
+			} 		
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Probleme rencontré dans modReservation.java lors de listing",
+					"ALERTE", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public void lireEnregReserv() {
+		try {    
+			PreparedStatement state = modConnexion.getInstance().getLaConnectionStatique().prepareStatement("SELECT DISTINCT EQU03PRG01.CLIENT.IDCLI,EQU03PRG01.CLIENT.NOM,EQU03PRG01.CLIENT.ADRESSE,EQU03PRG01.CLIENT.TELEPHONE,EQU03PRG01.CLIENT.FAX,EQU03PRG01.CLIENT.TYPECARTE,EQU03PRG01.CLIENT.DATEEXP,EQU03PRG01.CLIENT.SOLDE_DU,EQU03PRG01.RESERVATION.IDRESER,EQU03PRG01.RESERVATION.DATERESER,EQU03PRG01.RESERVATION.DATEDEBUT,EQU03PRG01.RESERVATION.DATEFIN FROM EQU03PRG01.CLIENT,EQU03PRG01.RESERVATION WHERE EQU03PRG01.CLIENT.IDCLI = EQU03PRG01.RESERVATION.IDCLI order by EQU03PRG01.RESERVATION.IDRESER");
 			ResultSet rs = state.executeQuery();
 			while (rs.next()) {
 				lesReservations.add(new modReservation(rs.getInt("IDCLI"),rs.getString("NOM"),rs.getString("ADRESSE"),rs.getString("TELEPHONE"),rs.getString("FAX"),rs.getString("TYPECARTE"),rs.getDate("DATEEXP"),rs.getFloat("SOLDE_DU"),rs.getInt("IDRESER"), rs.getDate("DATERESER"), rs.getDate("DATEDEBUT"), rs.getDate("DATEFIN"))); 
