@@ -4,6 +4,7 @@ import javax.swing.JTable;
 
 import modeles.modAyant;
 import modeles.modChambre;
+import modeles.modListAyant;
 import modeles.modListCodeLocalisation;
 import modeles.modListCodeType;
 import windows.winChambre;
@@ -21,6 +22,7 @@ public class ctrlChambre {
 	public modListCodeLocalisation modeleCodeLocalisation = null;
 	private int position = 0;
 	public modAyant modeleAyant = null;
+	public modListAyant modeleListAyant = null;
 	public ctrlChambre(winChambre instance) {
 		
 		modeleChambre = new modChambre();	
@@ -51,17 +53,19 @@ public class ctrlChambre {
 	    
 	}
 	private void AffecteValeursType(winChambre instance, int ligne) {
-		//modeleCodeType.setCourant((int) modeleCodeType.getValueAt(ligne,0));
 		modeleCodeType = new modListCodeType();
 		instance.getTxtCodTypeCha().setText(modeleCodeType.getValueAt(ligne, 0).toString());
 		instance.getTxtDescType().setText(modeleCodeType.getValueAt(ligne, 1).toString());
 
 	}
 	private void AffecteValeursLocalisation(winChambre instance, int ligne) {
-		//modeleCodeLocalisation.setCourant((int) modeleCodeLocalisation.getValueAt(ligne,0));
 		modeleCodeLocalisation = new modListCodeLocalisation();
 		instance.getTxtCodLoc().setText(modeleCodeLocalisation.getValueAt(ligne, 0).toString());
 		instance.getTxtDescLoc().setText(modeleCodeLocalisation.getValueAt(ligne, 1).toString());
+	}
+	private void AffecteValeursCommodite(winChambre instance, int ligne) {
+		modeleListAyant = new modListAyant(ligne);
+		winChambre.addjScrollPane(new JTable(modeleListAyant));
 	}
 	
 	public void Premier(winChambre instance) {
@@ -98,6 +102,10 @@ public class ctrlChambre {
 		position = winPickList.pickFromTable(new modListCodeLocalisation(),"listes des code de Localisation");
 		AffecteValeursLocalisation(instance, position);	
 	}
+	public void ListeAyant (winChambre instance, Boolean AjoutActive){
+		position = winPickList.pickFromTable(new modListAyant(),"listes des commodite");
+		AffecteValeursCommodite(instance, position);	
+	}
 	public boolean getChckbxEnEtatSelected(winChambre instance) {
 		return instance.chckbxEnEtat.isSelected();
 	}
@@ -123,11 +131,14 @@ public class ctrlChambre {
 	}
 	public void validationChambre(winChambre instance)
 	{
-		System.out.println(instance.getTxtNoChambre().getText());
-		pattern = Pattern.compile("\\d{2}");
+		pattern = Pattern.compile("^\\d{1,2}$");
         matcher = pattern.matcher(instance.getTxtEtage().getText());
-        while(matcher.find()) {
+        if(matcher.find()) {
+        	System.out.println(matcher);
             System.out.println("Trouvé !");
+        }
+        else{
+            System.out.println("non trouver !");
         }
 	}
 

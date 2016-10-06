@@ -14,6 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class winChambre extends winHeritage {
 
@@ -180,6 +182,11 @@ public class winChambre extends winHeritage {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				leControllerChambre.BonSuivant(instance);
+			}
+		});
+		btnAjoutAyant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				leControllerChambre.ListeAyant(instance, AjoutActive);
 			}
 		});
 		txtNoChambre.addMouseListener(new MouseAdapter() {
@@ -399,6 +406,16 @@ public class winChambre extends winHeritage {
 			scrollPane = new JScrollPane(UneTable);
 			scrollPane.setBounds(20, 7,515, 175);
 		   }
+		scrollPane.setViewportView(UneTable);
+	}
+	public static void addjScrollPane(JTable UneTable)
+	{
+		if (scrollPane == null) 
+		   {
+			scrollPane = new JScrollPane(UneTable);
+			scrollPane.setBounds(20, 7,515, 175);
+		   }
+		scrollPane.add(UneTable);
 		scrollPane.setViewportView(UneTable);
 	}
 	public JTextField getTxtNoChambre() {
