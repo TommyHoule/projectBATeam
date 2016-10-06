@@ -42,9 +42,7 @@ public class ctrlConnexion {
 	    
 	  }
 	
-<<<<<<< HEAD
-=======
-	
+
 private static void testConnexion() throws SQLException
  { 
 	
@@ -74,7 +72,6 @@ private static void testConnexion() throws SQLException
 		}
 	
 }
->>>>>>> 376cda7caa4eebdc1ddefb53b20358b50dd52281
 
 } 
 

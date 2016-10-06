@@ -8,10 +8,14 @@ import modeles.modListCodeLocalisation;
 import modeles.modListCodeType;
 import windows.winChambre;
 import windows.winPickList;
+import java.util.regex.*;
 
 
 public class ctrlChambre {
 
+	private static Pattern pattern;
+    private static Matcher matcher;
+    
 	public modChambre modeleChambre = null;
 	public modListCodeType modeleCodeType = null;
 	public modListCodeLocalisation modeleCodeLocalisation = null;
@@ -120,6 +124,11 @@ public class ctrlChambre {
 	public void validationChambre(winChambre instance)
 	{
 		System.out.println(instance.getTxtNoChambre().getText());
+		pattern = Pattern.compile("\\d{2}");
+        matcher = pattern.matcher(instance.getTxtEtage().getText());
+        while(matcher.find()) {
+            System.out.println("Trouvé !");
+        }
 	}
 
 
