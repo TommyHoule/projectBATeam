@@ -42,7 +42,7 @@ public class modArriver extends AbstractTableModel{
 
 
 	private ArrayList<modArriver> lesArrivees = new ArrayList<modArriver>();
-	public final  String[] lesTitres = {" "};
+	public final  String[] lesTitres = {"NoArrive", "Nom"};
 	
 	public modArriver(){
 		lireEnreg();
@@ -119,14 +119,22 @@ public class modArriver extends AbstractTableModel{
 	
 	@Override
 	public int getRowCount() {
+		// TODO Auto-generated method stub
 		return lesArrivees.size();
 	}
 
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return lesTitres.length;
+	}
 	
 	@Override
-	public int getColumnCount() {	
-		return lesTitres.length;
-		}
+	public String getColumnName(int columnIndex)
+	{
+		// TODO Auto-generated method stub
+		return lesTitres[columnIndex];
+	}
 	
 	public ArrayList<modArriver> getLesEnreg() {
 		return lesArrivees;

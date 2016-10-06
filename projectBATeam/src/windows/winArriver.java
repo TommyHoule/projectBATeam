@@ -199,7 +199,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblClientNo);
 		
 		textFieldClientNom = new JTextField();
-		textFieldClientNom.setBounds(296, 40, 130, 26);
+		textFieldClientNom.setBounds(296, 40, 138, 26);
 		panelClient.add(textFieldClientNom);
 		textFieldClientNom.setColumns(10);
 		
@@ -212,7 +212,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblAdresse);
 		
 		textFieldAdresse = new JTextField();
-		textFieldAdresse.setBounds(97, 99, 329, 26);
+		textFieldAdresse.setBounds(97, 99, 337, 26);
 		panelClient.add(textFieldAdresse);
 		textFieldAdresse.setColumns(10);
 		
@@ -230,7 +230,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblFax);
 		
 		textFieldFax = new JTextField();
-		textFieldFax.setBounds(296, 158, 130, 26);
+		textFieldFax.setBounds(296, 158, 138, 26);
 		panelClient.add(textFieldFax);
 		textFieldFax.setColumns(10);
 		
@@ -303,7 +303,7 @@ public class winArriver extends winHeritage {
 		panelReservation.add(lblNomReserv);
 		
 		textFieldNomReserv = new JTextField();
-		textFieldNomReserv.setBounds(235, 234, 130, 26);
+		textFieldNomReserv.setBounds(235, 234, 145, 26);
 		panelReservation.add(textFieldNomReserv);
 		textFieldNomReserv.setColumns(10);
 		

@@ -3,7 +3,9 @@ package controleurs;
 import javax.swing.JTable;
 import windows.winArriver;
 import windows.winChambre;
+import windows.winPickList;
 import modeles.modArriver;
+import modeles.modChambre;
 import modeles.modDe;
 
 public class ctrlArrive {
@@ -45,7 +47,8 @@ public class ctrlArrive {
 	}
 	
 	public void PkArriver(winArriver instance){
-		//a faire
+		position = winPickList.pickFromTable(new modArriver(),"listes des arrive");
+		AffecteValeurs(instance, position);	
 	}
 	
 	public void Premier(winArriver instance) {
