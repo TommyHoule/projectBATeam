@@ -71,6 +71,7 @@ public class winChambre extends winHeritage {
 	 */
 	public winChambre() {
 		super();
+
 		instance = this;
 		Setup();
 		ModeConsultation();
@@ -87,7 +88,8 @@ public class winChambre extends winHeritage {
 		btnEnregistrer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+				//JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+					leControllerChambre.validationChambre(instance);	
 			}
 		});
 		btnQuitter.addMouseListener(new MouseAdapter() {
@@ -319,6 +321,7 @@ public class winChambre extends winHeritage {
 			
 	}
 	private void ModeConsultation() {
+		leControllerChambre = new ctrlChambre(instance);
 		
 		this.AjoutActive = false;
 		

@@ -117,6 +117,10 @@ public class ctrlChambre {
 		instance.getTxtEtat().setText("0");
 		
 	}
+	public void validationChambre(winChambre instance)
+	{
+		System.out.println(instance.getTxtNoChambre().getText());
+	}
 
 
 }
