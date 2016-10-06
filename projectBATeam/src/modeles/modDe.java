@@ -89,7 +89,4 @@ public class modDe extends AbstractTableModel{
 		if(columnIndex == 2) return uneDe.Prix;
 		else return uneDe.Occupe;
 	}
-	
-	
-	
 }
