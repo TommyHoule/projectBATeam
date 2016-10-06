@@ -12,12 +12,20 @@ import javax.swing.Box;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableColumn;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import controleurs.ctrlArrive;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;;
 
 public class winArriver extends winHeritage {
 
@@ -34,7 +42,10 @@ public class winArriver extends winHeritage {
 	private JTextField textFieldDateFin;
 	private JTextField textFieldClientNoReserv;
 	private JTextField textFieldNomReserv;
-	private JScrollPane scrollPaneZoneN;
+	private static JScrollPane scrollPaneZoneN;
+	private winArriver instance;
+	private ctrlArrive ctrlArr = null;
+	private JButton btnPickList;
 
 	/**
 	 * Launch the application.
@@ -56,7 +67,122 @@ public class winArriver extends winHeritage {
 	 * Create the frame.
 	 */
 	public winArriver() {
+		instance = this;
 		
+		Setup();
+		ctrlArr = new ctrlArrive(instance);
+		
+		ModeConsultation();
+		
+		
+		/*setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);*/
+		
+		
+		/*BOUTON*/
+		btnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				winPrincipale fenPrincipale = new winPrincipale();
+	     		fenPrincipale.setVisible(true);
+				winArriver.this.dispose();			
+			}
+		});
+		
+		btnEnregistrer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnAnnuler.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnModifier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnConsulter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnSupprimer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnAjouter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		mnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				winPrincipale fenPrincipale = new winPrincipale();
+	     		fenPrincipale.setVisible(true);
+				winArriver.this.dispose();			
+				}
+		});		
+		mnRapports.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnListes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnEntretien.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+	}
+	
+	private void ModeConsultation(){
+		this.textFieldAdresse.setEditable(false);
+		this.textFieldClientNo.setEditable(false);
+		this.textFieldClientNom.setEditable(false);
+		this.textFieldClientNoReserv.setEditable(false);
+		this.textFieldDateDebut.setEditable(false);
+		this.textFieldDateFin.setEditable(false);
+		this.textFieldFax.setEditable(false);
+		this.textFieldNomReserv.setEditable(false);
+		this.textFieldNoReser.setEditable(false);
+		this.textFieldNumeroChambre.setEditable(false);
+		this.textFieldReservLe.setEditable(false);
+		this.textFieldTelephone.setEditable(false);
+		this.btnConsulter.setEnabled(false);
+		this.btnEnregistrer.setEnabled(false);
+		this.btnAnnuler.setEnabled(false);
+	}
+	
+	private void Setup(){
 		JPanel panelClient = new JPanel();
 		panelClient.setBackground(SystemColor.windowBorder);
 		panelClient.setBounds(176, 88, 469, 280);
@@ -73,7 +199,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblClientNo);
 		
 		textFieldClientNom = new JTextField();
-		textFieldClientNom.setBounds(296, 40, 130, 26);
+		textFieldClientNom.setBounds(296, 40, 138, 26);
 		panelClient.add(textFieldClientNom);
 		textFieldClientNom.setColumns(10);
 		
@@ -86,7 +212,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblAdresse);
 		
 		textFieldAdresse = new JTextField();
-		textFieldAdresse.setBounds(97, 99, 329, 26);
+		textFieldAdresse.setBounds(97, 99, 337, 26);
 		panelClient.add(textFieldAdresse);
 		textFieldAdresse.setColumns(10);
 		
@@ -104,7 +230,7 @@ public class winArriver extends winHeritage {
 		panelClient.add(lblFax);
 		
 		textFieldFax = new JTextField();
-		textFieldFax.setBounds(296, 158, 130, 26);
+		textFieldFax.setBounds(296, 158, 138, 26);
 		panelClient.add(textFieldFax);
 		textFieldFax.setColumns(10);
 		
@@ -116,6 +242,10 @@ public class winArriver extends winHeritage {
 		JLabel lblNumroChambre = new JLabel("Numéro Chambre:");
 		lblNumroChambre.setBounds(30, 223, 114, 16);
 		panelClient.add(lblNumroChambre);
+		
+		btnPickList = new JButton("...");
+		btnPickList.setBounds(6, 6, 44, 29);
+		panelClient.add(btnPickList);
 		
 		JPanel panelReservation = new JPanel();
 		panelReservation.setBackground(SystemColor.windowBorder);
@@ -173,7 +303,7 @@ public class winArriver extends winHeritage {
 		panelReservation.add(lblNomReserv);
 		
 		textFieldNomReserv = new JTextField();
-		textFieldNomReserv.setBounds(235, 234, 130, 26);
+		textFieldNomReserv.setBounds(235, 234, 145, 26);
 		panelReservation.add(textFieldNomReserv);
 		textFieldNomReserv.setColumns(10);
 		
@@ -189,12 +319,36 @@ public class winArriver extends winHeritage {
 		scrollPaneZoneN.setBounds(176, 392, 938, 235);
 		getContentPane().add(scrollPaneZoneN);
 		
-		/*setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);*/
+		btnPickList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ctrlArr.PkArriver(instance);
+			}
+		});
+		
+		btnPremier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrlArr.Premier(instance);
+			}
+		});
+		btnPrecedent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrlArr.BonPrecedent(instance);
+			}
+		});
+		btnDernier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrlArr.Dernier(instance);
+			}
+		});
+		btnSuivant.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ctrlArr.BonSuivant(instance);
+			}
+		});
 	}
 	
 	public JTextField getTxtClientNo(){
@@ -225,7 +379,6 @@ public class winArriver extends winHeritage {
 		return this.textFieldNoReser;
 	}
 	
-	
 	public JTextField getTxtReservLe(){
 		return this.textFieldReservLe;
 	}
@@ -246,15 +399,13 @@ public class winArriver extends winHeritage {
 		return this.textFieldNomReserv;
 	}
 	
-	
-	public void setScrollPane(JTable UneTable)
+	public static void setScrollPane(JTable UneTable)
 	{
-	
-		if (this.scrollPaneZoneN == null) 
-		   {
-			scrollPaneZoneN = new JScrollPane(UneTable);
-			scrollPaneZoneN.setBounds(20, 7,515, 175);
-		   }
 		scrollPaneZoneN.setViewportView(UneTable);
+	}
+	
+	public static JScrollPane getScrollPane()
+	{
+		return scrollPaneZoneN;
 	}
 }
