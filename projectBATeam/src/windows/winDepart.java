@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -64,6 +65,85 @@ public class winDepart extends winHeritage {
 		Setup();
 		
 		ctrlDepart = new ctrlDepart(instance);
+		
+		/*BOUTON*/
+		btnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				winPrincipale fenPrincipale = new winPrincipale();
+	     		fenPrincipale.setVisible(true);
+				winDepart.this.dispose();			
+			}
+		});
+		
+		btnEnregistrer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnAnnuler.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnModifier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnConsulter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnSupprimer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		btnAjouter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		
+		mnQuitter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				winPrincipale fenPrincipale = new winPrincipale();
+	     		fenPrincipale.setVisible(true);
+				winDepart.this.dispose();			
+				}
+		});		
+		mnRapports.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnListes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
+		mnEntretien.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+			}
+		});
 	}
 
 	private void Setup(){
@@ -178,7 +258,7 @@ public class winDepart extends winHeritage {
 		panelReservation.add(lblConfirmPar);
 		
 		textFieldConfirmPar = new JTextField();
-		textFieldConfirmPar.setBounds(141, 234, 179, 26);
+		textFieldConfirmPar.setBounds(141, 234, 52, 26);
 		panelReservation.add(textFieldConfirmPar);
 		textFieldConfirmPar.setColumns(10);
 		

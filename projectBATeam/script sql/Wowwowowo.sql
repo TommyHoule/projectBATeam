@@ -1,4 +1,4 @@
-create or replace view viewArriver as
+/*create or replace view viewArriver as
   Select a.NoArrive, a.IdReser, a.IdCli, c.Nom, c.Adresse, c.Telephone, c.Fax, a.NoCham
   From CLIENT c, ARRIVE a
   Where c.IdCli = a.IdCli;
@@ -27,3 +27,8 @@ Select viewArriver.NoArrive , viewArriver.IdReser, viewArriver.IdCli, viewArrive
   Select VIEWDE.NOCHAM, VIEWDE.CODTYPCHA, VIEWDE.PRIX, VIEWDE.ATTRIBUEE
   From VIEWDE
   Where VIEWDE.IDRESER = 1;
+*/
+
+SELECT d.IdCli, c.Nom, c.Adresse, c.Telephone, c.TypeCarte, d.IdReser, r.dateReser, r.dateDebut, r.dateFin, d.ConfirmePar 
+FROM EQU03prg01.CLIENT c, EQU03prg01.DEPART d, EQU03prg01.RESERVATION r
+WHERE d.IdCli = c.IdCli and d.IdReser = r.IdReser;

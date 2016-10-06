@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import modeles.modConnexion;
 import windows.winArriver;
 import windows.winChambre;
+import windows.winDepart;
 import windows.winPrincipale;
 import windows.winReservation;
 
@@ -34,7 +35,9 @@ public class ctrlPrincipale {
 		                fenArriver.setVisible(true);
 			          	fenetre.dispose();
 			          	break;
-		     case 5 : 	JOptionPane.showMessageDialog(null, "La gestion des departs est en construction","En cours de développement...",JOptionPane.PLAIN_MESSAGE); 
+		     case 5 : 	winDepart fenDepart = new winDepart();
+             			fenDepart.setVisible(true);
+             			fenetre.dispose();
     		  		  	break;
 		     case 6 : 	modConnexion.getInstance().deconnexion();
 		     		  	fenetre.dispose();
