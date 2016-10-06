@@ -2,6 +2,7 @@ package windows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,6 +23,10 @@ import java.awt.event.MouseEvent;
 
 public class winChambre extends winHeritage {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel panelChambre;
 	private JLabel lblNoChambre;
@@ -36,7 +41,7 @@ public class winChambre extends winHeritage {
 	private JTextField txtEtage;
 	private JTextField txtEtat;
 	private JTextField txtCodeType;
-	private JTextField textField;
+	private JTextField txtCodeLocalisation;
 	private JTextField txtPrix;
 	private JTextField txtDescriptionCodeType;
 	private JTextField txtDescriptionCodeLocalisation;
@@ -44,7 +49,8 @@ public class winChambre extends winHeritage {
 	
 	private ctrlChambre leControllerChambre ;
 	private winChambre instance;
-	public JTable tProduit;
+	public JTable tableAyant;
+	private static JScrollPane scrollPane;
 
 
 	/**
@@ -150,6 +156,8 @@ public class winChambre extends winHeritage {
 			}
 		});
 		
+
+		
 		ModeConsultation();
 
 	}
@@ -176,25 +184,7 @@ public class winChambre extends winHeritage {
 		lblEtat = new JLabel("Etat :");
 		lblEtat.setBounds(6, 103, 82, 16);
 		panelChambre.add(lblEtat);
-		
-		txtNoChambre = new JTextField();
-		txtNoChambre.setEditable(false);
-		txtNoChambre.setBounds(100, 1, 130, 26);
-		panelChambre.add(txtNoChambre);
-		txtNoChambre.setColumns(10);
-		
-		txtEtage = new JTextField();
-		txtEtage.setEditable(false);
-		txtEtage.setColumns(10);
-		txtEtage.setBounds(100, 43, 130, 26);
-		panelChambre.add(txtEtage);
-		
-		txtEtat = new JTextField();
-		txtEtat.setEditable(false);
-		txtEtat.setColumns(10);
-		txtEtat.setBounds(100, 98, 130, 26);
-		panelChambre.add(txtEtat);
-		
+
 	    lblCodeType = new JLabel("Code_Type :");
 		lblCodeType.setBounds(255, 6, 130, 16);
 		panelChambre.add(lblCodeType);
@@ -207,24 +197,6 @@ public class winChambre extends winHeritage {
 		lblPrix.setBounds(255, 103, 130, 16);
 		panelChambre.add(lblPrix);
 		
-		txtCodeType = new JTextField();
-		txtCodeType.setEditable(false);
-		txtCodeType.setBounds(389, 1, 130, 26);
-		panelChambre.add(txtCodeType);
-		txtCodeType.setColumns(10);
-		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(389, 43, 130, 26);
-		panelChambre.add(textField);
-		
-		txtPrix = new JTextField("$",10);
-		txtPrix.setEditable(false);
-		txtPrix.setColumns(10);
-		txtPrix.setBounds(389, 98, 130, 26);
-		panelChambre.add(txtPrix);
-		
 		lblDescriptionCodeType = new JLabel("Description :");
 		lblDescriptionCodeType.setBounds(556, 6, 130, 16);
 		panelChambre.add(lblDescriptionCodeType);
@@ -232,31 +204,26 @@ public class winChambre extends winHeritage {
 		lblDescriptionCodeLocalisation = new JLabel("Description :");
 		lblDescriptionCodeLocalisation.setBounds(556, 48, 130, 16);
 		panelChambre.add(lblDescriptionCodeLocalisation);
+				
+		panelChambre.add(getTxtNoChambre());
+		panelChambre.add(getTxtEtage());
+		panelChambre.add(getTxtPrix());
+		panelChambre.add(getTxtEtat());
+		panelChambre.add(getTxtMemo());
+		panelChambre.add(getTxtCodTypeCha());
+		panelChambre.add(getTxtDescType());
+		panelChambre.add(getTxtCodLoc());
+		panelChambre.add(getTxtDescLoc());
 		
-		txtDescriptionCodeType = new JTextField();
-		txtDescriptionCodeType.setEditable(false);
-		txtDescriptionCodeType.setColumns(10);
-		txtDescriptionCodeType.setBounds(656, 1, 130, 26);
-		panelChambre.add(txtDescriptionCodeType);
-		
-		txtDescriptionCodeLocalisation = new JTextField();
-		txtDescriptionCodeLocalisation.setEditable(false);
-		txtDescriptionCodeLocalisation.setColumns(10);
-		txtDescriptionCodeLocalisation.setBounds(656, 43, 130, 26);
-		panelChambre.add(txtDescriptionCodeLocalisation);
-		
-		txtMemo = new JTextField();
-		txtMemo.setText("Description spéciale de la chambre");
-		txtMemo.setEditable(false);
-		txtMemo.setBounds(556, 103, 230, 81);
-		panelChambre.add(txtMemo);
-		txtMemo.setColumns(10);
-		
+		//label titre indiquant l'information de la chambre
+		JLabel lblInfoChambre = new JLabel("Information sur la Chambre :");
+		lblInfoChambre.setBounds(204, 74, 196, 16);
+		getContentPane().add(lblInfoChambre);
 		
 		//composante graphique de Ayant
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(204, 370, 890, 205);
-		getContentPane().add(scrollPane);
+		getContentPane().add(getScrollPane());
+		
+		
 		
 		//Gestion de la souris sur le menu et la navigation
 		
@@ -284,6 +251,134 @@ public class winChambre extends winHeritage {
 				leControllerChambre.BonSuivant(instance);
 			}
 		});
+		txtNoChambre.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			leControllerChambre.ListeChambres(instance);
+		}
+		});
+	}
+	
+	private JScrollPane getScrollPane() {
+		scrollPane.setBounds(204, 370, 890, 205);
+		return scrollPane;		
+	}
+	
+	public static void setjScrollPane(JTable UneTable)
+	{
+		if (scrollPane == null) 
+		   {
+			scrollPane = new JScrollPane(UneTable);
+			scrollPane.setBounds(20, 7,515, 175);
+		   }
+		scrollPane.setViewportView(UneTable);
 	}
 
+	public JTextField getTxtNoChambre() {
+		if(txtNoChambre == null)
+		{
+			txtNoChambre = new JTextField();
+			txtNoChambre.setEditable(false);
+			txtNoChambre.setBounds(100, 1, 130, 26);
+			txtNoChambre.setColumns(10);
+		}
+		return txtNoChambre;
+	}
+
+	public JTextField getTxtEtage() {
+		if(txtEtage == null)
+		{
+			txtEtage = new JTextField();
+			txtEtage.setEditable(false);
+			txtEtage.setColumns(10);
+			txtEtage.setBounds(100, 43, 130, 26);
+		}
+		return txtEtage;
+	}
+
+	public JTextField getTxtPrix() {
+		if(txtPrix == null)
+		{
+			txtPrix = new JTextField("$",10);
+			txtPrix.setEditable(false);
+			txtPrix.setColumns(10);
+			txtPrix.setBounds(389, 98, 130, 26);
+		}
+		
+		return txtPrix;
+	}
+
+	public JTextField getTxtMemo() {
+		if(txtMemo == null)
+		{
+			txtMemo = new JTextField();
+			txtMemo.setText("Description spéciale de la chambre");
+			txtMemo.setEditable(false);
+			txtMemo.setBounds(556, 103, 277, 81);
+			txtMemo.setColumns(10);
+		}
+		
+		return txtMemo;
+	}
+
+	public JTextField getTxtEtat() {
+		if(txtEtat == null)
+		{
+			txtEtat = new JTextField();
+			txtEtat.setEditable(false);
+			txtEtat.setColumns(10);
+			txtEtat.setBounds(100, 98, 130, 26);
+		}
+		
+		return txtEtat;
+	}
+
+	public JTextField getTxtCodTypeCha() {
+		if(txtCodeType == null)
+		{
+			txtCodeType = new JTextField();
+			txtCodeType.setEditable(false);
+			txtCodeType.setBounds(389, 1, 130, 26);
+			txtCodeType.setColumns(10);
+		}
+		
+		return txtCodeType;
+	}
+
+	public JTextField getTxtDescType() {
+		if(txtDescriptionCodeType == null)
+		{
+			txtDescriptionCodeType = new JTextField();
+			txtDescriptionCodeType.setEditable(false);
+			txtDescriptionCodeType.setColumns(10);
+			txtDescriptionCodeType.setBounds(656, 1, 177, 26);
+		}
+		
+		return txtDescriptionCodeType;
+	}
+
+	public JTextField getTxtCodLoc() {
+		if(txtCodeLocalisation == null)
+		{
+			txtCodeLocalisation = new JTextField();
+			txtCodeLocalisation.setEditable(false);
+			txtCodeLocalisation.setColumns(10);
+			txtCodeLocalisation.setBounds(389, 43, 130, 26);
+		}
+		
+		return txtCodeLocalisation;
+	}
+
+	public JTextField getTxtDescLoc() {
+		if(txtDescriptionCodeLocalisation == null)
+		{
+			txtDescriptionCodeLocalisation = new JTextField();
+			txtDescriptionCodeLocalisation.setEditable(false);
+			txtDescriptionCodeLocalisation.setColumns(10);
+			txtDescriptionCodeLocalisation.setBounds(656, 43, 177, 26);
+		}
+		
+		return txtDescriptionCodeLocalisation;
+	}
 }
+
