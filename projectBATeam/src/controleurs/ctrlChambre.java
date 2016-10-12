@@ -1,7 +1,9 @@
 package controleurs;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import modeles.Model;
 import modeles.modAyant;
 import modeles.modChambre;
 import modeles.modListAyant;
@@ -9,17 +11,27 @@ import modeles.modListCodeLocalisation;
 import modeles.modListCodeType;
 import windows.winChambre;
 import windows.winPickList;
+
+import java.util.ArrayList;
 import java.util.regex.*;
 
 
 public class ctrlChambre {
 
-	private static Pattern pattern;
-    private static Matcher matcher;
+	private static Pattern patternNoCham;
+	private static Pattern patternEtage;
+	private static Pattern patternPrix;
+	private static Pattern patternMemo;
+
+    private static Matcher matcherNoCham;
+	private static Matcher matcherEtage;
+	private static Matcher matcherPrix;
+	private static Matcher matcherMemo;
     
 	public modChambre modeleChambre = null;
 	public modListCodeType modeleCodeType = null;
 	public modListCodeLocalisation modeleCodeLocalisation = null;
+	private Model modValide;
 	private int position = 0;
 	public modAyant modeleAyant = null;
 	public modListAyant modeleListAyant = null;
@@ -131,14 +143,63 @@ public class ctrlChambre {
 	}
 	public void validationChambre(winChambre instance)
 	{
-		pattern = Pattern.compile("^\\d{1,2}$");
-        matcher = pattern.matcher(instance.getTxtEtage().getText());
-        if(matcher.find()) {
-        	System.out.println(matcher);
+		ArrayList<String> errors = new ArrayList();
+		ArrayList<String> values = new ArrayList();
+		errors = null;
+		
+		patternNoCham = Pattern.compile("^\\d{1,3}$");
+		patternEtage = Pattern.compile("^\\d{1,2}$");
+		patternPrix = Pattern.compile("^(\\d{1,4})[.,]?(\\d{1,2})$");
+		patternMemo = Pattern.compile("^[a-z A-Z]{1,50}$");
+
+        matcherNoCham = patternNoCham.matcher(instance.getTxtNoChambre().getText());
+        matcherEtage = patternEtage.matcher(instance.getTxtEtage().getText());
+        matcherPrix = patternPrix.matcher(instance.getTxtPrix().getText());
+        matcherMemo = patternMemo.matcher(instance.getTxtMemo().getText());
+        
+        if(modValide.contains(instance.getTxtNoChambre().getText(), 0))
+        {
+	        if(matcherNoCham.find()) {
+	        	System.out.println(matcherNoCham);
+	            System.out.println("Trouvé !");
+	        }
+	        else{
+	            errors.add("Le numero de chambre est invalide\n");
+	        }
+        }
+	    else
+	    {
+            errors.add("Le numero de chambre est deja pris\n");
+	    }
+        
+        if(matcherEtage.find()) {
+        	System.out.println(matcherEtage);
             System.out.println("Trouvé !");
         }
         else{
-            System.out.println("non trouver !");
+            errors.add("Le numero de l'étage est invalide\n");
+        }
+        if(matcherPrix.find()) {
+        	System.out.println(matcherPrix);
+            System.out.println("Trouvé !");
+        }
+        else{
+            errors.add("Le prix est invalide\n");
+        }
+        if(matcherMemo.find()) {
+        	System.out.println(matcherMemo);
+        }
+        else{
+            errors.add("Le memo est invalide\n");
+        }
+        
+        if(errors == null)
+        {
+        	System.out.println("j'ai aucune erreure");
+        }
+        else
+        {
+        	JOptionPane.showMessageDialog(null, errors, "Champs invalides",JOptionPane.ERROR_MESSAGE);
         }
 	}
 
