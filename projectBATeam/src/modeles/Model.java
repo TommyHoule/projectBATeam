@@ -45,6 +45,8 @@ public class Model extends AbstractTableModel{
 	}
 	public boolean contains(String value, int columnIndex){
 		for(ArrayList<Object> row : data){
+			System.out.println(row.get(columnIndex));
+			System.out.println(value);
 			if(row.get(columnIndex).equals(value)){
 				return true;
 			}

@@ -376,9 +376,13 @@ public class winChambre extends winHeritage {
 		this.AjoutActive = true;
 		
 		txtNoChambre.setEditable(true);
+		txtNoChambre.setText("");
 		txtEtage.setEditable(true);
+		txtEtage.setText("");
 		txtPrix.setEditable(true);
+		txtPrix.setText("");
 		txtMemo.setEditable(true);
+		txtMemo.setText("");
 		txtEtat.setEditable(false);
 		txtCodeType.setEditable(false);
 		txtDescriptionCodeType.setEditable(false);

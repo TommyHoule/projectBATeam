@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import modeles.Model;
+import modeles.Procs;
 import modeles.modAyant;
 import modeles.modChambre;
 import modeles.modListAyant;
@@ -37,6 +38,7 @@ public class ctrlChambre {
 	public modListAyant modeleListAyant = null;
 	public ctrlChambre(winChambre instance) {
 		
+		modValide = Procs.SELECT_CHAMBRE();
 		modeleChambre = new modChambre();	
 		AffecteValeurs(instance,position);
 
@@ -127,7 +129,7 @@ public class ctrlChambre {
 		{
 			instance.chckbxHorsDusage.setSelected(false);
 		}
-		instance.getTxtEtat().setText("1");
+		instance.getTxtEtat().setText("0");
 	}
 	public boolean getChckbxHorsDusageSelected(winChambre instance) {
 		return instance.chckbxHorsDusage.isSelected();
@@ -138,14 +140,13 @@ public class ctrlChambre {
 		{
 			instance.chckbxEnEtat.setSelected(false);
 		}
-		instance.getTxtEtat().setText("0");
+		instance.getTxtEtat().setText("1");
 		
 	}
 	public void validationChambre(winChambre instance)
 	{
-		ArrayList<String> errors = new ArrayList();
-		ArrayList<String> values = new ArrayList();
-		errors = null;
+		ArrayList<String> errors = new ArrayList<String>();
+		ArrayList<String> values = new ArrayList<String>();
 		
 		patternNoCham = Pattern.compile("^\\d{1,3}$");
 		patternEtage = Pattern.compile("^\\d{1,2}$");
@@ -156,20 +157,20 @@ public class ctrlChambre {
         matcherEtage = patternEtage.matcher(instance.getTxtEtage().getText());
         matcherPrix = patternPrix.matcher(instance.getTxtPrix().getText());
         matcherMemo = patternMemo.matcher(instance.getTxtMemo().getText());
-        
-        if(modValide.contains(instance.getTxtNoChambre().getText(), 0))
+
+        if(matcherNoCham.find())
         {
-	        if(matcherNoCham.find()) {
-	        	System.out.println(matcherNoCham);
-	            System.out.println("Trouvé !");
+	        if(modValide.contains(instance.getTxtNoChambre().getText(), 0)) {
+	            errors.add("Le numero de chambre est deja pris\n");
 	        }
 	        else{
-	            errors.add("Le numero de chambre est invalide\n");
+	        	System.out.println(matcherNoCham);
+	            System.out.println("Trouvé !");
 	        }
         }
 	    else
 	    {
-            errors.add("Le numero de chambre est deja pris\n");
+            errors.add("Le numero de chambre est invalide\n");
 	    }
         
         if(matcherEtage.find()) {
@@ -179,6 +180,7 @@ public class ctrlChambre {
         else{
             errors.add("Le numero de l'étage est invalide\n");
         }
+        
         if(matcherPrix.find()) {
         	System.out.println(matcherPrix);
             System.out.println("Trouvé !");
@@ -186,6 +188,7 @@ public class ctrlChambre {
         else{
             errors.add("Le prix est invalide\n");
         }
+        
         if(matcherMemo.find()) {
         	System.out.println(matcherMemo);
         }
@@ -193,7 +196,7 @@ public class ctrlChambre {
             errors.add("Le memo est invalide\n");
         }
         
-        if(errors == null)
+        if(errors.isEmpty())
         {
         	System.out.println("j'ai aucune erreure");
         }
