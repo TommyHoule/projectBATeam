@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -25,6 +26,103 @@ public class winDepart extends winHeritage {
 	private JPanel contentPane;
 
 	private JTextField textFieldClientNo;
+	public JTextField getTextFieldClientNo() {
+		return textFieldClientNo;
+	}
+
+	public void setTextFieldClientNo(JTextField textFieldClientNo) {
+		this.textFieldClientNo = textFieldClientNo;
+	}
+
+	public JTextField getTextFieldClientNom() {
+		return textFieldClientNom;
+	}
+
+	public void setTextFieldClientNom(JTextField textFieldClientNom) {
+		this.textFieldClientNom = textFieldClientNom;
+	}
+
+	public JTextField getTextFieldAdresse() {
+		return textFieldAdresse;
+	}
+
+	public void setTextFieldAdresse(JTextField textFieldAdresse) {
+		this.textFieldAdresse = textFieldAdresse;
+	}
+
+	public JTextField getTextFieldTelephone() {
+		return textFieldTelephone;
+	}
+
+	public void setTextFieldTelephone(JTextField textFieldTelephone) {
+		this.textFieldTelephone = textFieldTelephone;
+	}
+
+	public JTextField getTextFieldFax() {
+		return textFieldFax;
+	}
+
+	public void setTextFieldFax(JTextField textFieldFax) {
+		this.textFieldFax = textFieldFax;
+	}
+
+	public JTextField getTextFieldTypeCarte() {
+		return textFieldTypeCarte;
+	}
+
+	public void setTextFieldTypeCarte(JTextField textFieldTypeCarte) {
+		this.textFieldTypeCarte = textFieldTypeCarte;
+	}
+
+	public JTextField getTextFieldNoReser() {
+		return textFieldNoReser;
+	}
+
+	public void setTextFieldNoReser(JTextField textFieldNoReser) {
+		this.textFieldNoReser = textFieldNoReser;
+	}
+
+	public JTextField getTextFieldReservLe() {
+		return textFieldReservLe;
+	}
+
+	public void setTextFieldReservLe(JTextField textFieldReservLe) {
+		this.textFieldReservLe = textFieldReservLe;
+	}
+
+	public JTextField getTextFieldDateDebut() {
+		return textFieldDateDebut;
+	}
+
+	public void setTextFieldDateDebut(JTextField textFieldDateDebut) {
+		this.textFieldDateDebut = textFieldDateDebut;
+	}
+
+	public JTextField getTextFieldDateFin() {
+		return textFieldDateFin;
+	}
+
+	public void setTextFieldDateFin(JTextField textFieldDateFin) {
+		this.textFieldDateFin = textFieldDateFin;
+	}
+
+	public JTextField getTextFieldConfirmPar() {
+		return textFieldConfirmPar;
+	}
+
+	public void setTextFieldConfirmPar(JTextField textFieldConfirmPar) {
+		this.textFieldConfirmPar = textFieldConfirmPar;
+	}
+
+	public static JScrollPane getScrollPaneZoneN() {
+		return scrollPaneZoneN;
+	}
+
+	public static void setScrollPane(JTable UneTable)
+	{
+		scrollPaneZoneN.setViewportView(UneTable);
+	}
+
 	private JTextField textFieldClientNom;
 	private JTextField textFieldAdresse;
 	private JTextField textFieldTelephone;

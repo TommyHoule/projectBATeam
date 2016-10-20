@@ -29,7 +29,7 @@ Select viewArriver.NoArrive , viewArriver.IdReser, viewArriver.IdCli, viewArrive
   Where VIEWDE.IDRESER = 1;
 */
 create or replace view viewDepart as
-SELECT d.IdCli, c.Nom, c.Adresse, c.Telephone, c.TypeCarte, d.IdReser, r.dateReser, r.dateDebut, r.dateFin, d.ConfirmePar 
+SELECT d.NoDepart, d.IdCli, c.Nom, c.Adresse, c.Telephone, c.Fax, c.TypeCarte, d.IdReser, r.dateReser, r.dateDebut, r.dateFin, d.ConfirmePar 
 FROM EQU03prg01.CLIENT c, EQU03prg01.DEPART d, EQU03prg01.RESERVATION r
 WHERE d.IdCli = c.IdCli and d.IdReser = r.IdReser;
 
@@ -38,8 +38,10 @@ SELECT d.NoCham, d.IdCli, c.Nom, d.DATEDEPART, d.IDRESER
 FROM EQU03prg01.DEPART d, EQU03prg01.CLIENT c
 WHERE d.IdCli = c.IdCli;
 
-SELECT v.IdCli, v.Nom, v.Adresse, v.Telephone, v.TypeCarte, v.IdReser, v.dateReser, v.dateDebut, v.dateFin, v.ConfirmePar FROM EQU03prg01.viewDepart v;
+commit;
+
+SELECT NoDepart, IdCli, Nom, Adresse, Telephone, Fax,TypeCarte, IdReser, dateReser, dateDebut, dateFin, ConfirmePar FROM EQU03prg01.viewDepart ;
 
 SELECT v.NoCham, v.IdCli, v.Nom, v.DATEDEPART
 FROM EQU03prg01.viewListeDepart v
-WHERE v.IdReser = 3;
+WHERE v.IdReser = 10;
