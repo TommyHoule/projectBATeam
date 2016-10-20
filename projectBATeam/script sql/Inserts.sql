@@ -1,4 +1,4 @@
-
+/*ceci est pour l'osti de sourcetree*/
 
 
 DELETE EQU03PRG01.CLIENT;
