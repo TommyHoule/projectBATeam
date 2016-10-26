@@ -84,7 +84,10 @@ public class winChambre extends winHeritage {
 		btnAnnuler.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "En construction", "Désolé",JOptionPane.ERROR_MESSAGE);
+				if(AjoutActive == true)
+				{
+					ModeConsultation();
+				}
 			}
 		});
 		btnEnregistrer.addMouseListener(new MouseAdapter() {
@@ -123,6 +126,7 @@ public class winChambre extends winHeritage {
 		btnAjouter.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.setAjout();
 				ModeAjout();
 			}
 		});
@@ -186,7 +190,13 @@ public class winChambre extends winHeritage {
 		});
 		btnAjoutAyant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				leControllerChambre.ListeAyant(instance, AjoutActive);
+				leControllerChambre.addCodCom();
+			}
+		});
+		btnSupprimerAyant.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				leControllerChambre.removeCodCom();
 			}
 		});
 		txtNoChambre.addMouseListener(new MouseAdapter() {
@@ -384,10 +394,15 @@ public class winChambre extends winHeritage {
 		txtMemo.setEditable(true);
 		txtMemo.setText("");
 		txtEtat.setEditable(false);
+		txtEtat.setText("");
 		txtCodeType.setEditable(false);
+		txtCodeType.setText("");
 		txtDescriptionCodeType.setEditable(false);
+		txtDescriptionCodeType.setText("");
 		txtCodeLocalisation.setEditable(false);
+		txtCodeLocalisation.setText("");
 		txtDescriptionCodeLocalisation.setEditable(false);
+		txtDescriptionCodeLocalisation.setText("");
 		
 		chckbxEnEtat.setEnabled(true);
 		chckbxEnEtat.setVisible(true);
@@ -396,7 +411,9 @@ public class winChambre extends winHeritage {
 		chckbxHorsDusage.setEnabled(true);
 		chckbxHorsDusage.setVisible(true);
 		
-
+		JTable tableVide = new JTable();
+		setjScrollPane(tableVide);
+		
 
 	}
 	private JScrollPane getScrollPane() {

@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import modeles.Model;
-import modeles.Procs;
+import modeles.ProcsE02;
 import modeles.modAyant;
 import modeles.modChambre;
 import modeles.modListAyant;
@@ -14,6 +14,7 @@ import windows.winChambre;
 import windows.winPickList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.*;
 
 
@@ -33,12 +34,13 @@ public class ctrlChambre {
 	public modListCodeType modeleCodeType = null;
 	public modListCodeLocalisation modeleCodeLocalisation = null;
 	private Model modValide;
+	private Model newChambreCodCom;
 	private int position = 0;
 	public modAyant modeleAyant = null;
 	public modListAyant modeleListAyant = null;
 	public ctrlChambre(winChambre instance) {
 		
-		modValide = Procs.SELECT_CHAMBRE();
+		modValide = ProcsE02.SELECT_CHAMBRE();
 		modeleChambre = new modChambre();	
 		AffecteValeurs(instance,position);
 
@@ -116,10 +118,6 @@ public class ctrlChambre {
 		position = winPickList.pickFromTable(new modListCodeLocalisation(),"listes des code de Localisation");
 		AffecteValeursLocalisation(instance, position);	
 	}
-	public void ListeAyant (winChambre instance, Boolean AjoutActive){
-		position = winPickList.pickFromTable(new modListAyant(),"listes des commodite");
-		AffecteValeursCommodite(instance, position);	
-	}
 	public boolean getChckbxEnEtatSelected(winChambre instance) {
 		return instance.chckbxEnEtat.isSelected();
 	}
@@ -129,7 +127,7 @@ public class ctrlChambre {
 		{
 			instance.chckbxHorsDusage.setSelected(false);
 		}
-		instance.getTxtEtat().setText("0");
+		instance.getTxtEtat().setText("1");
 	}
 	public boolean getChckbxHorsDusageSelected(winChambre instance) {
 		return instance.chckbxHorsDusage.isSelected();
@@ -140,7 +138,7 @@ public class ctrlChambre {
 		{
 			instance.chckbxEnEtat.setSelected(false);
 		}
-		instance.getTxtEtat().setText("1");
+		instance.getTxtEtat().setText("0");
 		
 	}
 	public void validationChambre(winChambre instance)
@@ -150,7 +148,7 @@ public class ctrlChambre {
 		
 		patternNoCham = Pattern.compile("^\\d{1,3}$");
 		patternEtage = Pattern.compile("^\\d{1,2}$");
-		patternPrix = Pattern.compile("^(\\d{1,4})[.,]?(\\d{1,2})$");
+		patternPrix = Pattern.compile("^(\\d{1,4})[.]?(\\d{1,2})$");
 		patternMemo = Pattern.compile("^[a-z A-Z]{1,50}$");
 
         matcherNoCham = patternNoCham.matcher(instance.getTxtNoChambre().getText());
@@ -176,6 +174,7 @@ public class ctrlChambre {
         if(matcherEtage.find()) {
         	System.out.println(matcherEtage);
             System.out.println("Trouvé !");
+
         }
         else{
             errors.add("Le numero de l'étage est invalide\n");
@@ -184,6 +183,7 @@ public class ctrlChambre {
         if(matcherPrix.find()) {
         	System.out.println(matcherPrix);
             System.out.println("Trouvé !");
+
         }
         else{
             errors.add("Le prix est invalide\n");
@@ -191,6 +191,7 @@ public class ctrlChambre {
         
         if(matcherMemo.find()) {
         	System.out.println(matcherMemo);
+
         }
         else{
             errors.add("Le memo est invalide\n");
@@ -199,12 +200,72 @@ public class ctrlChambre {
         if(errors.isEmpty())
         {
         	System.out.println("j'ai aucune erreure");
+        	
+            values.add(instance.getTxtNoChambre().getText());
+            values.add(instance.getTxtEtage().getText());
+            values.add(instance.getTxtPrix().getText());
+			if(instance.chckbxEnEtat.isSelected())
+			{
+				values.add("1");
+			}
+			if(instance.chckbxHorsDusage.isSelected())
+			{
+				values.add("0");
+			}
+            values.add(instance.getTxtCodTypeCha().getText());
+            values.add(instance.getTxtCodLoc().getText());
+            values.add(instance.getTxtMemo().getText());
+        	JOptionPane.showMessageDialog(null, values, "Champs validé",JOptionPane.WARNING_MESSAGE);
+        	
+        	boolean succes = true;
+			
+			ProcsE02.INSERT_CHAMBRE(values);
+			
+			for(int i = 0; i < newChambreCodCom.getRowCount() ; i++)
+			{
+				ProcsE02.INSERT_AYANT(new ArrayList<String>(Arrays.asList(instance.getTxtNoChambre().getText(),newChambreCodCom.getValueAt(i,0).toString())));
+			}
+		//resultat
+	        if(modValide.contains(instance.getTxtNoChambre().getText(), 0)) {
+	        	succes = true;
+	        }
+	        else{
+	        	succes = false;
+	        }
+
+			
+			if(succes)
+			{
+				JOptionPane.showMessageDialog(instance,"Ajout reussie");
+				//this.setConsultationMode();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(instance,"Ajout echoue veuillez contacter l equipe de support");
+			}
         }
         else
         {
         	JOptionPane.showMessageDialog(null, errors, "Champs invalides",JOptionPane.ERROR_MESSAGE);
         }
 	}
+	public void setAjout() 
+	{
+		newChambreCodCom = ProcsE02.SELECT_CODCOM();
+		newChambreCodCom.empty();		
+	}
+	public void addCodCom(){
 
+		Model modele = ProcsE02.SELECT_CODCOM();
+		modele.substractModele(newChambreCodCom);
+		int index = winPickList.pickFromTable(modele,"listes des commodite");
+		newChambreCodCom.addRow(new ArrayList<Object>(Arrays.asList((String)modele.getValueAt(index, 0) , (String)modele.getValueAt(index, 1))));
+		winChambre.addjScrollPane(new JTable(newChambreCodCom));
+		
+	}
+	public void removeCodCom(){
+		newChambreCodCom.removeLastRow();
+		winChambre.addjScrollPane(new JTable(newChambreCodCom));
+	}
 
 }
